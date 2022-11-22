@@ -1,6 +1,6 @@
 # TrashSure
 
-TrashSure hadir sebagai solusi digital untuk mengorganisir sampah secara efektif dengan imbalan yang menarik!
+TrashSure hadir sebagai solusi digital untuk mengorganisir sampah secara efektif dengan imbalan yang menarik
 
 > Proyek ini dibuat untuk memenuhi tugas Proyek Tengah Semester (PTS)
 > pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang
