@@ -1,6 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:trashsure/components/BackButton.dart';
 import 'package:trashsure/components/EmailField.dart';
-import 'package:trashsure/components/LoginButton.dart';
 import 'package:trashsure/components/MessageScreen.dart';
 import 'package:trashsure/components/PasswordField.dart';
 import 'package:flutter/material.dart';

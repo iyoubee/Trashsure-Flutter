@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 import 'package:trashsure/components/Drawer.dart';
 
 void main() {
@@ -32,12 +34,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      drawer: const DrawerCustom(),
-      body: null,
-    );
+    return Provider(
+        create: (_) {
+          CookieRequest request = CookieRequest();
+          return request;
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+          ),
+          drawer: const DrawerCustom(),
+          body: null,
+        ));
   }
 }
