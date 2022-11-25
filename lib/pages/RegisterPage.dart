@@ -1,20 +1,19 @@
+import 'package:trashsure/components/BackButton.dart';
 import 'package:trashsure/components/EmailField.dart';
 import 'package:trashsure/components/LoginButton.dart';
 import 'package:trashsure/components/MessageScreen.dart';
 import 'package:trashsure/components/PasswordField.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/RegisterButton.dart';
-import 'package:trashsure/components/RegisterNavigateButton.dart';
-import 'package:trashsure/pages/RegisterPage.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
   double _elementsOpacity = 1;
@@ -62,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                                     color: Colors.black, fontSize: 35),
                               ),
                               Text(
-                                "Sign in to continue",
+                                "Register",
                                 style: TextStyle(
                                     color: Colors.black.withOpacity(0.7),
                                     fontSize: 35),
@@ -84,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                                 fadePassword: _elementsOpacity == 0,
                                 passwordController: passwordController),
                             const SizedBox(height: 60),
-                            LoginButton(
+                            RegisterButton(
                               elementsOpacity: _elementsOpacity,
                               onTap: () {
                                 setState(() {
@@ -100,15 +99,10 @@ class _LoginPageState extends State<LoginPage> {
                               },
                             ),
                             const SizedBox(height: 20),
-                            RegisterNavigateButton(
+                            BackNavigateButton(
                               elementsOpacity: _elementsOpacity,
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          const RegisterPage(),
-                                    ));
+                                Navigator.pop(context);
                               },
                             )
                           ],
