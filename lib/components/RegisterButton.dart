@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatefulWidget {
+class RegisterButton extends StatefulWidget {
   final Function onTap;
   final Function onAnimatinoEnd;
   final double elementsOpacity;
-  const LoginButton(
+  const RegisterButton(
       {super.key,
       required this.onTap,
       required this.onAnimatinoEnd,
       required this.elementsOpacity});
 
   @override
-  State<LoginButton> createState() => _LoginButtonState();
+  State<RegisterButton> createState() => _RegisterButtonState();
 }
 
-class _LoginButtonState extends State<LoginButton> {
+class _RegisterButtonState extends State<RegisterButton> {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
@@ -34,25 +34,20 @@ class _LoginButtonState extends State<LoginButton> {
             height: 75,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: const Color.fromARGB(255, 5, 89, 91),
+              color: const Color.fromARGB(255, 224, 227, 231),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const Text(
-                  "Login",
+                  "Register",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 19),
                 ),
                 const SizedBox(width: 15),
-                const Icon(
-                  Icons.arrow_forward_rounded,
-                  color: Colors.white,
-                  size: 26,
-                )
               ],
             ),
           ),

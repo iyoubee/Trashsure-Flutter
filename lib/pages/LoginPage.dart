@@ -3,6 +3,7 @@ import 'package:trashsure/components/LoginButton.dart';
 import 'package:trashsure/components/MessageScreen.dart';
 import 'package:trashsure/components/PasswordField.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/components/RegisterButton.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -82,6 +83,22 @@ class _LoginPageState extends State<LoginPage> {
                                 passwordController: passwordController),
                             const SizedBox(height: 60),
                             LoginButton(
+                              elementsOpacity: _elementsOpacity,
+                              onTap: () {
+                                setState(() {
+                                  _elementsOpacity = 0;
+                                });
+                              },
+                              onAnimatinoEnd: () async {
+                                await Future.delayed(
+                                    const Duration(milliseconds: 500));
+                                setState(() {
+                                  loadingBallAppear = true;
+                                });
+                              },
+                            ),
+                            const SizedBox(height: 20),
+                            RegisterButton(
                               elementsOpacity: _elementsOpacity,
                               onTap: () {
                                 setState(() {
