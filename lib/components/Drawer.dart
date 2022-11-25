@@ -17,11 +17,7 @@ class DrawerCustom extends StatelessWidget {
           ListTile(
             title: const Text('Login'),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
-                  ));
+              Navigator.pushNamed(context, '/login');
             },
           ),
         ],
