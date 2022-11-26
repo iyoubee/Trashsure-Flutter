@@ -30,7 +30,7 @@ TrashSure hadir sebagai solusi digital untuk mengorganisir sampah secara efektif
 Aplikasi Trash-Sure memiliki beberapa fitur, antara lain:
 
 1. **Landing Page**
-   Fitur ini merupakan laman awal dari website dimana memuat _background story_ dari aplikasi Trash-sure, poin-poin keunggulan dari Trash-sure, serta fitur ulasan aplikasi.
+   Fitur ini merupakan laman awal dari aplikasi yang memuat _background story_ dari aplikasi Trash-sure, poin-poin keunggulan dari Trash-sure, serta fitur ulasan aplikasi.
 
 - Dikerjakan oleh Andresha Pradana
 
@@ -40,7 +40,7 @@ Aplikasi Trash-Sure memiliki beberapa fitur, antara lain:
 - Dikerjakan oleh Andresha Pradana
 
 3. **Admin Dashboard dan Seluruh Fungsi Admin**
-   Admin dashboard merupakan pusat control panel ber-platform yang berfungsi untuk mengatur semua kegiatan di sebuah situs atau Website. Pada laman ini, admin dapat melihat jumlah pengguna aplikasi Trash-sure dan total deposit, serta menambahkan transaksi setoran bank sampah milik user.
+   Admin dashboard merupakan pusat control panel ber-platform yang berfungsi untuk mengatur semua kegiatan di sebuah aplikasi. Pada laman ini, admin dapat melihat jumlah pengguna aplikasi Trash-sure dan total deposit, serta menambahkan transaksi setoran bank sampah milik user.
 
 - Dikerjakan oleh Muhammad Hilman Al Ayubi
 
