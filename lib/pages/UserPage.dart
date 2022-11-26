@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 
-class AdminPage extends StatefulWidget {
-  const AdminPage({super.key});
+class UserPage extends StatefulWidget {
+  const UserPage({super.key});
 
   @override
-  State<AdminPage> createState() => _AdminPageState();
+  State<UserPage> createState() => _UserPageState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _UserPageState extends State<UserPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -26,6 +26,10 @@ class _AdminPageState extends State<AdminPage> {
           backgroundColor: Color.fromARGB(255, 5, 89, 91),
           child: Icon(Icons.add),
         )),
+    Text(
+      'Index 2: Prize',
+      style: optionStyle,
+    ),
     Scaffold(
         backgroundColor: Color.fromARGB(255, 245, 245, 245),
         floatingActionButton: FloatingActionButton(
@@ -93,8 +97,13 @@ class _AdminPageState extends State<AdminPage> {
             icon: Icon(Icons.card_giftcard),
             label: 'Prize',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.local_atm),
+            label: 'Withdraw',
+          ),
         ],
         currentIndex: _selectedIndex,
+        unselectedItemColor: Colors.black,
         selectedItemColor: const Color.fromARGB(255, 226, 215, 132),
         onTap: _onItemTapped,
       ),

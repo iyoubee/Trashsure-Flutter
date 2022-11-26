@@ -5,6 +5,7 @@ import 'package:trashsure/components/Drawer.dart';
 import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/pages/LoginPage.dart';
 import 'package:trashsure/pages/RegisterPage.dart';
+import 'package:trashsure/pages/UserPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
           "/admin": (BuildContext context) => const AdminPage(),
+          "/user": (BuildContext context) => const UserPage(),
         },
       ),
     );
