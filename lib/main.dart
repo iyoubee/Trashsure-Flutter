@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/drawer.dart';
 import 'package:trashsure/pages/AdminPage.dart';
@@ -50,6 +50,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Counter Tugas 7 PBP"),

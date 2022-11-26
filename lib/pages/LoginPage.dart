@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/field_email.dart';
 import 'package:trashsure/components/button_login.dart';
@@ -172,12 +172,11 @@ class _LoginPageState extends State<LoginPage> {
                                       });
                                       _formKey.currentState?.save();
                                       final response = await request
-                                          .post(
-                                              "https://web-production-be54.up.railway.app/login/",
-                                              {
-                                                'username': _email,
-                                                'password': _password,
-                                              })
+                                          .login(
+                                              "http://10.0.2.2:8000/login/", {
+                                            'username': _email,
+                                            'password': _password,
+                                          })
                                           .then((value) => {print(value)})
                                           .then((value) => {
                                                 _alignment = Alignment.topRight,

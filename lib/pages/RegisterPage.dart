@@ -1,14 +1,12 @@
 // ignore_for_file: file_names
 
-import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/button_back.dart';
 import 'package:trashsure/components/button_register.dart';
 import 'package:trashsure/components/field_email.dart';
-import 'package:trashsure/components/button_login.dart';
 import 'package:trashsure/components/field_password.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/components/button_register_navigate.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -175,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       _formKey.currentState?.save();
                                       final response = await request
                                           .post(
-                                              "https://web-production-be54.up.railway.app/register/",
+                                              "http://10.0.2.2:8000/register/",
                                               {
                                                 'username': _email,
                                                 'password': _password,
