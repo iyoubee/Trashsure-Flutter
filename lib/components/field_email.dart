@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:trashsure/components/Colors.dart';
+import 'package:trashsure/components/colors.dart';
 import 'package:flutter/material.dart';
 
 class EmailField extends StatefulWidget {

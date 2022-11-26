@@ -2,11 +2,11 @@
 
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:trashsure/components/EmailField.dart';
-import 'package:trashsure/components/LoginButton.dart';
-import 'package:trashsure/components/PasswordField.dart';
+import 'package:trashsure/components/field_email.dart';
+import 'package:trashsure/components/button_login.dart';
+import 'package:trashsure/components/field_password.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/components/RegisterNavigateButton.dart';
+import 'package:trashsure/components/button_register_navigate.dart';
 import 'dart:developer';
 
 class LoginPage extends StatefulWidget {
@@ -114,9 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                                   children: [
                                     SizedBox(
                                       width: 50,
-                                      child: Image.asset(
-                                        "lib/assets/bin.png"
-                                      ),
+                                      child: Image.asset("lib/assets/bin.png"),
                                     ),
                                     const SizedBox(height: 25),
                                     const Text(

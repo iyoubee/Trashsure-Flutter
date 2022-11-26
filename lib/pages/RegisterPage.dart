@@ -1,10 +1,10 @@
 // ignore_for_file: file_names
 
-import 'package:trashsure/components/BackButton.dart';
-import 'package:trashsure/components/EmailField.dart';
-import 'package:trashsure/components/PasswordField.dart';
+import 'package:trashsure/components/button_back.dart';
+import 'package:trashsure/components/field_email.dart';
+import 'package:trashsure/components/field_password.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/components/RegisterButton.dart';
+import 'package:trashsure/components/button_register.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -57,9 +57,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             children: [
                               SizedBox(
                                 width: 50,
-                                child: Image.asset(
-                                  "lib/assets/bin.png"
-                                ),
+                                child: Image.asset("lib/assets/bin.png"),
                               ),
                               const SizedBox(height: 25),
                               const Text(
