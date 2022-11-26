@@ -112,8 +112,12 @@ class _LoginPageState extends State<LoginPage> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Icon(Icons.flutter_dash,
-                                        size: 60, color: Color(0xff21579C)),
+                                    SizedBox(
+                                      width: 50,
+                                      child: Image.asset(
+                                        "lib/assets/bin.png"
+                                      ),
+                                    ),
                                     const SizedBox(height: 25),
                                     const Text(
                                       "Welcome,",
