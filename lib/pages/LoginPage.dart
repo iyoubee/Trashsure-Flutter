@@ -23,6 +23,10 @@ class _LoginPageState extends State<LoginPage> {
   double _elementsOpacity = 1;
   bool loadingBallAppear = false;
   double loadingBallSize = 1;
+
+  AlignmentGeometry _alignment = Alignment.center;
+  bool stopScaleAnimtion = false;
+  bool showMessages = false;
   @override
   void initState() {
     emailController = TextEditingController();
@@ -45,9 +49,49 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         bottom: false,
         child: loadingBallAppear
-            ? const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30.0),
-                child: MessagesScreen())
+            ? Stack(
+                children: [
+                  AnimatedAlign(
+                    duration: const Duration(milliseconds: 300),
+                    alignment: _alignment,
+                    child: TweenAnimationBuilder<double>(
+                      duration: const Duration(milliseconds: 500),
+                      tween: Tween(begin: 0, end: loadingBallSize),
+                      onEnd: () {
+                        if (!stopScaleAnimtion) {
+                          setState(() {
+                            if (loadingBallSize == 1) {
+                              loadingBallSize = 1.5;
+                            } else {
+                              loadingBallSize = 1;
+                            }
+                          });
+                        } else {
+                          Future.delayed(const Duration(milliseconds: 300), () {
+                            setState(() {
+                              showMessages = true;
+                            });
+                            Navigator.pop(context);
+                          });
+                        }
+                      },
+                      builder: (_, value, __) => Transform.scale(
+                        scale: value,
+                        child: Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: !stopScaleAnimtion
+                                  ? Colors.black.withOpacity(0.8)
+                                  : null,
+                              shape: BoxShape.circle,
+                            ),
+                            child: null),
+                      ),
+                    ),
+                  ),
+                ],
+              )
             : Form(
                 key: _formKey,
                 child: SingleChildScrollView(
@@ -93,16 +137,28 @@ class _LoginPageState extends State<LoginPage> {
                               child: Column(
                                 children: [
                                   EmailField(
-                                      fadeEmail: _elementsOpacity == 0,
-                                      emailController: emailController),
+                                    fadeEmail: _elementsOpacity == 0,
+                                    emailController: emailController,
+                                    onSaved: (String? value) {
+                                      setState(() {
+                                        _email = value!;
+                                      });
+                                    },
+                                  ),
                                   const SizedBox(height: 40),
                                   PasswordField(
-                                      fadePassword: _elementsOpacity == 0,
-                                      passwordController: passwordController),
+                                    fadePassword: _elementsOpacity == 0,
+                                    passwordController: passwordController,
+                                    onSaved: (String? value) {
+                                      setState(() {
+                                        _password = value!;
+                                      });
+                                    },
+                                  ),
                                   const SizedBox(height: 60),
                                   LoginButton(
                                     elementsOpacity: _elementsOpacity,
-                                    onTap: () {
+                                    onTap: () async {
                                       setState(() {
                                         _elementsOpacity = 0;
                                       });
@@ -113,6 +169,15 @@ class _LoginPageState extends State<LoginPage> {
                                       setState(() {
                                         loadingBallAppear = true;
                                       });
+                                      _formKey.currentState?.save();
+                                      final response = await request.login(
+                                          "http://10.0.2.2:8000/login/", {
+                                        'username': _email,
+                                        'password': _password,
+                                      }).then((value) => {
+                                            _alignment = Alignment.topRight,
+                                            stopScaleAnimtion = true
+                                          });
                                     },
                                   ),
                                   const SizedBox(height: 20),

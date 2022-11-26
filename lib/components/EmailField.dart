@@ -6,8 +6,12 @@ import 'package:flutter/material.dart';
 class EmailField extends StatefulWidget {
   final bool fadeEmail;
   final TextEditingController emailController;
+  final Function(String?)? onSaved;
   const EmailField(
-      {super.key, required this.emailController, required this.fadeEmail});
+      {super.key,
+      required this.emailController,
+      required this.fadeEmail,
+      required this.onSaved});
 
   @override
   State<EmailField> createState() => _EmailFieldState();
@@ -64,6 +68,7 @@ class _EmailFieldState extends State<EmailField>
                   focusNode: node,
                   decoration: const InputDecoration(hintText: "Email"),
                   keyboardType: TextInputType.emailAddress,
+                  onSaved: widget.onSaved,
                   onChanged: (value) async {
                     if (value.isNotEmpty) {
                       if (isValidEmail(value)) {

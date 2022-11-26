@@ -28,6 +28,8 @@ class _RegisterPageState extends State<RegisterPage> {
     super.initState();
   }
 
+  String _email = "";
+  String _password = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: loadingBallAppear
             ? const Padding(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30.0),
-                child: MessagesScreen())
+                child: null)
             : Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 50.0),
                 child: SingleChildScrollView(
@@ -77,12 +79,24 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Column(
                           children: [
                             EmailField(
-                                fadeEmail: _elementsOpacity == 0,
-                                emailController: emailController),
+                              fadeEmail: _elementsOpacity == 0,
+                              emailController: emailController,
+                              onSaved: (String? value) {
+                                setState(() {
+                                  _email = value!;
+                                });
+                              },
+                            ),
                             const SizedBox(height: 40),
                             PasswordField(
-                                fadePassword: _elementsOpacity == 0,
-                                passwordController: passwordController),
+                              fadePassword: _elementsOpacity == 0,
+                              passwordController: passwordController,
+                              onSaved: (String? value) {
+                                setState(() {
+                                  _password = value!;
+                                });
+                              },
+                            ),
                             const SizedBox(height: 60),
                             RegisterButton(
                               elementsOpacity: _elementsOpacity,

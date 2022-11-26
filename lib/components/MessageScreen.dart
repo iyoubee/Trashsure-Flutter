@@ -3,7 +3,10 @@
 import 'package:flutter/material.dart';
 
 class MessagesScreen extends StatefulWidget {
-  const MessagesScreen({super.key});
+  final String username;
+  final String password;
+  const MessagesScreen(
+      {super.key, required this.username, required this.password});
 
   @override
   State<MessagesScreen> createState() => _MessagesScreenState();

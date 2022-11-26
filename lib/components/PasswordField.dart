@@ -6,10 +6,13 @@ class PasswordField extends StatefulWidget {
   final TextEditingController passwordController;
   final bool fadePassword;
 
+  final Function(String?)? onSaved;
+
   const PasswordField(
       {super.key,
       required this.passwordController,
-      required this.fadePassword});
+      required this.fadePassword,
+      required this.onSaved});
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -59,6 +62,7 @@ class _PasswordFieldState extends State<PasswordField> {
                   focusNode: node,
                   decoration: InputDecoration(hintText: "Password"),
                   obscureText: obscure,
+                  onSaved: widget.onSaved,
                   onChanged: (value) {
                     if (value.isEmpty) {
                       setState(() {
