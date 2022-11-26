@@ -7,7 +7,6 @@ import 'package:trashsure/components/button_login.dart';
 import 'package:trashsure/components/field_password.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/button_register_navigate.dart';
-import 'dart:developer';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -173,20 +172,22 @@ class _LoginPageState extends State<LoginPage> {
                                       });
                                       _formKey.currentState?.save();
                                       final response = await request
-                                          .login(
-                                              "http://10.0.2.2:8000/login/", {
-                                            'username': _email,
-                                            'password': _password,
-                                          })
+                                          .post(
+                                              "https://web-production-be54.up.railway.app/login/",
+                                              {
+                                                'username': _email,
+                                                'password': _password,
+                                              })
+                                          .then((value) => {print(value)})
                                           .then((value) => {
                                                 _alignment = Alignment.topRight,
                                                 stopScaleAnimtion = true
-                                              })
-                                          .then((value) => log(
-                                              request.loggedIn ? "yes" : "no"));
+                                              });
                                       if (request.loggedIn) {
                                         // Code here will run if the login succeeded.
+                                        print("yes");
                                       } else {
+                                        print("no");
                                         // Code here will run if the login failed (wrong username/password).
                                       }
                                     },
