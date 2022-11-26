@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/RedeemPrizePage.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -26,10 +27,8 @@ class _UserPageState extends State<UserPage> {
           backgroundColor: Color.fromARGB(255, 5, 89, 91),
           child: Icon(Icons.add),
         )),
-    Text(
-      'Index 2: Prize',
-      style: optionStyle,
-    ),
+    // NOTE: Redeem Prize Page
+    RedeemPrizePage(),
     Scaffold(
         backgroundColor: Color.fromARGB(255, 245, 245, 245),
         floatingActionButton: FloatingActionButton(
@@ -48,28 +47,17 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-      appBar: AppBar(
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-        elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
-        leading: GestureDetector(
-          child: IconButton(
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.black,
-            ),
-            onPressed: () {
-              // do something
-            },
-          ),
-        ),
-        actions: <Widget>[
-          GestureDetector(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+          elevation: 0,
+          iconTheme: const IconThemeData(color: Colors.black),
+          leading: GestureDetector(
             child: IconButton(
               icon: const Icon(
-                Icons.autorenew,
+                Icons.logout,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -77,35 +65,53 @@ class _UserPageState extends State<UserPage> {
               },
             ),
           ),
-        ],
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+          title: SizedBox( // App Logo in the middle of AppBar
+            width: 35,
+            child: Image.asset("lib/assets/bin.png")
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.auto_delete),
-            label: 'Deposit',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            label: 'Prize',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.local_atm),
-            label: 'Withdraw',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: const Color.fromARGB(255, 226, 215, 132),
-        onTap: _onItemTapped,
+          centerTitle: true,
+          actions: <Widget>[
+            GestureDetector(
+              child: IconButton(
+                icon: const Icon(
+                  Icons.autorenew,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+                  // do something
+                },
+              ),
+            ),
+          ],
+        ),
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.auto_delete),
+              label: 'Deposit',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.card_giftcard),
+              label: 'Prize',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.local_atm),
+              label: 'Withdraw',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          unselectedItemColor: Colors.black,
+          selectedItemColor: const Color.fromARGB(255, 226, 215, 132),
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
