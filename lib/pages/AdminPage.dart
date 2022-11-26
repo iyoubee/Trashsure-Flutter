@@ -51,11 +51,22 @@ class _AdminPageState extends State<AdminPage> {
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.black),
+        leading: GestureDetector(
+          child: IconButton(
+            icon: const Icon(
+              Icons.logout,
+              color: Colors.black,
+            ),
+            onPressed: () {
+              // do something
+            },
+          ),
+        ),
         actions: <Widget>[
           GestureDetector(
             child: IconButton(
               icon: const Icon(
-                Icons.logout,
+                Icons.autorenew,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -65,7 +76,6 @@ class _AdminPageState extends State<AdminPage> {
           ),
         ],
       ),
-      drawer: DrawerCustom(),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
