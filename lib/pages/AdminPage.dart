@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:trashsure/components/Drawer.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -18,14 +19,22 @@ class _AdminPageState extends State<AdminPage> {
       'Index 0: Home',
       style: optionStyle,
     ),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
-    Text(
-      'Index 2: School',
-      style: optionStyle,
-    ),
+    Scaffold(
+        backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        floatingActionButton: FloatingActionButton(
+          onPressed: null,
+          tooltip: 'Add Deposit',
+          backgroundColor: Color.fromARGB(255, 5, 89, 91),
+          child: Icon(Icons.add),
+        )),
+    Scaffold(
+        backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        floatingActionButton: FloatingActionButton(
+          onPressed: null,
+          tooltip: 'Add Deposit',
+          backgroundColor: Color.fromARGB(255, 5, 89, 91),
+          child: Icon(Icons.add),
+        ))
   ];
 
   void _onItemTapped(int index) {
@@ -39,8 +48,24 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
+        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        actions: <Widget>[
+          GestureDetector(
+            child: IconButton(
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                // do something
+              },
+            ),
+          ),
+        ],
       ),
+      drawer: DrawerCustom(),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
