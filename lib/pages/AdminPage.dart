@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:trashsure/components/card_deposit.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -20,6 +21,10 @@ class _AdminPageState extends State<AdminPage> {
     ),
     Scaffold(
         backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(10),
+          child: CardDeposit(),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: null,
           tooltip: 'Add Deposit',
@@ -30,7 +35,7 @@ class _AdminPageState extends State<AdminPage> {
         backgroundColor: Color.fromARGB(255, 245, 245, 245),
         floatingActionButton: FloatingActionButton(
           onPressed: null,
-          tooltip: 'Add Deposit',
+          tooltip: 'Add Prize',
           backgroundColor: Color.fromARGB(255, 5, 89, 91),
           child: Icon(Icons.add),
         ))
@@ -49,7 +54,7 @@ class _AdminPageState extends State<AdminPage> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         elevation: 0,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         leading: GestureDetector(
           child: IconButton(
             icon: const Icon(
@@ -95,7 +100,7 @@ class _AdminPageState extends State<AdminPage> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255, 226, 215, 132),
+        selectedItemColor: const Color.fromARGB(255, 5, 89, 91),
         onTap: _onItemTapped,
       ),
     );
