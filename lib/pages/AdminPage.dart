@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/card_deposit.dart';
+import 'package:trashsure/components/card_prize.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -33,6 +34,10 @@ class _AdminPageState extends State<AdminPage> {
         )),
     Scaffold(
         backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        body: SingleChildScrollView(
+          padding: EdgeInsets.all(10),
+          child: CardPrize(),
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: null,
           tooltip: 'Add Prize',
