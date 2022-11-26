@@ -2,7 +2,7 @@
 
 TrashSure hadir sebagai solusi digital untuk mengorganisir sampah secara efektif dengan imbalan yang menarik!
 
-> Proyek ini dibuat untuk memenuhi tugas Proyek Tengah Semester (PTS)
+> Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
 > pada mata kuliah Pemrograman Berbasis Platform (CSGE602022) yang
 > diselenggarakan oleh Fakultas Ilmu Komputer, Universitas Indonesia
 > pada Semester Gasal, Tahun Ajaran 2022/2023.
@@ -78,7 +78,7 @@ Aplikasi Trash-Sure memiliki beberapa fitur, antara lain:
 - Menukarkan poin dengan hadiah-hadiah menarik
 - Melihat hadiah yang telah ditukar
 - Menggunakan hadiah yang sudah ditukar
-- Memberikan testimoni kepada website
+- Memberikan testimoni kepada aplikasi
 
 ### 🧑‍💻 Persona 🧑‍💻
 
