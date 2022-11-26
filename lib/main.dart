@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/Drawer.dart';
+import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/pages/LoginPage.dart';
 import 'package:trashsure/pages/RegisterPage.dart';
 
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
+          "/admin": (BuildContext context) => const AdminPage(),
         },
       ),
     );

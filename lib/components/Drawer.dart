@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:trashsure/pages/loginPage.dart';
 
 class DrawerCustom extends StatelessWidget {
   const DrawerCustom({super.key});
@@ -18,6 +17,12 @@ class DrawerCustom extends StatelessWidget {
             title: const Text('Login'),
             onTap: () {
               Navigator.pushNamed(context, '/login');
+            },
+          ),
+          ListTile(
+            title: const Text('Admin'),
+            onTap: () {
+              Navigator.pushNamed(context, '/admin');
             },
           ),
         ],

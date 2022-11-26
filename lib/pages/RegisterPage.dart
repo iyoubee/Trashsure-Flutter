@@ -2,7 +2,6 @@
 
 import 'package:trashsure/components/BackButton.dart';
 import 'package:trashsure/components/EmailField.dart';
-import 'package:trashsure/components/MessageScreen.dart';
 import 'package:trashsure/components/PasswordField.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/RegisterButton.dart';
@@ -33,6 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         bottom: false,
