@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:trashsure/components/Drawer.dart';
 import 'package:trashsure/pages/LoginPage.dart';
 import 'package:trashsure/pages/RegisterPage.dart';
+import 'package:trashsure/pages/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -46,17 +47,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Provider(
-        create: (_) {
-          CookieRequest request = CookieRequest();
-          return request;
-        },
-        child: Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
-          drawer: const DrawerCustom(),
-          body: null,
-        ));
+    return Scaffold(
+        appBar: AppBar(
+          title: const Text("Counter Tugas 7 PBP"),
+        ),
+        drawer: const DrawerCustom(),
+        body: null);
   }
 }

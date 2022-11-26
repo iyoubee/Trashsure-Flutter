@@ -4,11 +4,9 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/EmailField.dart';
 import 'package:trashsure/components/LoginButton.dart';
-import 'package:trashsure/components/MessageScreen.dart';
 import 'package:trashsure/components/PasswordField.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/RegisterNavigateButton.dart';
-import 'package:trashsure/pages/RegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -178,6 +176,11 @@ class _LoginPageState extends State<LoginPage> {
                                             _alignment = Alignment.topRight,
                                             stopScaleAnimtion = true
                                           });
+                                      if (request.loggedIn) {
+                                        // Code here will run if the login succeeded.
+                                      } else {
+                                        // Code here will run if the login failed (wrong username/password).
+                                      }
                                     },
                                   ),
                                   const SizedBox(height: 20),
