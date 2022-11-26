@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:trashsure/components/Drawer.dart';
 import 'package:trashsure/pages/LoginPage.dart';
 import 'package:trashsure/pages/RegisterPage.dart';
-import 'package:trashsure/pages/login_screen.dart';
 
 void main() {
   runApp(const MyApp());
