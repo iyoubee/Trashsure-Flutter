@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:trashsure/utils/auth.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/field_email.dart';
 import 'package:trashsure/components/button_login.dart';
