@@ -1,24 +1,25 @@
+library pbp_django_auth;
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/material.dart';
 
 class CookieRequest {
   Map<String, String> headers = {};
   Map<String, String> cookies = {};
-  Map<String, String> jsonData = {};
+  Map<String, dynamic> jsonData = {};
   final http.Client _client = http.Client();
 
-  SharedPreferences? local;
+  late SharedPreferences local;
 
   bool loggedIn = false;
   bool initialized = false;
 
-  Future init(BuildContext context) async {
+  Future init() async {
     if (!initialized) {
       local = await SharedPreferences.getInstance();
-      String? savedCookies = local?.getString("cookies");
+      String? savedCookies = local.getString("cookies");
       if (savedCookies != null) {
         cookies = Map<String, String>.from(json.decode(savedCookies));
         if (cookies['sessionid'] != null) {
@@ -31,7 +32,7 @@ class CookieRequest {
   }
 
   Future persist(String cookies) async {
-    local?.setString("cookies", cookies);
+    local.setString("cookies", cookies);
   }
 
   Future<dynamic> login(String url, dynamic data) async {
@@ -47,6 +48,7 @@ class CookieRequest {
 
     if (response.statusCode == 200) {
       loggedIn = true;
+      jsonData = json.decode(response.body);
     } else {
       loggedIn = false;
     }
@@ -55,7 +57,7 @@ class CookieRequest {
     return json.decode(response.body);
   }
 
-  Map<String, String> getJsonData() {
+  Map<String, dynamic> getJsonData() {
     return jsonData;
   }
 
@@ -68,7 +70,7 @@ class CookieRequest {
         await _client.get(Uri.parse(url), headers: headers);
     _updateCookie(response);
     // Expects and returns JSON request body
-    return json.decode(response.body);
+    return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
   Future<dynamic> post(String url, dynamic data) async {
@@ -98,7 +100,10 @@ class CookieRequest {
     return json.decode(response.body); // Expects and returns JSON request body
   }
 
-  void _updateCookie(http.Response response) {
+  void _updateCookie(http.Response response) async {
+    // Solves LateInitializationError
+    await init();
+
     String? allSetCookie = response.headers['set-cookie'];
 
     if (allSetCookie != null) {

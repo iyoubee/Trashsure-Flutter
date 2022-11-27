@@ -3,11 +3,21 @@
 import 'package:flutter/material.dart';
 
 class CardDeposit extends StatelessWidget {
-  const CardDeposit({super.key});
+  final String jenis;
+  final String user;
+  final String berat;
+  final String pk;
+  const CardDeposit(
+      {super.key,
+      required this.jenis,
+      required this.user,
+      required this.berat,
+      required this.pk});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white,
@@ -47,7 +57,7 @@ class CardDeposit extends StatelessWidget {
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
                           Text(
-                            "ayyubi0105@gmail.com",
+                            user,
                             softWrap: true,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -56,7 +66,7 @@ class CardDeposit extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           Text(
-                            "... Kg",
+                            "$berat Kg",
                             softWrap: true,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
