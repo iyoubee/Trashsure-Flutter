@@ -41,26 +41,30 @@ class CardDeposit extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      // ignore: prefer_const_literals_to_create_immutables
-                      children: [
-                        Text(
-                          "Username",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Color.fromARGB(255, 6, 44, 48),
-                              fontSize: 19),
-                        ),
-                        const SizedBox(height: 5),
-                        Text(
-                          "... Kg",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black.withOpacity(0.5),
-                              fontSize: 19),
-                        ),
-                      ],
+                    Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          Text(
+                            "ayyubi0105@gmail.com",
+                            softWrap: true,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Color.fromARGB(255, 6, 44, 48),
+                                fontSize: 19),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            "... Kg",
+                            softWrap: true,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.5),
+                                fontSize: 19),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
