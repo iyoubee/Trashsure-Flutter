@@ -2,19 +2,20 @@
 
 import 'package:flutter/material.dart';
 
-class AdminAddDepositPage extends StatefulWidget {
-  const AdminAddDepositPage({super.key});
+class AdminAddPrizePage extends StatefulWidget {
+  const AdminAddPrizePage({super.key});
 
   @override
-  State<AdminAddDepositPage> createState() => _AdminAddDepositPageState();
+  State<AdminAddPrizePage> createState() => _AdminAddPrizePageState();
 }
 
-class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
+class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  String berat = "";
-  var _jenis;
-  var user;
+  String poin = "";
+  String judul = "";
+  String stok = "";
+  String desc = "";
 
   void _submit() {
     showDialog<void>(
@@ -28,33 +29,33 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
               children: <Widget>[
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("User:",
+                    child: Text("Judul / Nama:",
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(user),
+                  child: Text(judul),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Jenis sampah:",
+                    child: Text("Poin:",
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(_jenis),
+                  child: Text(poin),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Berat total:",
+                    child: Text("Stok:",
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text("$berat Kg"),
+                  child: Text(stok),
                 )
               ],
             ),
@@ -128,7 +129,7 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
               children: <Widget>[
                 const Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Masukan Data Deposit",
+                  child: Text("Masukan Data Prize",
                       style: TextStyle(
                         fontSize: 24,
                       )),
@@ -141,79 +142,44 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 1.0),
-                              ),
-                              border: OutlineInputBorder()),
-                          // ignore: prefer_const_literals_to_create_immutables
-                          items: [
-                            const DropdownMenuItem(
-                              value: "Test1",
-                              child: Text("Test1"),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                            labelText: 'Nama / Judul',
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.0),
                             ),
-                            const DropdownMenuItem(
-                              value: "Test2",
-                              child: Text("Test2"),
-                            )
-                          ],
-                          hint: const Text("Pilih User"),
-                          onChanged: (value) {
-                            setState(() {
-                              user = value;
-                              // measureList.add(measure);
-                            });
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              user = value;
-                            });
-                          }),
-                      const SizedBox(
-                        height: 20,
+                            border: OutlineInputBorder()),
+                        onFieldSubmitted: (value) {
+                          setState(() {
+                            judul = value;
+                            // firstNameList.add(firstName);
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            judul = value;
+                          });
+                        },
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length < 3) {
+                            return 'First Name must contain at least 3 characters';
+                          } else if (value
+                              .contains(RegExp(r'^[0-9_\-=@,\.;]+$'))) {
+                            return 'First Name cannot contain special characters';
+                          }
+                        },
                       ),
-                      DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 1.0),
-                              ),
-                              border: OutlineInputBorder()),
-                          // ignore: prefer_const_literals_to_create_immutables
-                          items: [
-                            const DropdownMenuItem(
-                              value: "Plastik",
-                              child: Text("Plastik"),
-                            ),
-                            const DropdownMenuItem(
-                              value: "Elektronik",
-                              child: Text("Elektronik"),
-                            )
-                          ],
-                          hint: const Text("Jenis Sampah"),
-                          onChanged: (value) {
-                            setState(() {
-                              _jenis = value;
-                              // measureList.add(measure);
-                            });
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              _jenis = value;
-                            });
-                          }),
                       const SizedBox(
                         height: 20,
                       ),
                       TextFormField(
                         decoration: const InputDecoration(
-                            labelText: 'Berat total (Kg)',
+                            labelText: 'Poin',
                             enabledBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
@@ -231,14 +197,81 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                         },
                         onFieldSubmitted: (value) {
                           setState(() {
-                            berat = value;
+                            poin = value;
                             // bodyTempList.add(bodyTemp);
                           });
                         },
                         onChanged: (value) {
                           setState(() {
-                            berat = value;
+                            poin = value;
                           });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                            labelText: 'Stok',
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.0),
+                            ),
+                            border: OutlineInputBorder()),
+                        keyboardType: TextInputType.number,
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.contains(RegExp(r'^[a-zA-Z\-]'))) {
+                            return 'Use only numbers!';
+                          }
+                        },
+                        onFieldSubmitted: (value) {
+                          setState(() {
+                            stok = value;
+                            // bodyTempList.add(bodyTemp);
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            stok = value;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        decoration: const InputDecoration(
+                            labelText: 'Deskripsi',
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20.0)),
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1.0),
+                            ),
+                            border: OutlineInputBorder()),
+                        onFieldSubmitted: (value) {
+                          setState(() {
+                            desc = value;
+                            // firstNameList.add(firstName);
+                          });
+                        },
+                        onChanged: (value) {
+                          setState(() {
+                            desc = value;
+                          });
+                        },
+                        validator: (value) {
+                          if (value == null ||
+                              value.isEmpty ||
+                              value.length < 3) {
+                            return 'Deskripsi must contain at least 3 characters';
+                          }
                         },
                       ),
                       const SizedBox(

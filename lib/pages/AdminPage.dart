@@ -52,7 +52,10 @@ class _AdminPageState extends State<AdminPage> {
             child: CardPrize(),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: null,
+            onPressed: () {
+              // Add your onPressed code here!
+              Navigator.pushNamed(context, '/admin/prize/add');
+            },
             tooltip: 'Add Prize',
             backgroundColor: Color.fromARGB(255, 5, 89, 91),
             child: Icon(Icons.add),
