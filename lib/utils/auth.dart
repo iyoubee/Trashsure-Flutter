@@ -82,7 +82,7 @@ class CookieRequest {
         await _client.post(Uri.parse(url), body: data, headers: headers);
     _updateCookie(response);
     // Expects and returns JSON request body
-    return json.decode(response.body);
+    return jsonDecode(utf8.decode(response.bodyBytes));
   }
 
   Future<dynamic> postJson(String url, dynamic data) async {

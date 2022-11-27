@@ -66,7 +66,7 @@ class _EmailFieldState extends State<EmailField>
                 child: TextFormField(
                   controller: emailController,
                   focusNode: node,
-                  decoration: const InputDecoration(hintText: "Email"),
+                  decoration: const InputDecoration(hintText: "Username"),
                   keyboardType: TextInputType.emailAddress,
                   onSaved: widget.onSaved,
                   onChanged: (value) async {

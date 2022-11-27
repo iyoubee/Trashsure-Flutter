@@ -2,7 +2,6 @@
 
 import '../models/Deposit.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:trashsure/utils/auth.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/safe_area_values.dart';
@@ -26,10 +25,9 @@ class UseAdminDeposit {
     return depositList;
   }
 
-  addDeposit(context, username, jenisSampah, beratSampah) async {
-    final request = context.watch<CookieRequest>();
-    var url = Uri.parse('http://10.0.2.2:8000/admin/deposit/add/');
-    var response = await request.post(url, {
+  addDeposit(context, request, username, jenisSampah, beratSampah) async {
+    var response = await request.post(
+        'http://10.0.2.2:8000/admin/deposit/add/', {
       "user": username,
       "jenisSampah": jenisSampah,
       "beratSampah": beratSampah
