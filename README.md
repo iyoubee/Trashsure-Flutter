@@ -37,7 +37,7 @@ Aplikasi Trash-Sure memiliki beberapa fitur, antara lain:
 2. **Authentification Page**
    Fitur ini merupakan metode keamanan yang diterapkan ketika seorang _user_ akan mengakses aplikasi Trash-sure dengan memasukan _username_ dan _password_ terlebih dahulu. Hal ini bertujuan untuk memastikan bahwa _user_ yang akan mengakses memang benar-benar adalah pengguna yang berhak.
 
-- Dikerjakan oleh Andresha Pradana
+- Dikerjakan oleh Muhammad Hilman Al Ayubi
 
 3. **Admin Dashboard dan Seluruh Fungsi Admin**
    Admin dashboard merupakan pusat control panel ber-platform yang berfungsi untuk mengatur semua kegiatan di sebuah aplikasi. Pada laman ini, admin dapat melihat jumlah pengguna aplikasi Trash-sure dan total deposit, serta menambahkan transaksi setoran bank sampah milik user.
