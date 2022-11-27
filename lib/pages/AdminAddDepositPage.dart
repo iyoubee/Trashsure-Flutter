@@ -1,10 +1,13 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:trashsure/models/UserData.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/utils/useAdminDeposit.dart';
+import 'package:another_flushbar/flushbar.dart';
+import 'package:another_flushbar/flushbar_helper.dart';
+import 'package:another_flushbar/flushbar_route.dart';
 
 class AdminAddDepositPage extends StatefulWidget {
   const AdminAddDepositPage({super.key});
@@ -21,89 +24,6 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
   String berat = "";
   var _jenis;
   var user;
-
-  void _submit() {
-    showDialog<void>(
-      context: context,
-      barrierDismissible: true, // user can tap anywhere to close the pop up
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Konfirmasi'),
-          content: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("User:",
-                        style: TextStyle(fontWeight: FontWeight.w700))),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(user),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("Jenis sampah:",
-                        style: TextStyle(fontWeight: FontWeight.w700))),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(_jenis),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("Berat total:",
-                        style: TextStyle(fontWeight: FontWeight.w700))),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("$berat Kg"),
-                )
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.grey,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                  ),
-                  child: const Text('Batal'),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }, // so the alert dialog is closed when navigating back to main page
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
-                    shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10))),
-                  ),
-                  child: const Text('OK'),
-                  onPressed: () {
-                    FocusScope.of(context)
-                        .unfocus(); // Unfocus the last selected input field
-                    _formKey.currentState?.reset();
-                    setState(() {});
-                    Navigator.pop(context); // Empty the form fields
-                  },
-                )
-              ],
-            )
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -273,7 +193,170 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                   onPressed: () {
                                     // Validate returns true if the form is valid, or false otherwise.
                                     if (_formKey.currentState!.validate()) {
-                                      _submit();
+                                      showDialog<void>(
+                                        context: context,
+                                        barrierDismissible:
+                                            true, // user can tap anywhere to close the pop up
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: const Text('Konfirmasi'),
+                                            content: SingleChildScrollView(
+                                              child: Column(
+                                                children: <Widget>[
+                                                  const Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Text("User:",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700))),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(user),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  const Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Text(
+                                                          "Jenis sampah:",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700))),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text(_jenis),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  const Align(
+                                                      alignment:
+                                                          Alignment.topLeft,
+                                                      child: Text(
+                                                          "Berat total:",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700))),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Text("$berat Kg"),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            actions: <Widget>[
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                children: <Widget>[
+                                                  TextButton(
+                                                    style: TextButton.styleFrom(
+                                                      foregroundColor:
+                                                          Colors.white,
+                                                      backgroundColor:
+                                                          Colors.grey,
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                    ),
+                                                    child: const Text('Batal'),
+                                                    onPressed: () {
+                                                      Navigator.pop(context);
+                                                    }, // so the alert dialog is closed when navigating back to main page
+                                                  ),
+                                                  TextButton(
+                                                    style: TextButton.styleFrom(
+                                                      foregroundColor:
+                                                          Colors.white,
+                                                      backgroundColor:
+                                                          Colors.blue,
+                                                      shape: const RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius.all(
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                    ),
+                                                    child: const Text(
+                                                        'Konfirmasi'),
+                                                    onPressed: () async {
+                                                      int response =
+                                                          await useAdminDeposit
+                                                              .addDeposit(
+                                                                  context,
+                                                                  request,
+                                                                  user,
+                                                                  _jenis,
+                                                                  berat);
+                                                      Navigator.pop(context);
+                                                      print(response);
+                                                      if (response == 200) {
+                                                        Navigator.pop(context);
+                                                        Flushbar(
+                                                          backgroundColor:
+                                                              const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  29,
+                                                                  167,
+                                                                  86),
+                                                          flushbarPosition:
+                                                              FlushbarPosition
+                                                                  .TOP,
+                                                          title: "Berhasil",
+                                                          duration:
+                                                              const Duration(
+                                                                  seconds: 3),
+                                                          message:
+                                                              "Deposit berhasil dibuat",
+                                                        ).show(context);
+                                                      } else {
+                                                        Flushbar(
+                                                          backgroundColor:
+                                                              const Color
+                                                                      .fromARGB(
+                                                                  255,
+                                                                  244,
+                                                                  105,
+                                                                  77),
+                                                          flushbarPosition:
+                                                              FlushbarPosition
+                                                                  .TOP,
+                                                          title: "Gagal",
+                                                          duration:
+                                                              const Duration(
+                                                                  seconds: 3),
+                                                          message:
+                                                              "Ada yang salah",
+                                                        ).show(context);
+                                                      }
+                                                      // ignore: use_build_context_synchronously
+                                                      FocusScope.of(context)
+                                                          .unfocus(); // Unfocus the last selected input field
+                                                      _formKey.currentState
+                                                          ?.reset();
+                                                      setState(() {});
+                                                    },
+                                                  )
+                                                ],
+                                              )
+                                            ],
+                                          );
+                                        },
+                                      );
                                     }
                                   },
                                   child: const Text("Submit"),

@@ -1,14 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:trashsure/models/UserData.dart';
-
 import '../models/Deposit.dart';
-import 'package:flutter/material.dart';
 import 'package:trashsure/utils/auth.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
-import 'package:top_snackbar_flutter/safe_area_values.dart';
-import 'package:top_snackbar_flutter/tap_bounce_container.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class UseAdminDeposit {
   Future<List<Deposit>> getAdminDeposit(request) async {
@@ -52,84 +46,20 @@ class UseAdminDeposit {
       "user": username,
       "jenisSampah": jenisSampah,
       "beratSampah": beratSampah
-    }).then((value) => {
-          if (value.status == 200)
-            {
-              showTopSnackBar(
-                context,
-                const CustomSnackBar.success(
-                  message:
-                      "Good job, your release is successful. Have a nice day",
-                ),
-              ),
-              Navigator.pop(context)
-            }
-          else
-            {
-              showTopSnackBar(
-                context,
-                const CustomSnackBar.error(
-                  message:
-                      "Something went wrong. Please check your credentials and try again",
-                ),
-              )
-            }
-        });
+    });
+
+    return response['status'];
   }
 
   accDeposit(context, pk) async {
     final request = context.watch<CookieRequest>();
     var url = Uri.parse('http://10.0.2.2:8000/admin/deposit/acc/');
-    var response = await request.post(url, {"id": pk}).then((value) => {
-          if (value.status == 200)
-            {
-              showTopSnackBar(
-                context,
-                const CustomSnackBar.success(
-                  message:
-                      "Good job, your release is successful. Have a nice day",
-                ),
-              ),
-              Navigator.pop(context)
-            }
-          else
-            {
-              showTopSnackBar(
-                context,
-                const CustomSnackBar.error(
-                  message:
-                      "Something went wrong. Please check your credentials and try again",
-                ),
-              )
-            }
-        });
+    var response = await request.post(url, {"id": pk});
   }
 
   delDeposit(context, pk) async {
     final request = context.watch<CookieRequest>();
     var url = Uri.parse('http://10.0.2.2:8000/admin/deposit/del/');
-    var response = await request.post(url, {"id": pk}).then((value) => {
-          if (value.status == 200)
-            {
-              showTopSnackBar(
-                context,
-                const CustomSnackBar.success(
-                  message:
-                      "Good job, your release is successful. Have a nice day",
-                ),
-              ),
-              Navigator.pop(context)
-            }
-          else
-            {
-              showTopSnackBar(
-                context,
-                const CustomSnackBar.error(
-                  message:
-                      "Something went wrong. Please check your credentials and try again",
-                ),
-              )
-            }
-        });
+    var response = await request.post(url, {"id": pk});
   }
 }
