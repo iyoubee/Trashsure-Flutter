@@ -3,8 +3,10 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/drawer.dart';
 import 'package:trashsure/pages/AdminPage.dart';
-import 'package:trashsure/pages/LoginPage.dart';
-import 'package:trashsure/pages/RegisterPage.dart';
+import 'package:trashsure/pages/Auth/AdminLoginPage.dart';
+import 'package:trashsure/pages/Auth/AdminRegisterPage.dart';
+import 'package:trashsure/pages/Auth/LoginPage.dart';
+import 'package:trashsure/pages/Auth/RegisterPage.dart';
 import 'package:trashsure/pages/UserPage.dart';
 
 void main() {
@@ -28,6 +30,9 @@ class MyApp extends StatelessWidget {
         ),
         home: const MyHomePage(title: 'Flutter App'),
         routes: {
+          "/admin/login": (BuildContext context) => const AdminLoginPage(),
+          "/admin/register": (BuildContext context) =>
+              const AdminRegisterPage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
           "/admin": (BuildContext context) => const AdminPage(),
