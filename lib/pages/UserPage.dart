@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:trashsure/pages/RedeemPrizePage.dart';
@@ -14,30 +14,6 @@ class _UserPageState extends State<UserPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
-    Scaffold(
-        backgroundColor: Color.fromARGB(255, 245, 245, 245),
-        floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Add Deposit',
-          backgroundColor: Color.fromARGB(255, 5, 89, 91),
-          child: Icon(Icons.add),
-        )),
-    // NOTE: Redeem Prize Page
-    RedeemPrizePage(),
-    Scaffold(
-        backgroundColor: Color.fromARGB(255, 245, 245, 245),
-        floatingActionButton: FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Add Deposit',
-          backgroundColor: Color.fromARGB(255, 5, 89, 91),
-          child: Icon(Icons.add),
-        ))
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -47,6 +23,31 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      Text(
+        'Index 0: Home',
+        style: optionStyle,
+      ),
+      Scaffold(
+          backgroundColor: Color.fromARGB(255, 245, 245, 245),
+          floatingActionButton: FloatingActionButton(
+            onPressed: null,
+            tooltip: 'Add Deposit',
+            backgroundColor: Color.fromARGB(255, 5, 89, 91),
+            child: Icon(Icons.add),
+          )),
+      // NOTE: Redeem Prize Page
+      RedeemPrizePage(),
+      Scaffold(
+          backgroundColor: Color.fromARGB(255, 245, 245, 245),
+          floatingActionButton: FloatingActionButton(
+            onPressed: null,
+            tooltip: 'Add Deposit',
+            backgroundColor: Color.fromARGB(255, 5, 89, 91),
+            child: Icon(Icons.add),
+          ))
+    ];
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
@@ -65,10 +66,10 @@ class _UserPageState extends State<UserPage> {
               },
             ),
           ),
-          title: SizedBox( // App Logo in the middle of AppBar
-            width: 35,
-            child: Image.asset("lib/assets/bin.png")
-          ),
+          title: SizedBox(
+              // App Logo in the middle of AppBar
+              width: 35,
+              child: Image.asset("lib/assets/bin.png")),
           centerTitle: true,
           actions: <Widget>[
             GestureDetector(
