@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/drawer.dart';
+import 'package:trashsure/pages/AdminAddDepositPage.dart';
 import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/pages/Auth/AdminLoginPage.dart';
 import 'package:trashsure/pages/Auth/AdminRegisterPage.dart';
@@ -30,12 +31,14 @@ class MyApp extends StatelessWidget {
         ),
         home: const MyHomePage(title: 'Flutter App'),
         routes: {
+          "/admin": (BuildContext context) => const AdminPage(),
+          "/admin/deposit/add": (BuildContext context) =>
+              const AdminAddDepositPage(),
           "/admin/login": (BuildContext context) => const AdminLoginPage(),
           "/admin/register": (BuildContext context) =>
               const AdminRegisterPage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
-          "/admin": (BuildContext context) => const AdminPage(),
           "/user": (BuildContext context) => const UserPage(),
         },
       ),
