@@ -25,6 +25,31 @@ class _RedeemPrizePageState extends State<RedeemPrizePage> {
           padding: const EdgeInsets.only(left: 24, top: 24, right: 24),
           child: Column(
             children: [
+              Column( // Show user points
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    "My Points",
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  SizedBox(height: 5,),
+                  Text(
+                    "1000",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  )
+                ],
+              ),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
