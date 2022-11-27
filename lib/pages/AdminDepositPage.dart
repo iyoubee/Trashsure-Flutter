@@ -29,11 +29,11 @@ class _AdminDepositPage extends State<AdminDepositPage> {
               if (!snapshot.hasData) {
                 return Column(
                   children: const [
+                    SizedBox(height: 8),
                     Text(
                       "Tidak ada to do list :(",
-                      style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontSize: 30),
                     ),
-                    SizedBox(height: 8),
                   ],
                 );
               } else {

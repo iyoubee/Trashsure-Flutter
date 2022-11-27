@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'package:trashsure/models/UserData.dart';
+
 import '../models/Deposit.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/utils/auth.dart';
@@ -23,6 +25,25 @@ class UseAdminDeposit {
       }
     }
     return depositList;
+  }
+
+  Future<List<UserData>> getUsername(request) async {
+    var response =
+        await request.get('http://10.0.2.2:8000/admin/deposit/username/get/');
+
+    // melakukan decode response menjadi bentuk json
+    var data = response;
+
+    // melakukan konversi data json menjadi object ToDo
+    List<UserData> usernameList = [];
+    for (var d in data) {
+      if (d != null) {
+        usernameList.add(UserData.fromJson(d));
+        print(d);
+      }
+    }
+
+    return usernameList;
   }
 
   addDeposit(context, request, username, jenisSampah, beratSampah) async {
