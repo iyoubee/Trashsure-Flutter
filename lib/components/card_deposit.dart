@@ -66,6 +66,15 @@ class CardDeposit extends StatelessWidget {
                           ),
                           const SizedBox(height: 5),
                           Text(
+                            jenis,
+                            softWrap: true,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.5),
+                                fontSize: 19),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
                             "$berat Kg",
                             softWrap: true,
                             style: TextStyle(

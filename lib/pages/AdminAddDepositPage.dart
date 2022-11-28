@@ -189,6 +189,8 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                 ),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 5, 89, 91),
                                       minimumSize: const Size.fromHeight(60)),
                                   onPressed: () {
                                     // Validate returns true if the form is valid, or false otherwise.
