@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/button_back.dart';
@@ -65,14 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               loadingBallSize = 1;
                             }
                           });
-                        } else {
-                          Future.delayed(const Duration(milliseconds: 300), () {
-                            setState(() {
-                              showMessages = true;
-                            });
-                            Navigator.pop(context);
-                          });
-                        }
+                        } else {}
                       },
                       builder: (_, value, __) => Transform.scale(
                         scale: value,
@@ -122,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           color: Colors.black, fontSize: 35),
                                     ),
                                     Text(
-                                      "Register",
+                                      "Register User",
                                       style: TextStyle(
                                           color: Colors.black.withOpacity(0.7),
                                           fontSize: 35),
@@ -178,7 +172,46 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 'username': _email,
                                                 'password': _password,
                                               })
-                                          .then((value) => {print(value)})
+                                          .then((value) => {
+                                                print(value),
+                                                if (value['status'] == 200)
+                                                  {
+                                                    Navigator.pop(context),
+                                                    Flushbar(
+                                                      backgroundColor:
+                                                          const Color.fromARGB(
+                                                              255, 29, 167, 86),
+                                                      flushbarPosition:
+                                                          FlushbarPosition.TOP,
+                                                      title: "Berhasil",
+                                                      duration: const Duration(
+                                                          seconds: 3),
+                                                      message:
+                                                          "Berhasil register",
+                                                    ).show(context)
+                                                  }
+                                                else
+                                                  {
+                                                    Navigator
+                                                        .pushReplacementNamed(
+                                                            context,
+                                                            '/register'),
+                                                    Flushbar(
+                                                      backgroundColor:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              244,
+                                                              105,
+                                                              77),
+                                                      flushbarPosition:
+                                                          FlushbarPosition.TOP,
+                                                      title: "Gagal",
+                                                      duration: const Duration(
+                                                          seconds: 3),
+                                                      message: value['message'],
+                                                    ).show(context)
+                                                  }
+                                              })
                                           .then((value) => {
                                                 _alignment = Alignment.topRight,
                                                 stopScaleAnimtion = true

@@ -1,6 +1,9 @@
 // ignore_for_file: file_names, prefer_const_constructors
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/utils/auth.dart';
+import 'package:provider/provider.dart';
 import 'package:trashsure/pages/RedeemPrizePage.dart';
 
 class UserPage extends StatefulWidget {
@@ -23,6 +26,8 @@ class _UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+
     List<Widget> _widgetOptions = <Widget>[
       Text(
         'Index 0: Home',
@@ -78,8 +83,42 @@ class _UserPageState extends State<UserPage> {
                   Icons.logout,
                   color: Colors.black,
                 ),
-                onPressed: () {
+                onPressed: () async {
                   // do something
+                  final response = await request
+                      .logout("http://10.0.2.2:8000/logout/")
+                      .then((value) => {
+                            Navigator.pop(context),
+                            if (value['status'] == 200)
+                              {
+                                Flushbar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 29, 167, 86),
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                  title: "Berhasil",
+                                  duration: const Duration(seconds: 3),
+                                  message: "Berhasil logout",
+                                ).show(context)
+                              }
+                            else
+                              {
+                                Flushbar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 244, 105, 77),
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                  title: "Gagal",
+                                  duration: const Duration(seconds: 3),
+                                  message: "Ada yang salah",
+                                ).show(context)
+                              }
+                          });
+                  if (request.loggedIn) {
+                    // Code here will run if the login succeeded.
+                    print("yes");
+                  } else {
+                    print("no");
+                    // Code here will run if the login failed (wrong username/password).
+                  }
                 },
               ),
             ),
