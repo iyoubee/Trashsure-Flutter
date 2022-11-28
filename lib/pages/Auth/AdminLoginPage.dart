@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/field_email.dart';
@@ -65,14 +66,7 @@ class _LoginPageState extends State<AdminLoginPage> {
                               loadingBallSize = 1;
                             }
                           });
-                        } else {
-                          Future.delayed(const Duration(milliseconds: 300), () {
-                            setState(() {
-                              showMessages = true;
-                            });
-                            Navigator.pop(context);
-                          });
-                        }
+                        } else {}
                       },
                       builder: (_, value, __) => Transform.scale(
                         scale: value,
@@ -178,18 +172,48 @@ class _LoginPageState extends State<AdminLoginPage> {
                                                 'username': _email,
                                                 'password': _password,
                                               })
-                                          .then((value) => {print(value)})
+                                          .then((value) => {
+                                                print(value),
+                                                if (value['status'] == 200)
+                                                  {
+                                                    Navigator
+                                                        .pushReplacementNamed(
+                                                            context, '/admin'),
+                                                    Flushbar(
+                                                      backgroundColor:
+                                                          const Color.fromARGB(
+                                                              255, 29, 167, 86),
+                                                      flushbarPosition:
+                                                          FlushbarPosition.TOP,
+                                                      title: "Berhasil",
+                                                      duration: const Duration(
+                                                          seconds: 3),
+                                                      message: "Berhasil login",
+                                                    ).show(context)
+                                                  }
+                                                else
+                                                  {
+                                                    setState(() {}),
+                                                    Flushbar(
+                                                      backgroundColor:
+                                                          const Color.fromARGB(
+                                                              255,
+                                                              244,
+                                                              105,
+                                                              77),
+                                                      flushbarPosition:
+                                                          FlushbarPosition.TOP,
+                                                      title: "Gagal",
+                                                      duration: const Duration(
+                                                          seconds: 3),
+                                                      message: "Ada yang salah",
+                                                    ).show(context)
+                                                  }
+                                              })
                                           .then((value) => {
                                                 _alignment = Alignment.topRight,
                                                 stopScaleAnimtion = true
                                               });
-                                      if (request.loggedIn) {
-                                        // Code here will run if the login succeeded.
-                                        print("yes");
-                                      } else {
-                                        print("no");
-                                        // Code here will run if the login failed (wrong username/password).
-                                      }
                                     },
                                   ),
                                   const SizedBox(height: 20),
