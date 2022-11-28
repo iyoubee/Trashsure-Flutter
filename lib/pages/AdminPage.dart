@@ -8,14 +8,17 @@ import 'package:trashsure/pages/AdminDepositPage.dart';
 import 'package:trashsure/pages/AdminPrizePage.dart';
 
 class AdminPage extends StatefulWidget {
-  const AdminPage({super.key});
+  const AdminPage({super.key, required this.idx});
+  final int idx;
 
   @override
-  State<AdminPage> createState() => _AdminPageState();
+  State<AdminPage> createState() => _AdminPageState(idx);
 }
 
 class _AdminPageState extends State<AdminPage> {
-  int _selectedIndex = 0;
+  _AdminPageState(this._selectedIndex);
+
+  int _selectedIndex;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 

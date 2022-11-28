@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const MyHomePage(title: 'Flutter App'),
         routes: {
-          "/admin": (BuildContext context) => const AdminPage(),
+          "/admin": (BuildContext context) => const AdminPage(idx: 0),
           "/admin/deposit/add": (BuildContext context) =>
               const AdminAddDepositPage(),
           "/admin/prize/add": (BuildContext context) =>

@@ -2,6 +2,7 @@
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/utils/useAdminPrize.dart';
@@ -95,7 +96,10 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                         context, request, judul, poin, stok, desc);
                     Navigator.pop(context);
                     if (response == 200) {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AdminPage(idx: 2)));
                       Flushbar(
                         backgroundColor: const Color.fromARGB(255, 29, 167, 86),
                         flushbarPosition: FlushbarPosition.TOP,
