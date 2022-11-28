@@ -29,9 +29,10 @@ class UseAdminPrize {
     return response['status'];
   }
 
-  delPrize(context, pk) async {
-    final request = context.watch<CookieRequest>();
-    var url = Uri.parse('http://10.0.2.2:8000/admin/prize/del/');
-    var response = await request.post(url, {"id": pk});
+  delPrize(context, pk, request) async {
+    var response =
+        await request.post('http://10.0.2.2:8000/admin/prize/del/', {"id": pk});
+
+    return response['status'];
   }
 }

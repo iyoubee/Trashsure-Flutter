@@ -1,4 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/utils/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:trashsure/utils/useAdminPrize.dart';
 
 class AdminPrizeCard extends StatelessWidget {
   const AdminPrizeCard(
@@ -8,14 +14,21 @@ class AdminPrizeCard extends StatelessWidget {
       required this.nama,
       required this.poin,
       required this.stok,
-      required this.desc});
+      required this.desc,
+      required this.request,
+      required this.useAdminPrize,
+      required this.setState});
 
+  final CookieRequest request;
   final String pk;
   final String nama;
   final String poin;
   final String stok;
   final String desc;
-  final String usage; // Buat title di tombol pada card (Delete, Use, or Redeem)
+  final String usage;
+
+  final UseAdminPrize useAdminPrize;
+  final Function setState;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +66,8 @@ class AdminPrizeCard extends StatelessWidget {
               children: [
                 Text(
                   nama,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   height: 3,
@@ -152,8 +166,30 @@ class AdminPrizeCard extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(18),
                                     side: const BorderSide(
                                         color: Colors.green)))),
-                        onPressed: () {
-                          // Navigate ke page yang berisi prize yang udah di-redeem
+                        onPressed: () async {
+                          int response = await useAdminPrize.delPrize(
+                              context, pk, request);
+                          if (response == 200) {
+                            setState(() {});
+                            Flushbar(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 29, 167, 86),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              title: "Berhasil",
+                              duration: const Duration(seconds: 3),
+                              message: "Deposit berhasil dihapus",
+                            ).show(context);
+                          } else {
+                            Flushbar(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 244, 105, 77),
+                              flushbarPosition: FlushbarPosition.TOP,
+                              title: "Gagal",
+                              duration: const Duration(seconds: 3),
+                              message: "Ada yang salah",
+                            ).show(context);
+                          }
+                          // Unfocus the last selected input field
                         },
                         child: Text(
                           usage,

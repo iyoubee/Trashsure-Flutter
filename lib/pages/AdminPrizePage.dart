@@ -3,7 +3,6 @@ import 'package:trashsure/components/card_prize.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/components/card_deposit.dart';
 import 'package:trashsure/utils/useAdminPrize.dart';
 
 class AdminPrizePage extends StatefulWidget {
@@ -56,12 +55,16 @@ class _AdminPrizePage extends State<AdminPrizePage> {
                 return ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (_, index) => AdminPrizeCard(
-                        pk: snapshot.data![index].pk.toString(),
-                        usage: "delete",
-                        nama: snapshot.data![index].fields.nama,
-                        poin: snapshot.data![index].fields.poin.toString(),
-                        stok: snapshot.data![index].fields.stok.toString(),
-                        desc: snapshot.data![index].fields.desc));
+                          useAdminPrize: useAdminPrize,
+                          request: request,
+                          pk: snapshot.data![index].pk.toString(),
+                          usage: "delete",
+                          nama: snapshot.data![index].fields.nama,
+                          poin: snapshot.data![index].fields.poin.toString(),
+                          stok: snapshot.data![index].fields.stok.toString(),
+                          desc: snapshot.data![index].fields.desc,
+                          setState: setState,
+                        ));
               }
             }
           },

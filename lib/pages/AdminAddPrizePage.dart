@@ -311,6 +311,8 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                const Color.fromARGB(255, 5, 89, 91),
                             minimumSize: const Size.fromHeight(60)),
                         onPressed: () {
                           // Validate returns true if the form is valid, or false otherwise.
