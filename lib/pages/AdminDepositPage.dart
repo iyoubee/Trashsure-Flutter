@@ -60,6 +60,9 @@ class _AdminDepositPage extends State<AdminDepositPage> {
                           berat: snapshot.data![index].fields.beratSampah
                               .toString(),
                           pk: snapshot.data![index].pk.toString(),
+                          request: request,
+                          setState: setState,
+                          useAdminDeposit: useAdminDeposit,
                         ));
               }
             }
@@ -71,8 +74,8 @@ class _AdminDepositPage extends State<AdminDepositPage> {
             Navigator.pushNamed(context, '/admin/deposit/add');
           },
           tooltip: 'Add Deposit',
-          backgroundColor: Color.fromARGB(255, 5, 89, 91),
-          child: Icon(Icons.add),
+          backgroundColor: const Color.fromARGB(255, 5, 89, 91),
+          child: const Icon(Icons.add),
         ));
   }
 }

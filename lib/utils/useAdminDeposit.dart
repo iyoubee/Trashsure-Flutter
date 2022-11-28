@@ -33,7 +33,6 @@ class UseAdminDeposit {
     for (var d in data) {
       if (d != null) {
         usernameList.add(UserData.fromJson(d));
-        print(d);
       }
     }
 
@@ -51,15 +50,17 @@ class UseAdminDeposit {
     return response['status'];
   }
 
-  accDeposit(context, pk) async {
-    final request = context.watch<CookieRequest>();
-    var url = Uri.parse('http://10.0.2.2:8000/admin/deposit/acc/');
-    var response = await request.post(url, {"id": pk});
+  accDeposit(context, pk, request) async {
+    var response = await request
+        .post('http://10.0.2.2:8000/admin/deposit/acc/', {"id": pk});
+
+    return response['status'];
   }
 
-  delDeposit(context, pk) async {
-    final request = context.watch<CookieRequest>();
-    var url = Uri.parse('http://10.0.2.2:8000/admin/deposit/del/');
-    var response = await request.post(url, {"id": pk});
+  delDeposit(context, pk, request) async {
+    var response = await request
+        .post('http://10.0.2.2:8000/admin/deposit/del/', {"id": pk});
+
+    return response['status'];
   }
 }

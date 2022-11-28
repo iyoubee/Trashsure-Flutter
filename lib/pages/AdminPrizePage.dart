@@ -42,7 +42,7 @@ class _AdminPrizePage extends State<AdminPrizePage> {
                         height: 20,
                       ),
                       const Text(
-                        "Belum ada deposit yang bisa disetujui",
+                        "Belum ada prize yang bisa dibuat",
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 16,

@@ -1,18 +1,29 @@
-// ignore_for_file: file_names, prefer_const_constructors
+// ignore_for_file: file_names, prefer_const_constructors, use_build_context_synchronously
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/utils/auth.dart';
+import 'package:trashsure/utils/useAdminDeposit.dart';
 
 class CardDeposit extends StatelessWidget {
   final String jenis;
   final String user;
   final String berat;
   final String pk;
+
   const CardDeposit(
       {super.key,
       required this.jenis,
       required this.user,
       required this.berat,
-      required this.pk});
+      required this.pk,
+      required this.request,
+      required this.useAdminDeposit,
+      required this.setState});
+
+  final UseAdminDeposit useAdminDeposit;
+  final Function setState;
+  final CookieRequest request;
 
   @override
   Widget build(BuildContext context) {
@@ -96,14 +107,62 @@ class CardDeposit extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(255, 244, 105, 77)),
-                          onPressed: () {},
+                          onPressed: () async {
+                            int response = await useAdminDeposit.delDeposit(
+                                context, pk, request);
+                            if (response == 200) {
+                              setState(() {});
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 29, 167, 86),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Berhasil",
+                                duration: const Duration(seconds: 3),
+                                message: "Deposit berhasil ditolak",
+                              ).show(context);
+                            } else {
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 244, 105, 77),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Gagal",
+                                duration: const Duration(seconds: 3),
+                                message: "Ada yang salah",
+                              ).show(context);
+                            }
+                            // Unfocus the last selected input field
+                          },
                           child: const Text("Tolak"),
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(255, 29, 167, 86)),
-                          onPressed: () {},
+                          onPressed: () async {
+                            int response = await useAdminDeposit.accDeposit(
+                                context, pk, request);
+                            if (response == 200) {
+                              setState(() {});
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 29, 167, 86),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Berhasil",
+                                duration: const Duration(seconds: 3),
+                                message: "Deposit berhasil disetujui",
+                              ).show(context);
+                            } else {
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 244, 105, 77),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Gagal",
+                                duration: const Duration(seconds: 3),
+                                message: "Ada yang salah",
+                              ).show(context);
+                            }
+                            // Unfocus the last selected input field
+                          },
                           child: const Text("Terima"),
                         ),
                       ],
