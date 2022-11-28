@@ -1,13 +1,10 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
-import 'package:trashsure/models/UserData.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/utils/useAdminDeposit.dart';
 import 'package:another_flushbar/flushbar.dart';
-import 'package:another_flushbar/flushbar_helper.dart';
-import 'package:another_flushbar/flushbar_route.dart';
 
 class AdminAddDepositPage extends StatefulWidget {
   const AdminAddDepositPage({super.key});
@@ -304,7 +301,6 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                                                   _jenis,
                                                                   berat);
                                                       Navigator.pop(context);
-                                                      print(response);
                                                       if (response == 200) {
                                                         Navigator.pop(context);
                                                         Flushbar(

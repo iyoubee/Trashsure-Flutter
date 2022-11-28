@@ -1,6 +1,10 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/utils/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:trashsure/utils/useAdminPrize.dart';
 
 class AdminAddPrizePage extends StatefulWidget {
   const AdminAddPrizePage({super.key});
@@ -12,12 +16,14 @@ class AdminAddPrizePage extends StatefulWidget {
 class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
+  UseAdminPrize useAdminPrize = UseAdminPrize();
+
   String poin = "";
   String judul = "";
   String stok = "";
   String desc = "";
 
-  void _submit() {
+  void _submit(context, request) {
     showDialog<void>(
       context: context,
       barrierDismissible: true, // user can tap anywhere to close the pop up
@@ -66,7 +72,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
               children: <Widget>[
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: Colors.grey,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
@@ -78,18 +84,39 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    primary: Colors.white,
+                    foregroundColor: Colors.white,
                     backgroundColor: Colors.blue,
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10))),
                   ),
-                  child: const Text('OK'),
-                  onPressed: () {
+                  child: const Text('Konfirmasi'),
+                  onPressed: () async {
+                    int response = await useAdminPrize.addPrize(
+                        context, request, judul, poin, stok, desc);
+                    Navigator.pop(context);
+                    if (response == 200) {
+                      Navigator.pop(context);
+                      Flushbar(
+                        backgroundColor: const Color.fromARGB(255, 29, 167, 86),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        title: "Berhasil",
+                        duration: const Duration(seconds: 3),
+                        message: "Deposit berhasil dibuat",
+                      ).show(context);
+                    } else {
+                      Flushbar(
+                        backgroundColor:
+                            const Color.fromARGB(255, 244, 105, 77),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        title: "Gagal",
+                        duration: const Duration(seconds: 3),
+                        message: "Ada yang salah",
+                      ).show(context);
+                    }
                     FocusScope.of(context)
                         .unfocus(); // Unfocus the last selected input field
                     _formKey.currentState?.reset();
                     setState(() {});
-                    Navigator.pop(context); // Empty the form fields
                   },
                 )
               ],
@@ -102,6 +129,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         appBar: AppBar(
@@ -167,10 +195,10 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                           if (value == null ||
                               value.isEmpty ||
                               value.length < 3) {
-                            return 'First Name must contain at least 3 characters';
+                            return 'Name must contain at least 3 characters';
                           } else if (value
                               .contains(RegExp(r'^[0-9_\-=@,\.;]+$'))) {
-                            return 'First Name cannot contain special characters';
+                            return 'Name cannot contain special characters';
                           }
                         },
                       ),
@@ -193,6 +221,8 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                               value.isEmpty ||
                               value.contains(RegExp(r'^[a-zA-Z\-]'))) {
                             return 'Use only numbers!';
+                          } else if (int.parse(value) <= 0) {
+                            return 'Harus lebih dari 0';
                           }
                         },
                         onFieldSubmitted: (value) {
@@ -226,6 +256,8 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                               value.isEmpty ||
                               value.contains(RegExp(r'^[a-zA-Z\-]'))) {
                             return 'Use only numbers!';
+                          } else if (int.parse(value) <= 0) {
+                            return 'Harus lebih dari 0';
                           }
                         },
                         onFieldSubmitted: (value) {
@@ -283,7 +315,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                         onPressed: () {
                           // Validate returns true if the form is valid, or false otherwise.
                           if (_formKey.currentState!.validate()) {
-                            _submit();
+                            _submit(context, request);
                           }
                         },
                         child: const Text("Submit"),
