@@ -193,7 +193,10 @@ class _LoginPageState extends State<AdminLoginPage> {
                                                   }
                                                 else
                                                   {
-                                                    setState(() {}),
+                                                    Navigator
+                                                        .pushReplacementNamed(
+                                                            context,
+                                                            '/admin/login'),
                                                     Flushbar(
                                                       backgroundColor:
                                                           const Color.fromARGB(
@@ -206,7 +209,7 @@ class _LoginPageState extends State<AdminLoginPage> {
                                                       title: "Gagal",
                                                       duration: const Duration(
                                                           seconds: 3),
-                                                      message: "Ada yang salah",
+                                                      message: value['message'],
                                                     ).show(context)
                                                   }
                                               })
