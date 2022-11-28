@@ -91,6 +91,14 @@ Aplikasi Trash-Sure memiliki beberapa fitur, antara lain:
 
 - Dapat merasakan seluruh fitur yang disediakan berdasarkan role yang sudah ditentukan.
 
+### 🔗 Integrasi dengan Situs Web 🔗
+Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
+
+1. Mengimplementasikan sebuah _wrapper class_ dengan menggunakan library _http_ serta pbp_django_auth yang dibentuk oleh tim asdos untuk mendukung cookie, session, dan authentification pada app Trashsure
+2. Mengimplementasikan Django REST dengan menggunakan JsonResponse atau Django JSON Serializer untuk di request GET dalam apk.
+3. Mengimplementasikan desain _front-end_ untuk aplikasi berdasarkan desain website yang sudah ada sebelumnya.
+4. Melakukan integrasi antara _front-end_ dengan _back-end_ dengan menggunakan konsep _asynchronous_ HTTP.
+
 ### 💡 Referensi 💡
 
 - [Rancang Bangun _Dashboard Admin_ Pemantauan Berbasis Web di PT. Astra Graphia Information Technology](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiN7Oryxo_7AhVoD7cAHY9NDKYQFnoECAYQAw&url=https%3A%2F%2Fzenodo.org%2Frecord%2F1218677%2Ffiles%2FJurnal%2520Ferliesha%2520Yuni%2520Hartanti-4314111018.pdf&usg=AOvVaw2FXNuZbcQ-7JUM7Xm0UzAz)
