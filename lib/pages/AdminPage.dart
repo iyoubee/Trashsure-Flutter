@@ -5,6 +5,7 @@ import 'package:trashsure/components/card_deposit.dart';
 import 'package:trashsure/components/card_prize.dart';
 import 'package:trashsure/components/prize_card.dart';
 import 'package:trashsure/pages/AdminDepositPage.dart';
+import 'package:trashsure/pages/AdminPrizePage.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key});
@@ -33,21 +34,7 @@ class _AdminPageState extends State<AdminPage> {
         style: optionStyle,
       ),
       AdminDepositPage(),
-      Scaffold(
-          backgroundColor: Color.fromARGB(255, 245, 245, 245),
-          body: SingleChildScrollView(
-            padding: EdgeInsets.all(10),
-            child: PrizeCard(usage: 'Delete'),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              // Add your onPressed code here!
-              Navigator.pushNamed(context, '/admin/prize/add');
-            },
-            tooltip: 'Add Prize',
-            backgroundColor: Color.fromARGB(255, 5, 89, 91),
-            child: Icon(Icons.add),
-          ))
+      AdminPrizePage()
     ];
 
     return Scaffold(
