@@ -58,7 +58,7 @@ class _UserPageState extends State<UserPage> {
           leading: GestureDetector(
             child: IconButton(
               icon: const Icon(
-                Icons.logout,
+                Icons.autorenew,
                 color: Colors.black,
               ),
               onPressed: () {
@@ -75,7 +75,7 @@ class _UserPageState extends State<UserPage> {
             GestureDetector(
               child: IconButton(
                 icon: const Icon(
-                  Icons.autorenew,
+                  Icons.logout,
                   color: Colors.black,
                 ),
                 onPressed: () {

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/card_deposit.dart';
 import 'package:trashsure/components/card_prize.dart';
+import 'package:trashsure/components/prize_card.dart';
 import 'package:trashsure/pages/AdminDepositPage.dart';
 
 class AdminPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _AdminPageState extends State<AdminPage> {
           backgroundColor: Color.fromARGB(255, 245, 245, 245),
           body: SingleChildScrollView(
             padding: EdgeInsets.all(10),
-            child: CardPrize(),
+            child: PrizeCard(usage: 'Delete'),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -52,13 +53,39 @@ class _AdminPageState extends State<AdminPage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 245, 245, 245),
       appBar: AppBar(
+        title: _selectedIndex == 0
+            ? Text(
+                "Home",
+                style: TextStyle(
+                  fontSize: 21,
+                  fontWeight: FontWeight.w700,
+                  color: Color.fromARGB(255, 5, 89, 91),
+                ),
+              )
+            : _selectedIndex == 1
+                ? Text(
+                    "Deposit List",
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 5, 89, 91),
+                    ),
+                  )
+                : Text(
+                    "Prize List",
+                    style: TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w700,
+                      color: Color.fromARGB(255, 5, 89, 91),
+                    ),
+                  ),
         backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.black),
         leading: GestureDetector(
           child: IconButton(
             icon: const Icon(
-              Icons.logout,
+              Icons.autorenew,
               color: Colors.black,
             ),
             onPressed: () {
@@ -70,7 +97,7 @@ class _AdminPageState extends State<AdminPage> {
           GestureDetector(
             child: IconButton(
               icon: const Icon(
-                Icons.autorenew,
+                Icons.logout,
                 color: Colors.black,
               ),
               onPressed: () {

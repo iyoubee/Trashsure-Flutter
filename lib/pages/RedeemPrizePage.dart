@@ -10,11 +10,7 @@ class RedeemPrizePage extends StatefulWidget {
 
 class _RedeemPrizePageState extends State<RedeemPrizePage> {
   // Dummy Data
-  List listOfPrize = [
-    "Redeem",
-    "Use",
-    "Delete"
-  ];
+  List listOfPrize = ["Redeem", "Use", "Delete"];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +21,8 @@ class _RedeemPrizePageState extends State<RedeemPrizePage> {
           padding: const EdgeInsets.only(left: 24, top: 24, right: 24),
           child: Column(
             children: [
-              Column( // Show user points
+              Column(
+                // Show user points
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
@@ -36,14 +33,15 @@ class _RedeemPrizePageState extends State<RedeemPrizePage> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(height: 5,),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Text(
                     "1000",
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 15,
@@ -83,39 +81,43 @@ class _RedeemPrizePageState extends State<RedeemPrizePage> {
                   ],
                 ),
               ),
-              listOfPrize.isNotEmpty ? 
-              // Show list of prize
-              Builder(
-                builder: (context) {
-                  return Column(
-                    children: listOfPrize.map((item) =>
-                      PrizeCard(usage: item),
-                    ).toList(),
-                  );
-                }
-              )
-              : 
-              // Show info that there are no prizes
-              Container(
-                margin: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height / 4),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "lib/assets/prize.jpg",
-                      width: 50,
-                    ),
-                    const SizedBox(height: 20,),
-                    const Text(
-                      "Belum ada hadiah yang bisa diambil",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
+              listOfPrize.isNotEmpty
+                  ?
+                  // Show list of prize
+                  Builder(builder: (context) {
+                      return Column(
+                        children: listOfPrize
+                            .map(
+                              (item) => PrizeCard(usage: item),
+                            )
+                            .toList(),
+                      );
+                    })
+                  :
+                  // Show info that there are no prizes
+                  Container(
+                      margin: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height / 4),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "lib/assets/prize.jpg",
+                            width: 50,
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          const Text(
+                            "Belum ada hadiah yang bisa diambil",
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-              ),
             ],
           ),
         ),
