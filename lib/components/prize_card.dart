@@ -11,8 +11,14 @@ class PrizeCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 20),
       width: double.infinity,
       height: 260,
-      decoration: BoxDecoration(
-          color: Colors.white70, borderRadius: BorderRadius.circular(20)),
+      decoration: BoxDecoration(boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 5,
+          blurRadius: 7,
+          offset: const Offset(0, 3), // changes position of shadow
+        ),
+      ], color: Colors.white70, borderRadius: BorderRadius.circular(20)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -67,13 +73,14 @@ class PrizeCard extends StatelessWidget {
                                 )),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     const Text(
-                                        "Voucher ini bisa digunakan untuk belanja di Alfamart, Indomaret, dan Alfamidi.",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                        ),
+                                      "Voucher ini bisa digunakan untuk belanja di Alfamart, Indomaret, dan Alfamidi.",
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                      ),
                                     ),
                                     const SizedBox(
                                       height: 40,
@@ -82,25 +89,28 @@ class PrizeCard extends StatelessWidget {
                                       width: double.infinity,
                                       height: 50,
                                       child: ElevatedButton(
-                                        style: ButtonStyle(
-                                          backgroundColor: MaterialStateProperty.all(
-                                            Colors.lightGreen,
-                                          ),
-                                          shape: MaterialStateProperty.all(
-                                            RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(18)
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                MaterialStateProperty.all(
+                                              Colors.lightGreen,
+                                            ),
+                                            shape: MaterialStateProperty.all(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          18)),
                                             ),
                                           ),
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pop(context); // Close the bottom sheet
-                                        },
-                                        child: const Text(
-                                          "Close",
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                          ),)
-                                      ),
+                                          onPressed: () {
+                                            Navigator.pop(
+                                                context); // Close the bottom sheet
+                                          },
+                                          child: const Text(
+                                            "Close",
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                            ),
+                                          )),
                                     ),
                                   ],
                                 ),
