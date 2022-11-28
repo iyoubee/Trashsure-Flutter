@@ -110,7 +110,7 @@ class _UserPageState extends State<UserPage> {
           ],
           currentIndex: _selectedIndex,
           unselectedItemColor: Colors.black,
-          selectedItemColor: const Color.fromARGB(255, 226, 215, 132),
+          selectedItemColor: const Color.fromARGB(255, 5, 89, 91),
           onTap: _onItemTapped,
         ),
       ),
