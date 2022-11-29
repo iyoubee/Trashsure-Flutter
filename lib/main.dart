@@ -61,9 +61,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  Widget build(BuildContext context) => DefaultTabController(
-        length: 3,
-        child: Scaffold(
+  Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
           appBar: AppBar(
             title: Text("TrashSure"),
             centerTitle: true,
@@ -80,9 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               AboutTrashsure(),
               Center(child: Text("Kasih Fitur TrashSure")),
-              Center(child: Text("Kasih Testimonial TrashSure")),  // sesuaikan isi dengan length
+              Center(
+                  child: Text(
+                      "Kasih Testimonial TrashSure")), // sesuaikan isi dengan length
             ],
-          )
-        ),
-      );
+          )),
+    );
+  }
 }
