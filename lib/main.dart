@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/about_trashsure.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/drawer.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.green,
         ),
         home: const MyHomePage(title: 'Flutter App'),
         routes: {
@@ -60,14 +61,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   @override
-  Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("Counter Tugas 7 PBP"),
+  Widget build(BuildContext context) => DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("TrashSure"),
+            centerTitle: true,
+            bottom: TabBar(
+              tabs: [
+                Tab(text: "Tentang Kita"),
+                Tab(text: "Fitur"),
+                Tab(text: "Testimonial")
+              ],
+            ),
+          ),
+          drawer: const DrawerCustom(),
+          body: TabBarView(
+            children: [
+              AboutTrashsure(),
+              Center(child: Text("Kasih Fitur TrashSure")),
+              Center(child: Text("Kasih Testimonial TrashSure")),  // sesuaikan isi dengan length
+            ],
+          )
         ),
-        drawer: const DrawerCustom(),
-        body: null);
-  }
+      );
 }
