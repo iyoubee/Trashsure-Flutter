@@ -2,9 +2,11 @@
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/WithdrawPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/pages/RedeemPrizePage.dart';
+import 'package:trashsure/pages/WithdrawPage.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});
@@ -43,14 +45,7 @@ class _UserPageState extends State<UserPage> {
           )),
       // NOTE: Redeem Prize Page
       RedeemPrizePage(),
-      Scaffold(
-          backgroundColor: Color.fromARGB(255, 245, 245, 245),
-          floatingActionButton: FloatingActionButton(
-            onPressed: null,
-            tooltip: 'Add Deposit',
-            backgroundColor: Color.fromARGB(255, 5, 89, 91),
-            child: Icon(Icons.add),
-          ))
+      WithdrawPage(),
     ];
 
     return SafeArea(
