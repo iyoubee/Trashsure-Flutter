@@ -13,26 +13,35 @@ class AboutTrashsure extends StatelessWidget {
                   Colors.black.withOpacity(0.5), BlendMode.dstATop),
             ),
           ),
-          child: Center(
-              child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                      text:
-                          "Build Better Environment And Economy With TrashSure!\n",
-                      style: TextStyle(
-                        fontSize: 32,
-                        color: Colors.green,
-                        fontWeight: FontWeight.bold,
-                        
-                      ),
-                      children: [
-                TextSpan(
-                    text:
-                        " Ubah sampah di rumahmu menjadi imbalan yang menarik!",
-                    style: TextStyle(
-                      color: Colors.black, 
-                      fontSize: 18
-                      )
-                    )
-              ])))));
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                        text:
+                            "Build Better Environment And Economy With TrashSure!\n",
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        children: [
+                          TextSpan(
+                              text:
+                                  "Ubah sampah di rumahmu menjadi imbalan yang menarik!\n",
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 18))
+                        ])),
+                Container(
+                    height: 30,
+                    width: 100,
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                    child: ElevatedButton(
+                      child: const Text('Login'),
+                      onPressed: ()
+                       {Navigator.pushNamed(context, '/login');},
+                    ))
+              ]
+              )));
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trashsure/pages/about_trashsure.dart';
+import 'package:trashsure/pages/fitur_trashsure.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/drawer.dart';
@@ -73,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               tabs: [
                 Tab(text: "Tentang Kita"),
                 Tab(text: "Fitur"),
-                Tab(text: "Testimonial")
+                Tab(text: "Testimoni")
               ],
             ),
           ),
@@ -81,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
           body: TabBarView(
             children: [
               AboutTrashsure(),
-              Center(child: Text("Kasih Fitur TrashSure")),
+              FiturTrashsure(),
               Center(
                   child: Text(
                       "Kasih Testimonial TrashSure")), // sesuaikan isi dengan length
