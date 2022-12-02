@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CardWithdraw extends StatelessWidget {
   const CardWithdraw({
@@ -26,7 +27,7 @@ class CardWithdraw extends StatelessWidget {
           ),
           // leading: CircleAvatar(
           // ),
-          title: Text(date.toString()),
+          title: Text(DateFormat.yMMMd().format(date)),
           trailing: Text(
             "Rp $jumlah",
             style: const TextStyle(color: Colors.green),

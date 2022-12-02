@@ -121,6 +121,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
                     } else {
                       return ListView.builder(
                           shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (_, index) => CardWithdraw(
                               date: snapshot.data![index].fields.date,
