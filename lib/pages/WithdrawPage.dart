@@ -35,31 +35,51 @@ class _WithdrawPageState extends State<WithdrawPage> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: Colors.amber[600],
-                  // color: Colors.deepPurple[300],
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // ignore: prefer_const_literals_to_create_immutables
-                  children: [
-                    const SizedBox(height: 10),
-                    const Text('Balance',
-                        style: TextStyle(color: Colors.white, fontSize: 23)),
-                    const SizedBox(height: 10),
-                    const Text(
-                      "Rp 100000",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+              FutureBuilder(
+                future: useUserWithdraw.getBalance(request),
+                builder: (context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(20),
+                        height: 110,
+                        decoration: BoxDecoration(
+                          color: Colors.amber[600],
+                          // color: Colors.deepPurple[300],
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child:
+                            const Center(child: CircularProgressIndicator()));
+                  } else {
+                    return Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.amber[600],
+                        // color: Colors.deepPurple[300],
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        // ignore: prefer_const_literals_to_create_immutables
+                        children: [
+                          const SizedBox(height: 10),
+                          const Text('Balance',
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 23)),
+                          const SizedBox(height: 10),
+                          Text(
+                            "Rp ${snapshot.data![index].fields.balance}",
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 23,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                },
               ),
               const SizedBox(
                 height: 20,
@@ -109,7 +129,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
                               height: 20,
                             ),
                             const Text(
-                              "Belum ada deposit yang bisa disetujui",
+                              "Belum ada penarikan",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 16,
@@ -121,7 +141,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
                     } else {
                       return ListView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
+                          physics: const NeverScrollableScrollPhysics(),
                           itemCount: snapshot.data!.length,
                           itemBuilder: (_, index) => CardWithdraw(
                               date: snapshot.data![index].fields.date,
@@ -140,8 +160,8 @@ class _WithdrawPageState extends State<WithdrawPage> {
           Navigator.pushNamed(context, '/user/withdraw/add');
         },
         tooltip: 'Add Withdraw',
-        backgroundColor: Color.fromARGB(255, 5, 89, 91),
-        child: Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 5, 89, 91),
+        child: const Icon(Icons.add),
       ),
     );
   }
