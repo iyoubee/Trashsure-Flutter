@@ -2,16 +2,13 @@
 
 import 'package:trashsure/models/UserData.dart';
 import '../models/Deposit.dart';
-import 'package:trashsure/utils/auth.dart';
 
 class UseAdminDeposit {
   Future<List<Deposit>> getAdminDeposit(request) async {
     var response = await request.get('http://10.0.2.2:8000/admin/deposit/get/');
 
-    // melakukan decode response menjadi bentuk json
     var data = response;
 
-    // melakukan konversi data json menjadi object ToDo
     List<Deposit> depositList = [];
     for (var d in data) {
       if (d != null) {
@@ -25,10 +22,8 @@ class UseAdminDeposit {
     var response =
         await request.get('http://10.0.2.2:8000/admin/deposit/username/get/');
 
-    // melakukan decode response menjadi bentuk json
     var data = response;
 
-    // melakukan konversi data json menjadi object ToDo
     List<UserData> usernameList = [];
     for (var d in data) {
       if (d != null) {
