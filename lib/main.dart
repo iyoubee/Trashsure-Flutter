@@ -8,8 +8,6 @@ import 'package:trashsure/components/drawer.dart';
 import 'package:trashsure/pages/AdminAddDepositPage.dart';
 import 'package:trashsure/pages/AdminAddPrizePage.dart';
 import 'package:trashsure/pages/AdminPage.dart';
-import 'package:trashsure/pages/Auth/AdminLoginPage.dart';
-import 'package:trashsure/pages/Auth/AdminRegisterPage.dart';
 import 'package:trashsure/pages/Auth/LoginPage.dart';
 import 'package:trashsure/pages/Auth/RegisterPage.dart';
 import 'package:trashsure/pages/UserPage.dart';
@@ -40,9 +38,6 @@ class MyApp extends StatelessWidget {
               const AdminAddDepositPage(),
           "/admin/prize/add": (BuildContext context) =>
               const AdminAddPrizePage(),
-          "/admin/login": (BuildContext context) => const AdminLoginPage(),
-          "/admin/register": (BuildContext context) =>
-              const AdminRegisterPage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
           "/user": (BuildContext context) => const UserPage(idx: 0),

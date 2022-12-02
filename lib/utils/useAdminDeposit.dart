@@ -5,7 +5,8 @@ import '../models/Deposit.dart';
 
 class UseAdminDeposit {
   Future<List<Deposit>> getAdminDeposit(request) async {
-    var response = await request.get('http://10.0.2.2:8000/admin/deposit/get/');
+    var response =
+        await request.get('http://10.0.2.2:8000/flutter/admin/deposit/get/');
 
     var data = response;
 
@@ -20,7 +21,7 @@ class UseAdminDeposit {
 
   Future<List<UserData>> getUsername(request) async {
     var response =
-        await request.get('http://10.0.2.2:8000/admin/deposit/username/get/');
+        await request.get('http://10.0.2.2:8000/flutter/admin/username/get/');
 
     var data = response;
 
@@ -36,7 +37,7 @@ class UseAdminDeposit {
 
   addDeposit(context, request, username, jenisSampah, beratSampah) async {
     var response = await request.post(
-        'http://10.0.2.2:8000/admin/deposit/add/', {
+        'http://10.0.2.2:8000/flutter/admin/deposit/add/', {
       "user": username,
       "jenisSampah": jenisSampah,
       "beratSampah": beratSampah
@@ -47,14 +48,14 @@ class UseAdminDeposit {
 
   accDeposit(context, pk, request) async {
     var response = await request
-        .post('http://10.0.2.2:8000/admin/deposit/acc/', {"id": pk});
+        .post('http://10.0.2.2:8000/flutter/admin/deposit/acc/', {"id": pk});
 
     return response['status'];
   }
 
   delDeposit(context, pk, request) async {
     var response = await request
-        .post('http://10.0.2.2:8000/admin/deposit/del/', {"id": pk});
+        .post('http://10.0.2.2:8000/flutter/admin/deposit/del/', {"id": pk});
 
     return response['status'];
   }

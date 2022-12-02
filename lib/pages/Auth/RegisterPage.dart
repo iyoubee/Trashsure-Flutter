@@ -167,7 +167,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       _formKey.currentState?.save();
                                       final response = await request
                                           .post(
-                                              "http://10.0.2.2:8000/register/",
+                                              "http://10.0.2.2:8000/flutter/register/",
                                               {
                                                 'username': _email,
                                                 'password': _password,

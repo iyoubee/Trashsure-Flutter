@@ -167,17 +167,32 @@ class _LoginPageState extends State<LoginPage> {
                                       _formKey.currentState?.save();
                                       final response = await request
                                           .login(
-                                              "http://10.0.2.2:8000/login/", {
-                                            'username': _email,
-                                            'password': _password,
-                                          })
+                                              "http://10.0.2.2:8000/flutter/login/",
+                                              {
+                                                'username': _email,
+                                                'password': _password,
+                                              })
                                           .then((value) => {
                                                 print(value),
+                                                print(request.jsonData),
                                                 if (value['status'] == 200)
                                                   {
-                                                    Navigator
-                                                        .pushReplacementNamed(
-                                                            context, '/user'),
+                                                    if (request
+                                                            .jsonData['role'] ==
+                                                        'user')
+                                                      {
+                                                        Navigator
+                                                            .pushReplacementNamed(
+                                                                context,
+                                                                '/user'),
+                                                      }
+                                                    else
+                                                      {
+                                                        Navigator
+                                                            .pushReplacementNamed(
+                                                                context,
+                                                                '/admin'),
+                                                      },
                                                     Flushbar(
                                                       backgroundColor:
                                                           const Color.fromARGB(

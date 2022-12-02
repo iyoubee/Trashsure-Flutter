@@ -20,12 +20,6 @@ class DrawerCustom extends StatelessWidget {
             },
           ),
           ListTile(
-            title: const Text('Login Admin'),
-            onTap: () {
-              Navigator.pushNamed(context, '/admin/login');
-            },
-          ),
-          ListTile(
             title: const Text('Admin'),
             onTap: () {
               Navigator.pushNamed(context, '/admin');

@@ -83,7 +83,7 @@ class _UserPageState extends State<UserPage> {
                 onPressed: () async {
                   // do something
                   final response = await request
-                      .logout("http://10.0.2.2:8000/logout/")
+                      .logout("http://10.0.2.2:8000/flutter/logout/")
                       .then((value) => {
                             Navigator.pop(context),
                             if (value['status'] == 200)

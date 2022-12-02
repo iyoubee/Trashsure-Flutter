@@ -4,7 +4,8 @@ import 'package:trashsure/models/Prize.dart';
 
 class UseAdminPrize {
   Future<List<Prize>> getAdminPrize(request) async {
-    var response = await request.get('http://10.0.2.2:8000/admin/prize/get/');
+    var response =
+        await request.get('http://10.0.2.2:8000/flutter/admin/prize/get/');
 
     var data = response;
 
@@ -18,15 +19,16 @@ class UseAdminPrize {
   }
 
   addPrize(context, request, nama, poin, stok, desc) async {
-    var response = await request.post('http://10.0.2.2:8000/admin/prize/add/',
+    var response = await request.post(
+        'http://10.0.2.2:8000/flutter/admin/prize/add/',
         {"nama": nama, "poin": poin, "stok": stok, "desc": desc});
 
     return response['status'];
   }
 
   delPrize(context, pk, request) async {
-    var response =
-        await request.post('http://10.0.2.2:8000/admin/prize/del/', {"id": pk});
+    var response = await request
+        .post('http://10.0.2.2:8000/flutter/admin/prize/del/', {"id": pk});
 
     return response['status'];
   }
