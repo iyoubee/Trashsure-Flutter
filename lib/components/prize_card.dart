@@ -1,9 +1,32 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/utils/auth.dart';
+import 'package:trashsure/utils/useUserPrize.dart';
 
 class PrizeCard extends StatelessWidget {
-  const PrizeCard({super.key, required this.usage});
+  const PrizeCard(
+      {super.key,
+      required this.pk,
+      required this.usage,
+      required this.nama,
+      required this.poin,
+      required this.stok, // Default value
+      required this.desc,
+      required this.request,
+      required this.useUserPrize,
+      required this.setState});
 
   final String usage; // Buat title di tombol pada card (Delete, Use, or Redeem)
+  final CookieRequest request;
+  final String pk;
+  final String nama;
+  final String poin; // Buat handle yang redeemed prize
+  final String stok;
+  final String desc;
+  final UseUserPrize useUserPrize;
+  final Function setState;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +62,23 @@ class PrizeCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Voucher Belanja 300k",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                Text(
+                  nama,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   height: 3,
                 ),
-                const Text(
-                  "25 Poin",
-                ),
+                poin != "0"
+                    ? Text(
+                        "$poin Poin",
+                      )
+                    : const SizedBox(), // Empty widget
                 const SizedBox(
                   height: 3,
                 ),
-                const Text("Stok: 2"),
+                Text("Stok: $stok"),
                 const SizedBox(
                   height: 5,
                 ),
@@ -63,27 +89,28 @@ class PrizeCard extends StatelessWidget {
                       onTap: () {
                         showModalBottomSheet(
                             context: context,
+                            shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
+                            )),
                             builder: (BuildContext context) {
                               return Container(
                                 padding: const EdgeInsets.all(20),
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30),
-                                )),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      "Voucher ini bisa digunakan untuk belanja di Alfamart, Indomaret, dan Alfamidi.",
-                                      style: TextStyle(
+                                    Text(
+                                      desc,
+                                      style: const TextStyle(
                                         fontSize: 16,
                                       ),
                                     ),
                                     const SizedBox(
-                                      height: 40,
+                                      height: 30,
                                     ),
                                     SizedBox(
                                       width: double.infinity,
@@ -140,8 +167,71 @@ class PrizeCard extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(18),
                                     side: const BorderSide(
                                         color: Colors.green)))),
-                        onPressed: () {
-                          // Navigate ke page yang berisi prize yang udah di-redeem
+                        onPressed: () async {
+                          // For redeeming the prize
+                          if (usage == "Redeem") {
+                            String response = await useUserPrize.redeemPrize(
+                                context, pk, request);
+
+                            if (response == "Berhasil Redeem") {
+                              setState(() {});
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 29, 167, 86),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Berhasil",
+                                duration: const Duration(seconds: 3),
+                                message: "Berhasil mengambil prize!",
+                              ).show(context);
+                            } else {
+                              if (response == "Poin Kurang" ||
+                                  response == "Stok Habis") {
+                                Flushbar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 244, 105, 77),
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                  title: "Gagal",
+                                  duration: const Duration(seconds: 3),
+                                  message: response,
+                                ).show(context);
+                              } else {
+                                Flushbar(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 244, 105, 77),
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                  title: "Gagal",
+                                  duration: const Duration(seconds: 3),
+                                  message: "Ada yang salah",
+                                ).show(context);
+                              }
+                            }
+
+                            // For using the prize
+                          } else if (usage == "Use") {
+                            String response = await useUserPrize.usePrize(
+                                context, pk, request);
+
+                            if (response == "Prize berhasil digunakan") {
+                              setState(() {});
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 29, 167, 86),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Berhasil",
+                                duration: const Duration(seconds: 3),
+                                message: "Berhasil menggunakan prize!",
+                              ).show(context);
+                            } else {
+                              Flushbar(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 244, 105, 77),
+                                flushbarPosition: FlushbarPosition.TOP,
+                                title: "Gagal",
+                                duration: const Duration(seconds: 3),
+                                message: "Ada yang salah",
+                              ).show(context);
+                            }
+                          }
                         },
                         child: Text(
                           usage,
