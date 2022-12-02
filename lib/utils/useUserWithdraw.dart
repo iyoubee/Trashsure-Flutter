@@ -34,11 +34,11 @@ class UseUserWithdraw {
     return balanceList;
   }
 
-  addWithdraw(context, request, jumlah) async {
+  Future<dynamic> addWithdraw(context, request, jumlah) async {
     var response = await request.post('http://10.0.2.2:8000/withdraw/add/', {
       "jumlah": jumlah,
     });
 
-    return response['status'];
+    return response;
   }
 }

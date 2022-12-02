@@ -15,7 +15,7 @@ class CardWithdraw extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+      margin: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       alignment: Alignment.topLeft,
       child: Card(
         child: ListTile(

@@ -61,7 +61,9 @@ class _WithdrawPageState extends State<WithdrawPage> {
                   ],
                 ),
               ),
-              const Text(("                                 ")),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 // ignore: prefer_const_literals_to_create_immutables
@@ -81,6 +83,9 @@ class _WithdrawPageState extends State<WithdrawPage> {
                         fontWeight: FontWeight.bold),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 20,
               ),
               FutureBuilder(
                 future: useUserWithdraw.getWithdraw(request),
@@ -128,8 +133,11 @@ class _WithdrawPageState extends State<WithdrawPage> {
           ),
         ),
       ),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Add your onPressed code here!
+          Navigator.pushNamed(context, '/user/withdraw/add');
+        },
         tooltip: 'Add Withdraw',
         backgroundColor: Color.fromARGB(255, 5, 89, 91),
         child: Icon(Icons.add),

@@ -9,14 +9,16 @@ import 'package:trashsure/pages/RedeemPrizePage.dart';
 import 'package:trashsure/pages/WithdrawPage.dart';
 
 class UserPage extends StatefulWidget {
-  const UserPage({super.key});
+  const UserPage({super.key, required this.idx});
+  final int idx;
 
   @override
-  State<UserPage> createState() => _UserPageState();
+  State<UserPage> createState() => _UserPageState(idx);
 }
 
 class _UserPageState extends State<UserPage> {
-  int _selectedIndex = 0;
+  _UserPageState(this._selectedIndex);
+  int _selectedIndex;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 

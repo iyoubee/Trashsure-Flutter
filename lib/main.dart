@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/WithdrawAddPage.dart';
 import 'package:trashsure/pages/about_trashsure.dart';
 import 'package:trashsure/pages/fitur_trashsure.dart';
 import 'package:trashsure/utils/auth.dart';
@@ -44,7 +45,9 @@ class MyApp extends StatelessWidget {
               const AdminRegisterPage(),
           "/login": (BuildContext context) => const LoginPage(),
           "/register": (BuildContext context) => const RegisterPage(),
-          "/user": (BuildContext context) => const UserPage(),
+          "/user": (BuildContext context) => const UserPage(idx: 0),
+          "/user/withdraw/add": (BuildContext context) =>
+              const WithdrawAddPage(),
         },
       ),
     );
