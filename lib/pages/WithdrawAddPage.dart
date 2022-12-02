@@ -74,6 +74,8 @@ class _WithdrawAddPageState extends State<WithdrawAddPage> {
                               print(value),
                               if (value['status'] == 200)
                                 {
+                                  Navigator.pop(context),
+                                  Navigator.pop(context),
                                   Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(

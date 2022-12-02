@@ -96,6 +96,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                         context, request, judul, poin, stok, desc);
                     Navigator.pop(context);
                     if (response == 200) {
+                      Navigator.pop(context);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
@@ -108,6 +109,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                         message: "Deposit berhasil dibuat",
                       ).show(context);
                     } else {
+                      Navigator.pop(context);
                       Flushbar(
                         backgroundColor:
                             const Color.fromARGB(255, 244, 105, 77),

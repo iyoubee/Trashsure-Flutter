@@ -322,6 +322,7 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                                               "Deposit berhasil dibuat",
                                                         ).show(context);
                                                       } else {
+                                                        Navigator.pop(context);
                                                         Flushbar(
                                                           backgroundColor:
                                                               const Color
