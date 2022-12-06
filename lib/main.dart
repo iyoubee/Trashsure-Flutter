@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/pages/WithdrawAddPage.dart';
 import 'package:trashsure/pages/about_trashsure.dart';
 import 'package:trashsure/pages/fitur_trashsure.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: const MyHomePage(title: 'Flutter App'),
+        home: const LandingPage(),
         routes: {
           "/admin": (BuildContext context) => const AdminPage(idx: 0),
           "/admin/deposit/add": (BuildContext context) =>

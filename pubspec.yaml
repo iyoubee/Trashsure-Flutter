@@ -73,6 +73,7 @@ flutter:
     - lib/assets/voucher.jpg
     - lib/assets/Garbage.jpg
     - lib/assets/withdraw.png
+    - lib/assets/landingbg4.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
