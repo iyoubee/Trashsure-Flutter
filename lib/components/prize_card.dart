@@ -70,11 +70,11 @@ class PrizeCard extends StatelessWidget {
                 const SizedBox(
                   height: 3,
                 ),
-                poin != "0"
+                poin != "0" // Buat nandain ini card untuk prize atau redeemed prize
                     ? Text(
                         "$poin Poin",
                       )
-                    : const SizedBox(), // Empty widget
+                    : const SizedBox(height: 15,), // Empty widget
                 const SizedBox(
                   height: 3,
                 ),
