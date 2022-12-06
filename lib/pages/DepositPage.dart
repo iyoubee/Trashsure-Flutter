@@ -30,12 +30,15 @@ class _DepositPageState extends State<DepositPage> {
                 onPressed: () {},
                 child: Row(
                   children: [
+                    SizedBox(
+                      width: 10,
+                    ),
                     Container(
                       height: 80,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Image.asset("lib/assets/recycle-bin-deposit.png", height: 90, width: 90,),
+                      child: Image.asset("lib/assets/recycle-bin-deposit.png", height: 60, width: 60,),
                     ),
                     SizedBox(
                       width: 20,
@@ -48,9 +51,6 @@ class _DepositPageState extends State<DepositPage> {
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
                       ),
                     ),
-                    // SizedBox(
-                    //   width: double.infinity,
-                    // ),
                     Icon(Icons.arrow_forward_ios),
                   ],
                 ),
@@ -62,7 +62,6 @@ class _DepositPageState extends State<DepositPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("History", style: TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.bold),),
-                  Text("View All", style: TextStyle(color: Colors.black45, fontSize: 14, fontWeight: FontWeight.bold),),
                 ],
               ),
               const SizedBox(
@@ -72,12 +71,33 @@ class _DepositPageState extends State<DepositPage> {
                 alignment: Alignment.topLeft,
                 child: Container(
                   child: Card(
-                    child: ListTile(
-                      leading: Image.asset("lib/assets/plastic.png", height: 30, width: 30,),
-                      // leading: CircleAvatar(
-                      // ),
-                      title: Text("28/11/2002"),
-                      trailing: Text("Rp 50000", style: TextStyle(color: Colors.green),),
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: ListTile(
+                        leading: Image.asset("lib/assets/plastic.png", height: 40, width: 40,),
+                        title: Container(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Plastik", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                              Text("Poin: 500", style: TextStyle(fontSize: 14, color: Colors.grey[600]),),
+                              Text("Saldo: 1000", style: TextStyle(fontSize: 14, color: Colors.grey[600]),),
+                            ],
+                          ),
+                        ),
+                        trailing: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(height: 3,),
+                              Text("20 kg", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.red),),
+                              SizedBox(height: 3,),
+                              Text("27/11/2022", style: TextStyle(fontSize: 14, color: Colors.grey[600]),),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -86,12 +106,33 @@ class _DepositPageState extends State<DepositPage> {
                 alignment: Alignment.topLeft,
                 child: Container(
                   child: Card(
-                    child: ListTile(
-                      leading: Image.asset("lib/assets/withdraw.png", height: 30, width: 30,),
-                      // leading: CircleAvatar(
-                      // ),
-                      title: Text("27/11/2002"),
-                      trailing: Text("Rp 25000", style: TextStyle(color: Colors.green),),
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: ListTile(
+                        leading: Image.asset("lib/assets/electronic.png", height: 40, width: 40,),
+                        title: Container(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Elektronik", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                              Text("Poin: 500", style: TextStyle(fontSize: 14, color: Colors.grey[600]),),
+                              Text("Saldo: 1000", style: TextStyle(fontSize: 14, color: Colors.grey[600]),),
+                            ],
+                          ),
+                        ),
+                        trailing: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(height: 3,),
+                              Text("20 kg", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.red),),
+                              SizedBox(height: 3,),
+                              Text("27/11/2022", style: TextStyle(fontSize: 14, color: Colors.grey[600]),),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -99,12 +140,6 @@ class _DepositPageState extends State<DepositPage> {
             ],
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        tooltip: 'Add Withdraw',
-        backgroundColor: Color.fromARGB(255, 5, 89, 91),
-        child: Icon(Icons.add),
       ),
     );
   }
