@@ -6,7 +6,7 @@ import 'package:trashsure/pages/WithdrawPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/pages/RedeemPrizePage.dart';
-import 'package:trashsure/pages/WithdrawPage.dart';
+import 'package:trashsure/pages/DepositPage.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key, required this.idx});
@@ -37,14 +37,7 @@ class _UserPageState extends State<UserPage> {
         'Index 0: Home',
         style: optionStyle,
       ),
-      Scaffold(
-          backgroundColor: Color.fromARGB(255, 245, 245, 245),
-          floatingActionButton: FloatingActionButton(
-            onPressed: null,
-            tooltip: 'Add Deposit',
-            backgroundColor: Color.fromARGB(255, 5, 89, 91),
-            child: Icon(Icons.add),
-          )),
+      DepositPage(),
       // NOTE: Redeem Prize Page
       RedeemPrizePage(),
       WithdrawPage(),
