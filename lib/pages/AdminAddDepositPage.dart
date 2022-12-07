@@ -22,6 +22,112 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
   var _jenis;
   var user;
 
+  void _submit(context, request) {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user can tap anywhere to close the pop up
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Konfirmasi'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("User:",
+                        style: TextStyle(fontWeight: FontWeight.w700))),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(user),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Jenis sampah:",
+                        style: TextStyle(fontWeight: FontWeight.w700))),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(_jenis),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Align(
+                    alignment: Alignment.topLeft,
+                    child: Text("Berat total:",
+                        style: TextStyle(fontWeight: FontWeight.w700))),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text("$berat Kg"),
+                )
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.grey,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                  ),
+                  child: const Text('Batal'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }, // so the alert dialog is closed when navigating back to main page
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.blue,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                  ),
+                  child: const Text('Konfirmasi'),
+                  onPressed: () async {
+                    int response = await useAdminDeposit.addDeposit(
+                        context, request, user, _jenis, berat);
+                    Navigator.pop(context);
+                    if (response == 200) {
+                      Navigator.pop(context);
+                      Flushbar(
+                        backgroundColor: const Color.fromARGB(255, 29, 167, 86),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        title: "Berhasil",
+                        duration: const Duration(seconds: 3),
+                        message: "Deposit berhasil dibuat",
+                      ).show(context);
+                    } else {
+                      Navigator.pop(context);
+                      Flushbar(
+                        backgroundColor:
+                            const Color.fromARGB(255, 244, 105, 77),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        title: "Gagal",
+                        duration: const Duration(seconds: 3),
+                        message: "Ada yang salah",
+                      ).show(context);
+                    }
+                    // ignore: use_build_context_synchronously
+                    FocusScope.of(context)
+                        .unfocus(); // Unfocus the last selected input field
+                    _formKey.currentState?.reset();
+                    setState(() {});
+                  },
+                )
+              ],
+            )
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -192,170 +298,7 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                   onPressed: () {
                                     // Validate returns true if the form is valid, or false otherwise.
                                     if (_formKey.currentState!.validate()) {
-                                      showDialog<void>(
-                                        context: context,
-                                        barrierDismissible:
-                                            true, // user can tap anywhere to close the pop up
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: const Text('Konfirmasi'),
-                                            content: SingleChildScrollView(
-                                              child: Column(
-                                                children: <Widget>[
-                                                  const Align(
-                                                      alignment:
-                                                          Alignment.topLeft,
-                                                      child: Text("User:",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700))),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(user),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  const Align(
-                                                      alignment:
-                                                          Alignment.topLeft,
-                                                      child: Text(
-                                                          "Jenis sampah:",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700))),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text(_jenis),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 10,
-                                                  ),
-                                                  const Align(
-                                                      alignment:
-                                                          Alignment.topLeft,
-                                                      child: Text(
-                                                          "Berat total:",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700))),
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topLeft,
-                                                    child: Text("$berat Kg"),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            actions: <Widget>[
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: <Widget>[
-                                                  TextButton(
-                                                    style: TextButton.styleFrom(
-                                                      foregroundColor:
-                                                          Colors.white,
-                                                      backgroundColor:
-                                                          Colors.grey,
-                                                      shape: const RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          10))),
-                                                    ),
-                                                    child: const Text('Batal'),
-                                                    onPressed: () {
-                                                      Navigator.pop(context);
-                                                    }, // so the alert dialog is closed when navigating back to main page
-                                                  ),
-                                                  TextButton(
-                                                    style: TextButton.styleFrom(
-                                                      foregroundColor:
-                                                          Colors.white,
-                                                      backgroundColor:
-                                                          Colors.blue,
-                                                      shape: const RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          10))),
-                                                    ),
-                                                    child: const Text(
-                                                        'Konfirmasi'),
-                                                    onPressed: () async {
-                                                      int response =
-                                                          await useAdminDeposit
-                                                              .addDeposit(
-                                                                  context,
-                                                                  request,
-                                                                  user,
-                                                                  _jenis,
-                                                                  berat);
-                                                      Navigator.pop(context);
-                                                      if (response == 200) {
-                                                        Navigator.pop(context);
-                                                        Flushbar(
-                                                          backgroundColor:
-                                                              const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  29,
-                                                                  167,
-                                                                  86),
-                                                          flushbarPosition:
-                                                              FlushbarPosition
-                                                                  .TOP,
-                                                          title: "Berhasil",
-                                                          duration:
-                                                              const Duration(
-                                                                  seconds: 3),
-                                                          message:
-                                                              "Deposit berhasil dibuat",
-                                                        ).show(context);
-                                                      } else {
-                                                        Navigator.pop(context);
-                                                        Flushbar(
-                                                          backgroundColor:
-                                                              const Color
-                                                                      .fromARGB(
-                                                                  255,
-                                                                  244,
-                                                                  105,
-                                                                  77),
-                                                          flushbarPosition:
-                                                              FlushbarPosition
-                                                                  .TOP,
-                                                          title: "Gagal",
-                                                          duration:
-                                                              const Duration(
-                                                                  seconds: 3),
-                                                          message:
-                                                              "Ada yang salah",
-                                                        ).show(context);
-                                                      }
-                                                      // ignore: use_build_context_synchronously
-                                                      FocusScope.of(context)
-                                                          .unfocus(); // Unfocus the last selected input field
-                                                      _formKey.currentState
-                                                          ?.reset();
-                                                      setState(() {});
-                                                    },
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          );
-                                        },
-                                      );
+                                      _submit(context, request);
                                     }
                                   },
                                   child: const Text("Submit"),
