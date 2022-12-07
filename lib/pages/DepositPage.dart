@@ -106,6 +106,9 @@ class _DepositPageState extends State<DepositPage> {
                   }
                 },
               ),
+              const SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),

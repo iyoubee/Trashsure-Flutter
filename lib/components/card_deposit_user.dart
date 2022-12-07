@@ -78,7 +78,7 @@ class CardDepositUser extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Colors.red),
+                      color: Colors.black),
                 ),
                 const SizedBox(
                   height: 3,
