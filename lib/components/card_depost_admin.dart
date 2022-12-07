@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:trashsure/utils/useAdminDeposit.dart';
 import 'package:another_flushbar/flushbar.dart';
 import 'package:trashsure/utils/auth.dart';
-import 'package:trashsure/utils/useAdminDeposit.dart';
 
 class CardDepositAdmin extends StatelessWidget {
   const CardDepositAdmin(

@@ -3,7 +3,6 @@ import 'package:trashsure/components/card_depost_admin.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/components/card_deposit.dart';
 import 'package:trashsure/utils/useAdminDeposit.dart';
 
 class AdminDepositPage extends StatefulWidget {
