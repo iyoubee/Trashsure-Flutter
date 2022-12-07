@@ -131,7 +131,7 @@ class _LandingPageState extends State<LandingPage> {
               Container(
                 width: double.infinity,
                 height: 500,
-                color: Colors.grey[850],
+                color: const Color.fromARGB(255, 245, 245, 245),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 40),
                   child: Column(
@@ -143,7 +143,7 @@ class _LandingPageState extends State<LandingPage> {
                           child: Text(
                             "Kenapa TrashSure?",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               fontSize: 30,
                               fontWeight: FontWeight.bold,
                             ),
@@ -165,7 +165,7 @@ class _LandingPageState extends State<LandingPage> {
               Container(
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
-                color: Colors.grey[850],
+                color: const Color.fromARGB(255, 245, 245, 245),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -173,7 +173,7 @@ class _LandingPageState extends State<LandingPage> {
                       "Fitur",
                       style: TextStyle(
                           fontSize: 30,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
@@ -267,7 +267,7 @@ class _LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height / 1.15,
-                color: Colors.grey[850],
+                color: const Color.fromARGB(255, 245, 245, 245),
                 child: Column(
                   children: const [
                     Text(
@@ -275,7 +275,7 @@ class _LandingPageState extends State<LandingPage> {
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
                   ],
@@ -290,7 +290,7 @@ class _LandingPageState extends State<LandingPage> {
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white),
+                    // border: Border.all(color: Colors.black),
                     color: Colors.grey[850],
                     borderRadius: BorderRadius.circular(18),
                   ),
@@ -301,7 +301,7 @@ class _LandingPageState extends State<LandingPage> {
                           height: 60,
                           width: double.infinity,
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: const Color.fromARGB(255, 29, 167, 86),
                             borderRadius: BorderRadius.circular(18),
                           ),
                           child: TextButton(
@@ -432,7 +432,7 @@ class _PageViewCustomState extends State<PageViewCustom> {
               ..rotateY(angle),
             alignment: Alignment.center,
             child: Material(
-              color: Colors.grey[850],
+              color: const Color.fromARGB(255, 245, 245, 245),
               elevation: 1,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
@@ -450,7 +450,7 @@ class _PageViewCustomState extends State<PageViewCustom> {
                     Icon(
                       listItem[index][0],
                       size: 120,
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     const SizedBox(
                       height: 20,
@@ -460,7 +460,7 @@ class _PageViewCustomState extends State<PageViewCustom> {
                       style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Colors.white70),
+                          color: Colors.black54),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -471,7 +471,7 @@ class _PageViewCustomState extends State<PageViewCustom> {
                       style: const TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
-                          color: Colors.white),
+                          color: Colors.black),
                       textAlign: TextAlign.center,
                     ),
                   ],
