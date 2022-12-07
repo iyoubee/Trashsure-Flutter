@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+import 'package:trashsure/components/card_depost_admin.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -54,15 +55,16 @@ class _AdminDepositPage extends State<AdminDepositPage> {
               } else {
                 return ListView.builder(
                     itemCount: snapshot.data!.length,
-                    itemBuilder: (_, index) => CardDeposit(
-                          jenis: snapshot.data![index].fields.jenisSampah,
+                    itemBuilder: (_, index) => CardDepositAdmin(
+                          jenisSampah: snapshot.data![index].fields.jenisSampah,
                           user: snapshot.data![index].fields.username,
-                          berat: snapshot.data![index].fields.beratSampah
+                          beratSampah: snapshot.data![index].fields.beratSampah
                               .toString(),
                           pk: snapshot.data![index].pk.toString(),
                           request: request,
                           setState: setState,
                           useAdminDeposit: useAdminDeposit,
+                          date: snapshot.data![index].fields.date,
                         ));
               }
             }
