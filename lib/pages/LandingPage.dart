@@ -439,17 +439,7 @@ class _PageViewCustomState extends State<PageViewCustom> {
                 padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(18),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xff0059a5), Colors.grey],
-                  ),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.pink,
-                        blurRadius: 12,
-                        offset: Offset(3, 10))
-                  ],
+                  color: const Color.fromARGB(255, 5, 89, 91),
                 ),
                 width: double.infinity,
                 height: 400,
@@ -460,7 +450,7 @@ class _PageViewCustomState extends State<PageViewCustom> {
                     Icon(
                       listItem[index][0],
                       size: 120,
-                      color: Colors.black54,
+                      color: Colors.white,
                     ),
                     const SizedBox(
                       height: 20,
