@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trashsure/pages/DepositAddPage.dart';
 import 'package:trashsure/pages/LandingPage.dart';
+import 'package:trashsure/pages/TestimoniAddPage.dart';
 import 'package:trashsure/pages/WithdrawAddPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
@@ -44,6 +45,8 @@ class MyApp extends StatelessWidget {
           "/user/withdraw/add": (BuildContext context) =>
               const WithdrawAddPage(),
           "/user/deposit/add": (BuildContext context) => const DepositAddPage(),
+          "/user/testimoni/add": (BuildContext context) =>
+              const TestimoniAddPage(),
         },
       ),
     );

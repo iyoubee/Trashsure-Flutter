@@ -26,4 +26,13 @@ class AllTestimoni {
 
     return listTestimoni;
   }
+
+  Future<dynamic> addTestimoni(context, request, desc) async {
+    var response =
+        await request.post('http://10.0.2.2:8000/flutter/user/testimoni/add/', {
+      "desc": desc,
+    });
+
+    return response;
+  }
 }

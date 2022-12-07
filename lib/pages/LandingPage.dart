@@ -1,6 +1,6 @@
-import 'package:http/http.dart' as http;
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:trashsure/pages/Auth/LoginPage.dart';
 import 'package:trashsure/pages/Auth/RegisterPage.dart';
 import 'package:trashsure/utils/auth.dart';
@@ -272,9 +272,9 @@ class _LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height / 1.15,
-                color: Color.fromARGB(255, 245, 245, 245),
+                color: const Color.fromARGB(255, 245, 245, 245),
                 child: Column(children: <Widget>[
-                  Text(
+                  const Text(
                     "Testimoni",
                     style: TextStyle(
                       fontSize: 30,
@@ -282,6 +282,33 @@ class _LandingPageState extends State<LandingPage> {
                       color: Colors.black,
                     ),
                   ),
+                  if (request.loggedIn)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: 150,
+                          child: TextButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(18),
+                                      side: const BorderSide(
+                                          color: Colors.green))),
+                            ),
+                            onPressed: () {
+                              // scrollDown();
+                              Navigator.pushNamed(
+                                  context, '/user/testimoni/add');
+                            },
+                            child: const Text(
+                              "Tambah Testimoni",
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   Column(
                     children: [
                       FutureBuilder(
@@ -307,13 +334,16 @@ class _LandingPageState extends State<LandingPage> {
                                 return ListView.builder(
                                     scrollDirection: Axis.vertical,
                                     shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
                                     itemCount: snapshot.data!.length,
                                     itemBuilder: (_, index) => Container(
                                           margin: const EdgeInsets.symmetric(
                                               horizontal: 16, vertical: 12),
                                           padding: const EdgeInsets.all(20.0),
                                           decoration: BoxDecoration(
-                                              color: const Color(0xffff9a8d),
+                                              color: const Color.fromARGB(
+                                                  255, 226, 215, 132),
                                               borderRadius:
                                                   BorderRadius.circular(15.0),
                                               boxShadow: const [
@@ -335,15 +365,16 @@ class _LandingPageState extends State<LandingPage> {
                                                       text: TextSpan(
                                                           text:
                                                               "${snapshot.data![index].fields.desc}\n",
-                                                          style: TextStyle(
-                                                              color:
-                                                                  Colors.black,
-                                                              fontSize: 18))),
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .black,
+                                                                  fontSize:
+                                                                      18))),
                                                   Text(
                                                     "${snapshot.data![index].fields.username}",
                                                     style: const TextStyle(
-                                                      color:
-                                                                  Colors.black,
+                                                      color: Colors.black,
                                                       fontSize: 12.0,
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -484,7 +515,6 @@ class _PageViewCustomState extends State<PageViewCustom> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pageController =
         PageController(initialPage: 0, viewportFraction: viewportFraction)
@@ -613,7 +643,6 @@ class _PageViewTestiCustomState extends State<PageViewTestiCustom> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pageController =
         PageController(initialPage: 0, viewportFraction: viewportFraction)
