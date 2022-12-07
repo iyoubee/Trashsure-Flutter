@@ -17,7 +17,9 @@ class _AddDepositButtonState extends State<AddDepositButton> {
       minWidth: double.infinity,
       color: const Color(0xFFFFFFFF),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, '/user/deposit/add');
+      },
       child: Row(
         children: [
           const SizedBox(

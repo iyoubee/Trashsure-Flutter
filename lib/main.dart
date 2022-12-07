@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/DepositAddPage.dart';
 import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/pages/WithdrawAddPage.dart';
 import 'package:trashsure/pages/about_trashsure.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
           "/user": (BuildContext context) => const UserPage(idx: 0),
           "/user/withdraw/add": (BuildContext context) =>
               const WithdrawAddPage(),
+          "/user/deposit/add": (BuildContext context) => const DepositAddPage(),
         },
       ),
     );
