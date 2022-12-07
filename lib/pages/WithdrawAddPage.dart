@@ -93,6 +93,7 @@ class _WithdrawAddPageState extends State<WithdrawAddPage> {
                               else
                                 {
                                   Navigator.pop(context),
+                                  Navigator.pop(context),
                                   Flushbar(
                                     backgroundColor:
                                         const Color.fromARGB(255, 244, 105, 77),

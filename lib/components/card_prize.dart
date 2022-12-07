@@ -177,7 +177,7 @@ class AdminPrizeCard extends StatelessWidget {
                               flushbarPosition: FlushbarPosition.TOP,
                               title: "Berhasil",
                               duration: const Duration(seconds: 3),
-                              message: "Deposit berhasil dihapus",
+                              message: "Prize berhasil dihapus",
                             ).show(context);
                           } else {
                             Flushbar(
