@@ -1,7 +1,10 @@
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:trashsure/pages/Auth/LoginPage.dart';
 import 'package:trashsure/pages/Auth/RegisterPage.dart';
 import 'package:trashsure/utils/auth.dart';
+import 'package:trashsure/utils/allTestimoni.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatefulWidget {
@@ -13,6 +16,8 @@ class LandingPage extends StatefulWidget {
 
 class _LandingPageState extends State<LandingPage> {
   final ScrollController controller = ScrollController();
+
+  AllTestimoni allTestimoni = AllTestimoni();
 
   void scrollDown() {
     // Method buat automatically scroll down saat tombol dipencet
@@ -267,19 +272,95 @@ class _LandingPageState extends State<LandingPage> {
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
                 height: MediaQuery.of(context).size.height / 1.15,
-                color: const Color.fromARGB(255, 245, 245, 245),
-                child: Column(
-                  children: const [
-                    Text(
-                      "Testimoni",
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
+                color: Color.fromARGB(255, 245, 245, 245),
+                child: Column(children: <Widget>[
+                  Text(
+                    "Testimoni",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
-                  ],
-                ),
+                  ),
+                  Column(
+                    children: [
+                      FutureBuilder(
+                          future: allTestimoni.fetchTestimoni(),
+                          builder: (context, AsyncSnapshot snapshot) {
+                            if (snapshot.data == null) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else {
+                              if (!snapshot.hasData) {
+                                return Column(
+                                  children: const [
+                                    Text(
+                                      "Tidak ada testimoni",
+                                      style: TextStyle(
+                                          color: Color(0xff59A5D8),
+                                          fontSize: 20),
+                                    ),
+                                    SizedBox(height: 8),
+                                  ],
+                                );
+                              } else {
+                                return ListView.builder(
+                                    scrollDirection: Axis.vertical,
+                                    shrinkWrap: true,
+                                    itemCount: snapshot.data!.length,
+                                    itemBuilder: (_, index) => Container(
+                                          margin: const EdgeInsets.symmetric(
+                                              horizontal: 16, vertical: 12),
+                                          padding: const EdgeInsets.all(20.0),
+                                          decoration: BoxDecoration(
+                                              color: const Color(0xffff9a8d),
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                    color: Colors.black,
+                                                    blurRadius: 2.0)
+                                              ]),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Column(
+                                                children: [
+                                                  RichText(
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      text: TextSpan(
+                                                          text:
+                                                              "${snapshot.data![index].fields.desc}\n",
+                                                          style: TextStyle(
+                                                              color:
+                                                                  Colors.black,
+                                                              fontSize: 18))),
+                                                  Text(
+                                                    "${snapshot.data![index].fields.username}",
+                                                    style: const TextStyle(
+                                                      color:
+                                                                  Colors.black,
+                                                      fontSize: 12.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 4),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ));
+                              }
+                            }
+                          })
+                    ],
+                  ),
+                ]),
               ),
             ],
           ),
@@ -472,6 +553,145 @@ class _PageViewCustomState extends State<PageViewCustom> {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           color: Colors.black),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class PageViewTestiCustom extends StatefulWidget {
+  const PageViewTestiCustom({super.key});
+
+  @override
+  State<PageViewTestiCustom> createState() => _PageViewTestiCustomState();
+}
+
+class _PageViewTestiCustomState extends State<PageViewTestiCustom> {
+  PageController? pageController;
+  double? pageOffset = 0;
+  double viewportFraction = 0.8;
+  double? scale;
+  List<List<dynamic>> listItem = [
+    [
+      Icons.waving_hand_outlined,
+      "PRAKTIS",
+      "Pengelolaan data dilakukan secara digital & dapat meningkatkan paperless activity."
+    ],
+    [
+      Icons.search,
+      "TRANSPARAN",
+      "Pengelola Bank Sampah dapat mengelola tabungan nasabah secara transparan."
+    ],
+    [
+      Icons.lock_outlined,
+      "AMAN",
+      "Pengelolaan data dilakukan secara aman dan rahasia untuk segala transaksi."
+    ],
+    [
+      Icons.mobile_friendly_outlined,
+      "MOBILE SUPPORT",
+      "Transaksi dapat dilakukan dengan mudah dan nyaman melalui aplikasi mobile."
+    ],
+    [
+      Icons.integration_instructions_outlined,
+      "TERINTEGRASI",
+      "Data Bank Sampah yang tergabung sudah terintegrasi sehingga memudahkan proses pemantauan pengelolaan sampah & perencanaan pengembangan Bank Sampah."
+    ],
+    [
+      Icons.card_giftcard,
+      "SISTEM POIN",
+      "Selain menukarkan sampah jenis tertentu dengan uang, TrashSure juga memberikan poin yang dapat anda kumpulkan dan tukarkan kemudain dengan beberapa hadiah menarik yang tersedia."
+    ]
+  ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pageController =
+        PageController(initialPage: 0, viewportFraction: viewportFraction)
+          ..addListener(() {
+            setState(() {
+              pageOffset = pageController!.page;
+            });
+          });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: PageView.builder(
+        controller: pageController,
+        itemCount: listItem.length,
+        itemBuilder: ((context, index) {
+          double angle = (pageOffset! - index).abs();
+
+          if (angle > 0.5) {
+            angle = 1 - angle;
+          }
+          return Transform(
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(angle),
+            alignment: Alignment.center,
+            child: Material(
+              color: Colors.grey[850],
+              elevation: 1,
+              child: Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.all(30),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(18),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xff0059a5), Colors.grey],
+                  ),
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Colors.pink,
+                        blurRadius: 12,
+                        offset: Offset(3, 10))
+                  ],
+                ),
+                width: double.infinity,
+                height: 400,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(
+                      listItem[index][0],
+                      size: 120,
+                      color: Colors.black54,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      listItem[index][1],
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30,
+                          color: Colors.white70),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      listItem[index][2],
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
                   ],
