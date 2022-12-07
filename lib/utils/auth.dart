@@ -44,7 +44,7 @@ class CookieRequest {
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
 
-    _updateCookie(response);
+    await _updateCookie(response);
 
     if (response.statusCode == 200) {
       loggedIn = true;
@@ -100,7 +100,7 @@ class CookieRequest {
     return json.decode(response.body); // Expects and returns JSON request body
   }
 
-  void _updateCookie(http.Response response) async {
+  Future _updateCookie(http.Response response) async {
     // Solves LateInitializationError
     await init();
 
