@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:another_flushbar/flushbar.dart';
+import 'package:trashsure/pages/UserPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,10 @@ class _DepositAddPage extends State<DepositAddPage> {
                         context, request, _jenis, berat);
                     Navigator.pop(context);
                     if (response == 200) {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const UserPage(idx: 1)));
                       Flushbar(
                         backgroundColor: const Color.fromARGB(255, 29, 167, 86),
                         flushbarPosition: FlushbarPosition.TOP,
