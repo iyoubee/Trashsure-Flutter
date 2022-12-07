@@ -290,6 +290,7 @@ class _LandingPageState extends State<LandingPage> {
                 child: Container(
                   height: 60,
                   decoration: BoxDecoration(
+                    border: Border.all(color: Colors.white),
                     color: Colors.grey[850],
                     borderRadius: BorderRadius.circular(18),
                   ),
