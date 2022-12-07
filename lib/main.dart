@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:trashsure/pages/DepositAddPage.dart';
 import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/pages/WithdrawAddPage.dart';
-import 'package:trashsure/pages/about_trashsure.dart';
-import 'package:trashsure/pages/fitur_trashsure.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:trashsure/components/drawer.dart';
 import 'package:trashsure/pages/AdminAddDepositPage.dart';
 import 'package:trashsure/pages/AdminAddPrizePage.dart';
 import 'package:trashsure/pages/AdminPage.dart';
@@ -49,46 +46,6 @@ class MyApp extends StatelessWidget {
           "/user/deposit/add": (BuildContext context) => const DepositAddPage(),
         },
       ),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text("TrashSure"),
-            centerTitle: true,
-            bottom: TabBar(
-              tabs: [
-                Tab(text: "Tentang Kita"),
-                Tab(text: "Fitur"),
-                Tab(text: "Testimoni")
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: [
-              AboutTrashsure(),
-              FiturTrashsure(),
-              Center(
-                  child: Text(
-                      "Kasih Testimonial TrashSure")), // sesuaikan isi dengan length
-            ],
-          )),
     );
   }
 }
