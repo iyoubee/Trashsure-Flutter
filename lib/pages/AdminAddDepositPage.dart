@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
+import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +95,10 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                         context, request, user, _jenis, berat);
                     Navigator.pop(context);
                     if (response == 200) {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AdminPage(idx: 1)));
                       Flushbar(
                         backgroundColor: const Color.fromARGB(255, 29, 167, 86),
                         flushbarPosition: FlushbarPosition.TOP,
@@ -103,7 +107,10 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                         message: "Deposit berhasil dibuat",
                       ).show(context);
                     } else {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AdminPage(idx: 1)));
                       Flushbar(
                         backgroundColor:
                             const Color.fromARGB(255, 244, 105, 77),
