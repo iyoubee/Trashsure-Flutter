@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
         ),
         home: const LandingPage(),
         routes: {
+          "/landing": (BuildContext context) => const LandingPage(),
           "/admin": (BuildContext context) => const AdminPage(idx: 0),
           "/admin/deposit/add": (BuildContext context) =>
               const AdminAddDepositPage(),
@@ -77,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          drawer: const DrawerCustom(),
           body: TabBarView(
             children: [
               AboutTrashsure(),

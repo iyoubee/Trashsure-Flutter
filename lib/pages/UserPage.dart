@@ -2,6 +2,7 @@
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/pages/WithdrawPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
@@ -33,10 +34,7 @@ class _UserPageState extends State<UserPage> {
     final request = context.watch<CookieRequest>();
 
     List<Widget> _widgetOptions = <Widget>[
-      Text(
-        'Index 0: Home',
-        style: optionStyle,
-      ),
+      LandingPage(),
       DepositPage(),
       // NOTE: Redeem Prize Page
       RedeemPrizePage(),
@@ -78,7 +76,7 @@ class _UserPageState extends State<UserPage> {
                   final response = await request
                       .logout("http://10.0.2.2:8000/flutter/logout/")
                       .then((value) => {
-                            Navigator.pop(context),
+                            Navigator.pushReplacementNamed(context, "/landing"),
                             if (value['status'] == 200)
                               {
                                 Flushbar(

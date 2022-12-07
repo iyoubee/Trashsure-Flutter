@@ -181,6 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                                                             .jsonData['role'] ==
                                                         'user')
                                                       {
+                                                        Navigator.pop(context),
                                                         Navigator
                                                             .pushReplacementNamed(
                                                                 context,
@@ -188,6 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                                                       }
                                                     else
                                                       {
+                                                        Navigator.pop(context),
                                                         Navigator
                                                             .pushReplacementNamed(
                                                                 context,
