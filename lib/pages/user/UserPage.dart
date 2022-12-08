@@ -3,11 +3,11 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/pages/LandingPage.dart';
-import 'package:trashsure/pages/WithdrawPage.dart';
+import 'package:trashsure/pages/user/WithdrawPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:trashsure/pages/RedeemPrizePage.dart';
-import 'package:trashsure/pages/DepositPage.dart';
+import 'package:trashsure/pages/user/RedeemPrizePage.dart';
+import 'package:trashsure/pages/user/DepositPage.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key, required this.idx});

@@ -1,8 +1,8 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:trashsure/pages/Auth/LoginPage.dart';
-import 'package:trashsure/pages/Auth/RegisterPage.dart';
+import 'package:trashsure/pages/auth/LoginPage.dart';
+import 'package:trashsure/pages/auth/RegisterPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:trashsure/utils/useTestimoni.dart';
 import 'package:provider/provider.dart';

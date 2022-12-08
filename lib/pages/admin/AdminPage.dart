@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:trashsure/pages/AdminDepositPage.dart';
-import 'package:trashsure/pages/AdminPrizePage.dart';
+import 'package:trashsure/pages/admin/AdminDepositPage.dart';
+import 'package:trashsure/pages/admin/AdminPrizePage.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key, required this.idx});

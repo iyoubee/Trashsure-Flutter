@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:trashsure/pages/DepositAddPage.dart';
+import 'package:trashsure/pages/user/DepositAddPage.dart';
 import 'package:trashsure/pages/LandingPage.dart';
-import 'package:trashsure/pages/TestimoniAddPage.dart';
-import 'package:trashsure/pages/WithdrawAddPage.dart';
+import 'package:trashsure/pages/user/TestimoniAddPage.dart';
+import 'package:trashsure/pages/user/WithdrawAddPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:trashsure/pages/AdminAddDepositPage.dart';
-import 'package:trashsure/pages/AdminAddPrizePage.dart';
-import 'package:trashsure/pages/AdminPage.dart';
-import 'package:trashsure/pages/Auth/LoginPage.dart';
-import 'package:trashsure/pages/Auth/RegisterPage.dart';
-import 'package:trashsure/pages/UserPage.dart';
+import 'package:trashsure/pages/admin/AdminAddDepositPage.dart';
+import 'package:trashsure/pages/admin/AdminAddPrizePage.dart';
+import 'package:trashsure/pages/admin/AdminPage.dart';
+import 'package:trashsure/pages/auth/LoginPage.dart';
+import 'package:trashsure/pages/auth/RegisterPage.dart';
+import 'package:trashsure/pages/user/UserPage.dart';
 
 void main() {
   runApp(const MyApp());

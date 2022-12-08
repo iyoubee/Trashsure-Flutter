@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/prize_card.dart';
-import 'package:trashsure/pages/YourPrizePage.dart';
+import 'package:trashsure/pages/user/YourPrizePage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:trashsure/utils/useUserPrize.dart';
 

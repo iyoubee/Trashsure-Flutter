@@ -1,28 +1,26 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, prefer_typing_uninitialized_variables, file_names
 
 import 'package:another_flushbar/flushbar.dart';
-import 'package:flutter/material.dart';
-import 'package:trashsure/pages/AdminPage.dart';
+import 'package:trashsure/pages/user/UserPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:trashsure/utils/useAdminPrize.dart';
+import 'package:flutter/material.dart';
+import 'package:trashsure/utils/useUserDeposit.dart';
 
-class AdminAddPrizePage extends StatefulWidget {
-  const AdminAddPrizePage({super.key});
+class DepositAddPage extends StatefulWidget {
+  const DepositAddPage({super.key});
 
   @override
-  State<AdminAddPrizePage> createState() => _AdminAddPrizePageState();
+  State<DepositAddPage> createState() => _DepositAddPage();
 }
 
-class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
+class _DepositAddPage extends State<DepositAddPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  UseAdminPrize useAdminPrize = UseAdminPrize();
+  UseUserDeposit useUserDeposit = UseUserDeposit();
 
-  String poin = "";
-  String judul = "";
-  String stok = "";
-  String desc = "";
+  var _jenis;
+  String berat = "";
 
   void _submit(context, request) {
     showDialog<void>(
@@ -36,33 +34,22 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
               children: <Widget>[
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Judul / Nama:",
+                    child: Text("Jenis sampah:",
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(judul),
+                  child: Text(_jenis),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Poin:",
+                    child: Text("Berat total:",
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(poin),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("Stok:",
-                        style: TextStyle(fontWeight: FontWeight.w700))),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(stok),
+                  child: Text("$berat Kg"),
                 )
               ],
             ),
@@ -92,15 +79,14 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                   ),
                   child: const Text('Konfirmasi'),
                   onPressed: () async {
-                    int response = await useAdminPrize.addPrize(
-                        context, request, judul, poin, stok, desc);
+                    int response = await useUserDeposit.addDeposit(
+                        context, request, _jenis, berat);
                     Navigator.pop(context);
                     if (response == 200) {
-                      Navigator.pop(context);
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const AdminPage(idx: 2)));
+                              builder: (context) => const UserPage(idx: 1)));
                       Flushbar(
                         backgroundColor: const Color.fromARGB(255, 29, 167, 86),
                         flushbarPosition: FlushbarPosition.TOP,
@@ -163,7 +149,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
               children: <Widget>[
                 const Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Masukan Data Prize",
+                  child: Text("Masukan Data Deposit",
                       style: TextStyle(
                         fontSize: 24,
                       )),
@@ -176,45 +162,50 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: 'Nama / Judul',
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 1.0),
+                      DropdownButtonFormField(
+                          decoration: const InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.black, width: 1.0),
+                              ),
+                              border: OutlineInputBorder()),
+                          // ignore: prefer_const_literals_to_create_immutables
+                          items: [
+                            const DropdownMenuItem(
+                              value: "Plastik",
+                              child: Text("Plastik"),
                             ),
-                            border: OutlineInputBorder()),
-                        onFieldSubmitted: (value) {
-                          setState(() {
-                            judul = value;
-                            // firstNameList.add(firstName);
-                          });
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            judul = value;
-                          });
-                        },
-                        validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.length < 3) {
-                            return 'Name must contain at least 3 characters';
-                          } else if (value
-                              .contains(RegExp(r'^[0-9_\-=@,\.;]+$'))) {
-                            return 'Name cannot contain special characters';
-                          }
-                          return null;
-                        },
-                      ),
+                            const DropdownMenuItem(
+                              value: "Elektronik",
+                              child: Text("Elektronik"),
+                            )
+                          ],
+                          hint: const Text("Jenis Sampah"),
+                          onChanged: (value) {
+                            setState(() {
+                              _jenis = value;
+                              // measureList.add(measure);
+                            });
+                          },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Pilih jenis sampah';
+                            }
+                            return null;
+                          },
+                          onSaved: (value) {
+                            setState(() {
+                              _jenis = value;
+                            });
+                          }),
                       const SizedBox(
                         height: 20,
                       ),
                       TextFormField(
                         decoration: const InputDecoration(
-                            labelText: 'Poin',
+                            labelText: 'Berat total (Kg)',
                             enabledBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
@@ -228,92 +219,19 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                               value.isEmpty ||
                               value.contains(RegExp(r'^[a-zA-Z\-]'))) {
                             return 'Use only numbers!';
-                          } else if (int.parse(value) <= 0) {
-                            return 'Harus lebih dari 0';
                           }
                           return null;
                         },
                         onFieldSubmitted: (value) {
                           setState(() {
-                            poin = value;
+                            berat = value;
                             // bodyTempList.add(bodyTemp);
                           });
                         },
                         onChanged: (value) {
                           setState(() {
-                            poin = value;
+                            berat = value;
                           });
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                            labelText: 'Stok',
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 1.0),
-                            ),
-                            border: OutlineInputBorder()),
-                        keyboardType: TextInputType.number,
-                        validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.contains(RegExp(r'^[a-zA-Z\-]'))) {
-                            return 'Use only numbers!';
-                          } else if (int.parse(value) <= 0) {
-                            return 'Harus lebih dari 0';
-                          }
-                          return null;
-                        },
-                        onFieldSubmitted: (value) {
-                          setState(() {
-                            stok = value;
-                            // bodyTempList.add(bodyTemp);
-                          });
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            stok = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.multiline,
-                        maxLines: null,
-                        decoration: const InputDecoration(
-                            labelText: 'Deskripsi',
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.black, width: 1.0),
-                            ),
-                            border: OutlineInputBorder()),
-                        onFieldSubmitted: (value) {
-                          setState(() {
-                            desc = value;
-                            // firstNameList.add(firstName);
-                          });
-                        },
-                        onChanged: (value) {
-                          setState(() {
-                            desc = value;
-                          });
-                        },
-                        validator: (value) {
-                          if (value == null ||
-                              value.isEmpty ||
-                              value.length < 3) {
-                            return 'Deskripsi must contain at least 3 characters';
-                          }
-                          return null;
                         },
                       ),
                       const SizedBox(

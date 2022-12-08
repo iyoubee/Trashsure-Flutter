@@ -1,26 +1,25 @@
-// ignore_for_file: use_build_context_synchronously, prefer_typing_uninitialized_variables, file_names
+// ignore_for_file: file_names, use_build_context_synchronously, unused_local_variable
 
 import 'package:another_flushbar/flushbar.dart';
-import 'package:trashsure/pages/UserPage.dart';
+import 'package:flutter/material.dart';
+import 'package:trashsure/pages/user/UserPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
-import 'package:trashsure/utils/useUserDeposit.dart';
+import 'package:trashsure/utils/useUserWithdraw.dart';
 
-class DepositAddPage extends StatefulWidget {
-  const DepositAddPage({super.key});
+class WithdrawAddPage extends StatefulWidget {
+  const WithdrawAddPage({super.key});
 
   @override
-  State<DepositAddPage> createState() => _DepositAddPage();
+  State<WithdrawAddPage> createState() => _WithdrawAddPageState();
 }
 
-class _DepositAddPage extends State<DepositAddPage> {
+class _WithdrawAddPageState extends State<WithdrawAddPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  UseUserDeposit useUserDeposit = UseUserDeposit();
+  UseUserWithdraw useUserWithdraw = UseUserWithdraw();
 
-  var _jenis;
-  String berat = "";
+  String _jumlah = "";
 
   void _submit(context, request) {
     showDialog<void>(
@@ -34,23 +33,12 @@ class _DepositAddPage extends State<DepositAddPage> {
               children: <Widget>[
                 const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("Jenis sampah:",
+                    child: Text("Jumlah:",
                         style: TextStyle(fontWeight: FontWeight.w700))),
                 Align(
                   alignment: Alignment.topLeft,
-                  child: Text(_jenis),
+                  child: Text(_jumlah),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Align(
-                    alignment: Alignment.topLeft,
-                    child: Text("Berat total:",
-                        style: TextStyle(fontWeight: FontWeight.w700))),
-                Align(
-                  alignment: Alignment.topLeft,
-                  child: Text("$berat Kg"),
-                )
               ],
             ),
           ),
@@ -79,32 +67,41 @@ class _DepositAddPage extends State<DepositAddPage> {
                   ),
                   child: const Text('Konfirmasi'),
                   onPressed: () async {
-                    int response = await useUserDeposit.addDeposit(
-                        context, request, _jenis, berat);
-                    Navigator.pop(context);
-                    if (response == 200) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const UserPage(idx: 1)));
-                      Flushbar(
-                        backgroundColor: const Color.fromARGB(255, 29, 167, 86),
-                        flushbarPosition: FlushbarPosition.TOP,
-                        title: "Berhasil",
-                        duration: const Duration(seconds: 3),
-                        message: "Deposit berhasil dibuat",
-                      ).show(context);
-                    } else {
-                      Navigator.pop(context);
-                      Flushbar(
-                        backgroundColor:
-                            const Color.fromARGB(255, 244, 105, 77),
-                        flushbarPosition: FlushbarPosition.TOP,
-                        title: "Gagal",
-                        duration: const Duration(seconds: 3),
-                        message: "Ada yang salah",
-                      ).show(context);
-                    }
+                    final response = await useUserWithdraw
+                        .addWithdraw(context, request, _jumlah)
+                        .then((value) => {
+                              if (value['status'] == 200)
+                                {
+                                  Navigator.pop(context),
+                                  Navigator.pop(context),
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const UserPage(idx: 3))),
+                                  Flushbar(
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 29, 167, 86),
+                                    flushbarPosition: FlushbarPosition.TOP,
+                                    title: "Berhasil",
+                                    duration: const Duration(seconds: 3),
+                                    message: value['message'],
+                                  ).show(context)
+                                }
+                              else
+                                {
+                                  Navigator.pop(context),
+                                  Navigator.pop(context),
+                                  Flushbar(
+                                    backgroundColor:
+                                        const Color.fromARGB(255, 244, 105, 77),
+                                    flushbarPosition: FlushbarPosition.TOP,
+                                    title: "Gagal",
+                                    duration: const Duration(seconds: 3),
+                                    message: value['message'],
+                                  ).show(context)
+                                }
+                            });
                     FocusScope.of(context)
                         .unfocus(); // Unfocus the last selected input field
                     _formKey.currentState?.reset();
@@ -149,7 +146,7 @@ class _DepositAddPage extends State<DepositAddPage> {
               children: <Widget>[
                 const Align(
                   alignment: Alignment.topLeft,
-                  child: Text("Masukan Data Deposit",
+                  child: Text("Penarikan saldo",
                       style: TextStyle(
                         fontSize: 24,
                       )),
@@ -162,50 +159,9 @@ class _DepositAddPage extends State<DepositAddPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0)),
-                                borderSide:
-                                    BorderSide(color: Colors.black, width: 1.0),
-                              ),
-                              border: OutlineInputBorder()),
-                          // ignore: prefer_const_literals_to_create_immutables
-                          items: [
-                            const DropdownMenuItem(
-                              value: "Plastik",
-                              child: Text("Plastik"),
-                            ),
-                            const DropdownMenuItem(
-                              value: "Elektronik",
-                              child: Text("Elektronik"),
-                            )
-                          ],
-                          hint: const Text("Jenis Sampah"),
-                          onChanged: (value) {
-                            setState(() {
-                              _jenis = value;
-                              // measureList.add(measure);
-                            });
-                          },
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Pilih jenis sampah';
-                            }
-                            return null;
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              _jenis = value;
-                            });
-                          }),
-                      const SizedBox(
-                        height: 20,
-                      ),
                       TextFormField(
                         decoration: const InputDecoration(
-                            labelText: 'Berat total (Kg)',
+                            labelText: 'Jumlah',
                             enabledBorder: OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20.0)),
@@ -219,18 +175,20 @@ class _DepositAddPage extends State<DepositAddPage> {
                               value.isEmpty ||
                               value.contains(RegExp(r'^[a-zA-Z\-]'))) {
                             return 'Use only numbers!';
+                          } else if (int.parse(value) <= 0) {
+                            return 'Harus lebih dari 0';
                           }
                           return null;
                         },
                         onFieldSubmitted: (value) {
                           setState(() {
-                            berat = value;
+                            _jumlah = value;
                             // bodyTempList.add(bodyTemp);
                           });
                         },
                         onChanged: (value) {
                           setState(() {
-                            berat = value;
+                            _jumlah = value;
                           });
                         },
                       ),

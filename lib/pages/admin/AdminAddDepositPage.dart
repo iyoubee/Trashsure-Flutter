@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, use_build_context_synchronously, duplicate_ignore, prefer_typing_uninitialized_variables
 
-import 'package:trashsure/pages/AdminPage.dart';
+import 'package:trashsure/pages/admin/AdminPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
