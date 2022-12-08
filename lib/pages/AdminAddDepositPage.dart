@@ -164,15 +164,30 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
-                if (!snapshot.hasData) {
-                  return Column(
-                    children: const [
-                      SizedBox(height: 8),
-                      Text(
-                        "Tidak ada to do list :(",
-                        style: TextStyle(color: Colors.black, fontSize: 30),
-                      ),
-                    ],
+                if (!snapshot.data.isNotEmpty) {
+                  return Container(
+                    alignment: Alignment.center,
+                    margin: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height / 4),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          "lib/assets/prize.jpg",
+                          width: 50,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          "Belum ada user yang dapat diberikan deposit",
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 } else {
                   return SingleChildScrollView(
@@ -218,6 +233,12 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                         user = value;
                                         // measureList.add(measure);
                                       });
+                                    },
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return 'Pilih user';
+                                      }
+                                      return null;
                                     },
                                     onSaved: (value) {
                                       setState(() {
