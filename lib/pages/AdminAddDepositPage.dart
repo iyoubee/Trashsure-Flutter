@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+// ignore_for_file: file_names, use_build_context_synchronously, duplicate_ignore, prefer_typing_uninitialized_variables
 
 import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/utils/auth.dart';
@@ -120,7 +120,6 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                         message: "Ada yang salah",
                       ).show(context);
                     }
-                    // ignore: use_build_context_synchronously
                     FocusScope.of(context)
                         .unfocus(); // Unfocus the last selected input field
                     _formKey.currentState?.reset();
@@ -255,6 +254,12 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                         // measureList.add(measure);
                                       });
                                     },
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Pilih jenis sampah';
+                                      }
+                                      return null;
+                                    },
                                     onSaved: (value) {
                                       setState(() {
                                         _jenis = value;
@@ -281,6 +286,7 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                                             .contains(RegExp(r'^[a-zA-Z\-]'))) {
                                       return 'Use only numbers!';
                                     }
+                                    return null;
                                   },
                                   onFieldSubmitted: (value) {
                                     setState(() {

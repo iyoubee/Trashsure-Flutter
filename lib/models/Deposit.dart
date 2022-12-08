@@ -2,6 +2,8 @@
 //
 //     final deposit = depositFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<Deposit> depositFromJson(String str) =>

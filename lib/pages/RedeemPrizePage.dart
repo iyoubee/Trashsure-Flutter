@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:trashsure/components/prize_card.dart';
@@ -47,11 +49,11 @@ class _RedeemPrizePageState extends State<RedeemPrizePage> {
                           return const Text("Calculating...");
                         } else {
                           return Text(
-                          snapshot.data.toString(),
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                            snapshot.data.toString(),
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold),
                           );
                         }
                       }),

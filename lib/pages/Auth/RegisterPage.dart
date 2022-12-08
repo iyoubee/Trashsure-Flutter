@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_local_variable
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:trashsure/utils/auth.dart';
@@ -173,7 +173,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                                 'password': _password,
                                               })
                                           .then((value) => {
-                                                print(value),
                                                 if (value['status'] == 200)
                                                   {
                                                     Navigator.pop(context),

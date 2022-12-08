@@ -2,6 +2,8 @@
 //
 //     final userData = userDataFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<UserData> userDataFromJson(String str) =>

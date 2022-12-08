@@ -1,4 +1,5 @@
-import 'package:http/http.dart';
+// ignore_for_file: file_names
+
 import 'package:trashsure/models/Prize.dart';
 import 'package:trashsure/models/RedeemedPrize.dart';
 import 'package:trashsure/models/UserData.dart';

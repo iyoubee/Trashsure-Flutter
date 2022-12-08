@@ -1,8 +1,7 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+// ignore_for_file: file_names, use_build_context_synchronously, unused_local_variable
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/pages/AdminPage.dart';
 import 'package:trashsure/pages/UserPage.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
@@ -71,7 +70,6 @@ class _WithdrawAddPageState extends State<WithdrawAddPage> {
                     final response = await useUserWithdraw
                         .addWithdraw(context, request, _jumlah)
                         .then((value) => {
-                              print(value),
                               if (value['status'] == 200)
                                 {
                                   Navigator.pop(context),
@@ -180,6 +178,7 @@ class _WithdrawAddPageState extends State<WithdrawAddPage> {
                           } else if (int.parse(value) <= 0) {
                             return 'Harus lebih dari 0';
                           }
+                          return null;
                         },
                         onFieldSubmitted: (value) {
                           setState(() {

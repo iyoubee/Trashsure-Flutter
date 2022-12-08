@@ -2,6 +2,8 @@
 //
 //     final withdraw = withdrawFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<Withdraw> withdrawFromJson(String str) =>

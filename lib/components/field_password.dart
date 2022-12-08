@@ -58,6 +58,12 @@ class _PasswordFieldState extends State<PasswordField> {
           builder: ((_, value, __) => Opacity(
                 opacity: value,
                 child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Masukan password';
+                    }
+                    return null;
+                  },
                   controller: passwordController,
                   focusNode: node,
                   decoration: InputDecoration(hintText: "Password"),

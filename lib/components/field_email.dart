@@ -64,6 +64,12 @@ class _EmailFieldState extends State<EmailField>
           builder: ((_, value, __) => Opacity(
                 opacity: value,
                 child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Masukan username';
+                    }
+                    return null;
+                  },
                   controller: emailController,
                   focusNode: node,
                   decoration: const InputDecoration(hintText: "Username"),
@@ -145,8 +151,7 @@ class _EmailFieldState extends State<EmailField>
   }
 
   bool isValidEmail(String email) {
-    return RegExp(
-            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
-        .hasMatch(email);
+    // ignore: unnecessary_null_comparison
+    return email != null || email.isNotEmpty;
   }
 }

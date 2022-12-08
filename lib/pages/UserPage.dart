@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, prefer_const_constructors
+// ignore_for_file: file_names, prefer_const_constructors, unused_local_variable, no_leading_underscores_for_local_identifiers, no_logic_in_create_state
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +20,6 @@ class UserPage extends StatefulWidget {
 class _UserPageState extends State<UserPage> {
   _UserPageState(this._selectedIndex);
   int _selectedIndex;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   void _onItemTapped(int index) {
     setState(() {
@@ -76,9 +74,10 @@ class _UserPageState extends State<UserPage> {
                   final response = await request
                       .logout("http://10.0.2.2:8000/flutter/logout/")
                       .then((value) => {
-                            Navigator.pushReplacementNamed(context, "/landing"),
                             if (value['status'] == 200)
                               {
+                                Navigator.pushReplacementNamed(
+                                    context, "/landing"),
                                 Flushbar(
                                   backgroundColor:
                                       const Color.fromARGB(255, 29, 167, 86),
@@ -100,13 +99,6 @@ class _UserPageState extends State<UserPage> {
                                 ).show(context)
                               }
                           });
-                  if (request.loggedIn) {
-                    // Code here will run if the login succeeded.
-                    print("yes");
-                  } else {
-                    print("no");
-                    // Code here will run if the login failed (wrong username/password).
-                  }
                 },
               ),
             ),

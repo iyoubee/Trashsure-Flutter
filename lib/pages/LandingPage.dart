@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:trashsure/pages/Auth/LoginPage.dart';
 import 'package:trashsure/pages/Auth/RegisterPage.dart';
 import 'package:trashsure/utils/auth.dart';
-import 'package:trashsure/utils/allTestimoni.dart';
+import 'package:trashsure/utils/useTestimoni.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatefulWidget {
@@ -17,7 +17,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final ScrollController controller = ScrollController();
 
-  AllTestimoni allTestimoni = AllTestimoni();
+  UseTestimoni useTestimoni = UseTestimoni();
 
   void scrollDown() {
     // Method buat automatically scroll down saat tombol dipencet
@@ -311,7 +311,7 @@ class _LandingPageState extends State<LandingPage> {
                   Column(
                     children: [
                       FutureBuilder(
-                          future: allTestimoni.fetchTestimoni(),
+                          future: useTestimoni.fetchTestimoni(),
                           builder: (context, AsyncSnapshot snapshot) {
                             if (snapshot.data == null) {
                               return const Center(
@@ -402,7 +402,11 @@ class _LandingPageState extends State<LandingPage> {
                                         ));
                               }
                             }
-                          })
+                          }),
+                      if (!request.loggedIn)
+                        const SizedBox(
+                          height: 60,
+                        )
                     ],
                   ),
                 ]),

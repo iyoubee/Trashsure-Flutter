@@ -2,6 +2,8 @@
 //
 //     final prize = prizeFromJson(jsonString);
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<Prize> prizeFromJson(String str) =>

@@ -206,6 +206,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                               .contains(RegExp(r'^[0-9_\-=@,\.;]+$'))) {
                             return 'Name cannot contain special characters';
                           }
+                          return null;
                         },
                       ),
                       const SizedBox(
@@ -230,6 +231,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                           } else if (int.parse(value) <= 0) {
                             return 'Harus lebih dari 0';
                           }
+                          return null;
                         },
                         onFieldSubmitted: (value) {
                           setState(() {
@@ -265,6 +267,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                           } else if (int.parse(value) <= 0) {
                             return 'Harus lebih dari 0';
                           }
+                          return null;
                         },
                         onFieldSubmitted: (value) {
                           setState(() {
@@ -310,6 +313,7 @@ class _AdminAddPrizePageState extends State<AdminAddPrizePage> {
                               value.length < 3) {
                             return 'Deskripsi must contain at least 3 characters';
                           }
+                          return null;
                         },
                       ),
                       const SizedBox(

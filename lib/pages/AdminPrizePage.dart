@@ -19,7 +19,7 @@ class _AdminPrizePage extends State<AdminPrizePage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         body: FutureBuilder(
           future: useAdminPrize.getAdminPrize(request),
           builder: (context, AsyncSnapshot snapshot) {
@@ -42,7 +42,7 @@ class _AdminPrizePage extends State<AdminPrizePage> {
                         height: 20,
                       ),
                       const Text(
-                        "Belum ada prize yang bisa dibuat",
+                        "Belum ada prize yang dibuat",
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 16,

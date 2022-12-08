@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:trashsure/components/button_add_deposit.dart';
 import 'package:trashsure/components/card_deposit_user.dart';
@@ -73,7 +75,7 @@ class _DepositPageState extends State<DepositPage> {
                               height: 20,
                             ),
                             const Text(
-                              "Belum ada penarikan",
+                              "Belum ada deposit",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 16,

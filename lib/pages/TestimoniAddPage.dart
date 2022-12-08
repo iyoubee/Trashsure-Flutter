@@ -1,8 +1,8 @@
-// ignore_for_file: file_names, use_build_context_synchronously
+// ignore_for_file: file_names, use_build_context_synchronously, unused_local_variable
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
-import 'package:trashsure/utils/allTestimoni.dart';
+import 'package:trashsure/utils/useTestimoni.dart';
 import 'package:trashsure/utils/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,7 @@ class TestimoniAddPage extends StatefulWidget {
 class _TestimoniAddPageState extends State<TestimoniAddPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
-  AllTestimoni useTestimoni = AllTestimoni();
+  UseTestimoni useTestimoni = UseTestimoni();
 
   String poin = "";
   String judul = "";
@@ -69,7 +69,6 @@ class _TestimoniAddPageState extends State<TestimoniAddPage> {
                         .addTestimoni(context, request, desc)
                         .then((value) => {
                               Navigator.pop(context),
-                              print(value),
                               if (value['status'] == 200)
                                 {
                                   Navigator.pop(context),
@@ -181,6 +180,7 @@ class _TestimoniAddPageState extends State<TestimoniAddPage> {
                               value.length < 3) {
                             return 'Testimoni must contain at least 3 characters';
                           }
+                          return null;
                         },
                       ),
                       const SizedBox(

@@ -19,7 +19,7 @@ class _AdminDepositPage extends State<AdminDepositPage> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 245, 245, 245),
+        backgroundColor: const Color.fromARGB(255, 245, 245, 245),
         body: FutureBuilder(
           future: useAdminDeposit.getAdminDeposit(request),
           builder: (context, AsyncSnapshot snapshot) {

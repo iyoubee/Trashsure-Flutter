@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, unused_local_variable
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:trashsure/utils/auth.dart';
@@ -173,8 +173,6 @@ class _LoginPageState extends State<LoginPage> {
                                                 'password': _password,
                                               })
                                           .then((value) => {
-                                                print(value),
-                                                print(request.jsonData),
                                                 if (value['status'] == 200)
                                                   {
                                                     if (request
@@ -211,8 +209,7 @@ class _LoginPageState extends State<LoginPage> {
                                                   {
                                                     Navigator
                                                         .pushReplacementNamed(
-                                                            context,
-                                                            '/admin/login'),
+                                                            context, '/login'),
                                                     Flushbar(
                                                       backgroundColor:
                                                           const Color.fromARGB(

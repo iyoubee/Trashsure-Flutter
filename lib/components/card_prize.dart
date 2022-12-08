@@ -3,7 +3,6 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:trashsure/utils/auth.dart';
-import 'package:provider/provider.dart';
 import 'package:trashsure/utils/useAdminPrize.dart';
 
 class AdminPrizeCard extends StatelessWidget {

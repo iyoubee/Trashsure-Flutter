@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, prefer_const_constructors
+// ignore_for_file: file_names, prefer_const_constructors, unused_local_variable, no_leading_underscores_for_local_identifiers, no_logic_in_create_state
 
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +20,6 @@ class _AdminPageState extends State<AdminPage> {
   _AdminPageState(this._selectedIndex);
 
   int _selectedIndex;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   void _onItemTapped(int index) {
     setState(() {
@@ -120,13 +118,6 @@ class _AdminPageState extends State<AdminPage> {
                               ).show(context)
                             }
                         });
-                if (request.loggedIn) {
-                  // Code here will run if the login succeeded.
-                  print("yes");
-                } else {
-                  print("no");
-                  // Code here will run if the login failed (wrong username/password).
-                }
               },
             ),
           ),
