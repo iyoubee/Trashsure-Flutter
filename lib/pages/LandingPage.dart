@@ -271,7 +271,6 @@ class _LandingPageState extends State<LandingPage> {
               Container(
                 padding: const EdgeInsets.all(20),
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height / 1.15,
                 color: const Color.fromARGB(255, 245, 245, 245),
                 child: Column(children: <Widget>[
                   const Text(
@@ -318,17 +317,32 @@ class _LandingPageState extends State<LandingPage> {
                               return const Center(
                                   child: CircularProgressIndicator());
                             } else {
-                              if (!snapshot.hasData) {
-                                return Column(
-                                  children: const [
-                                    Text(
-                                      "Tidak ada testimoni",
-                                      style: TextStyle(
-                                          color: Color(0xff59A5D8),
-                                          fontSize: 20),
-                                    ),
-                                    SizedBox(height: 8),
-                                  ],
+                              if (!snapshot.data.isNotEmpty) {
+                                return Container(
+                                  alignment: Alignment.center,
+                                  margin: EdgeInsets.symmetric(
+                                      vertical:
+                                          MediaQuery.of(context).size.height /
+                                              10),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        "lib/assets/prize.jpg",
+                                        width: 50,
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      const Text(
+                                        "Belum ada testimoni",
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 );
                               } else {
                                 return ListView.builder(
