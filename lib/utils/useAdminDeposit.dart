@@ -5,8 +5,8 @@ import '../models/Deposit.dart';
 
 class UseAdminDeposit {
   Future<List<Deposit>> getAdminDeposit(request) async {
-    var response =
-        await request.get('http://103.13.207.170/flutter/admin/deposit/get/');
+    var response = await request
+        .get('http://trashsure.iyoubee.xyz/flutter/admin/deposit/get/');
 
     var data = response;
 
@@ -20,8 +20,8 @@ class UseAdminDeposit {
   }
 
   Future<List<UserData>> getUsername(request) async {
-    var response =
-        await request.get('http://103.13.207.170/flutter/admin/username/get/');
+    var response = await request
+        .get('http://trashsure.iyoubee.xyz/flutter/admin/username/get/');
 
     var data = response;
 
@@ -37,7 +37,7 @@ class UseAdminDeposit {
 
   addDeposit(context, request, username, jenisSampah, beratSampah) async {
     var response = await request.post(
-        'http://103.13.207.170/flutter/admin/deposit/add/', {
+        'http://trashsure.iyoubee.xyz/flutter/admin/deposit/add/', {
       "user": username,
       "jenisSampah": jenisSampah,
       "beratSampah": beratSampah
@@ -47,15 +47,15 @@ class UseAdminDeposit {
   }
 
   accDeposit(context, pk, request) async {
-    var response = await request
-        .post('http://103.13.207.170/flutter/admin/deposit/acc/', {"id": pk});
+    var response = await request.post(
+        'http://trashsure.iyoubee.xyz/flutter/admin/deposit/acc/', {"id": pk});
 
     return response['status'];
   }
 
   delDeposit(context, pk, request) async {
-    var response = await request
-        .post('http://103.13.207.170/flutter/admin/deposit/del/', {"id": pk});
+    var response = await request.post(
+        'http://trashsure.iyoubee.xyz/flutter/admin/deposit/del/', {"id": pk});
 
     return response['status'];
   }
