@@ -5,7 +5,7 @@ import '../models/Deposit.dart';
 class UseUserDeposit {
   Future<List<Deposit>> getUserDeposit(request) async {
     var response =
-        await request.get('http://10.0.2.2:8000/flutter/user/deposit/get/');
+        await request.get('http://103.13.207.170/flutter/user/deposit/get/');
 
     var data = response;
 
@@ -20,7 +20,7 @@ class UseUserDeposit {
 
   addDeposit(context, request, jenisSampah, beratSampah) async {
     var response = await request.post(
-        'http://10.0.2.2:8000/flutter/user/deposit/add/',
+        'http://103.13.207.170/flutter/user/deposit/add/',
         {"jenisSampah": jenisSampah, "beratSampah": beratSampah});
 
     return response['status'];

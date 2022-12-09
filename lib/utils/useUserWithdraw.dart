@@ -6,7 +6,7 @@ import '../models/Withdraw.dart';
 class UseUserWithdraw {
   Future<List<Withdraw>> getWithdraw(request) async {
     var response =
-        await request.get('http://10.0.2.2:8000/flutter/user/withdraw/get/');
+        await request.get('http://103.13.207.170/flutter/user/withdraw/get/');
 
     var data = response;
 
@@ -21,7 +21,7 @@ class UseUserWithdraw {
 
   Future<List<UserData>> getBalance(request) async {
     var response =
-        await request.get('http://10.0.2.2:8000/flutter/user/data/get/');
+        await request.get('http://103.13.207.170/flutter/user/data/get/');
 
     var data = response;
 
@@ -37,7 +37,7 @@ class UseUserWithdraw {
 
   Future<dynamic> addWithdraw(context, request, jumlah) async {
     var response =
-        await request.post('http://10.0.2.2:8000/flutter/user/withdraw/add/', {
+        await request.post('http://103.13.207.170/flutter/user/withdraw/add/', {
       "jumlah": jumlah,
     });
 

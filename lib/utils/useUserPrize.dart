@@ -8,7 +8,7 @@ class UseUserPrize {
   // To fetch prize data from admin
   Future<List<Prize>> getPrize(request) async {
     var response =
-        await request.get('http://10.0.2.2:8000/flutter/user/prize/get/');
+        await request.get('http://103.13.207.170/flutter/user/prize/get/');
 
     // melakukan decode response menjadi bentuk json
     var data = response;
@@ -26,7 +26,7 @@ class UseUserPrize {
   // To fetch redeemed prize data from certain user
   Future<List<RedeemedPrize>> getRedeemedPrize(request) async {
     var response = await request
-        .get('http://10.0.2.2:8000/flutter/user/prize/redeem/get/');
+        .get('http://103.13.207.170/flutter/user/prize/redeem/get/');
 
     // melakukan decode response menjadi bentuk json
     var data = response;
@@ -44,7 +44,7 @@ class UseUserPrize {
   // Method to redeem the prize
   redeemPrize(context, pk, request) async {
     var response = await request
-        .post('http://10.0.2.2:8000/flutter/user/prize/redeem/', {"id": pk});
+        .post('http://103.13.207.170/flutter/user/prize/redeem/', {"id": pk});
 
     return response['message'];
   }
@@ -52,7 +52,7 @@ class UseUserPrize {
   // Method to use the prize
   usePrize(context, pk, request) async {
     var response = await request.post(
-        'http://10.0.2.2:8000/flutter/user/prize/redeem/use/', {"id": pk});
+        'http://103.13.207.170/flutter/user/prize/redeem/use/', {"id": pk});
 
     return response['message'];
   }
@@ -60,7 +60,7 @@ class UseUserPrize {
   // Method to get user points
   Future<int> getPoints(request) async {
     var response =
-        await request.get('http://10.0.2.2:8000/flutter/user/data/get/');
+        await request.get('http://103.13.207.170/flutter/user/data/get/');
 
     var data = response;
 

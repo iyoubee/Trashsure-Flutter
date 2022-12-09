@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                                       _formKey.currentState?.save();
                                       final response = await request
                                           .login(
-                                              "http://10.0.2.2:8000/flutter/login/",
+                                              "http://103.13.207.170/flutter/login/",
                                               {
                                                 'username': _email,
                                                 'password': _password,

@@ -92,7 +92,7 @@ class _AdminPageState extends State<AdminPage> {
               onPressed: () async {
                 // do something
                 final response = await request
-                    .logout("http://10.0.2.2:8000/flutter/logout/")
+                    .logout("http://103.13.207.170/flutter/logout/")
                     .then((value) => {
                           Navigator.pushReplacementNamed(context, "/landing"),
                           if (value['status'] == 200)

@@ -6,7 +6,7 @@ import 'dart:convert';
 
 class UseTestimoni {
   Future<List<Testimoni>> fetchTestimoni() async {
-    var url = Uri.parse('http://10.0.2.2:8000/testimoni/get/');
+    var url = Uri.parse('http://103.13.207.170/testimoni/get/');
     var response = await http.get(
       url,
       headers: {
@@ -29,8 +29,8 @@ class UseTestimoni {
   }
 
   Future<dynamic> addTestimoni(context, request, desc) async {
-    var response =
-        await request.post('http://10.0.2.2:8000/flutter/user/testimoni/add/', {
+    var response = await request
+        .post('http://103.13.207.170/flutter/user/testimoni/add/', {
       "desc": desc,
     });
 
