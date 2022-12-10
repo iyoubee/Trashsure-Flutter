@@ -35,7 +35,7 @@ class _AdminDepositPage extends State<AdminDepositPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        "lib/assets/prize.jpg",
+                        "lib/assets/depo.jpg",
                         width: 50,
                       ),
                       const SizedBox(

@@ -47,6 +47,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.11.0"
+  flutter_native_splash:
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -57,6 +59,12 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/assets/bin.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -77,6 +85,7 @@ flutter:
     - lib/assets/electronic.png
     - lib/assets/plastic.png
     - lib/assets/recycle-bin-deposit.png
+    - lib/assets/depo.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

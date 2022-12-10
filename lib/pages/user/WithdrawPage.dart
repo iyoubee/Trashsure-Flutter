@@ -120,15 +120,15 @@ class _WithdrawPageState extends State<WithdrawPage> {
                             vertical: MediaQuery.of(context).size.height / 4),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "lib/assets/prize.jpg",
-                              width: 50,
+                          children: const [
+                            Icon(
+                              Icons.credit_card_off_outlined,
+                              size: 50,
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 20,
                             ),
-                            const Text(
+                            Text(
                               "Belum ada penarikan",
                               style: TextStyle(
                                 color: Colors.grey,
