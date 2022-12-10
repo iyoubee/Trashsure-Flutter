@@ -7,14 +7,7 @@ import 'dart:convert';
 class UseTestimoni {
   Future<List<Testimoni>> fetchTestimoni() async {
     var url = Uri.parse('http://trashsure.iyoubee.xyz/testimoni/get/');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-
+    var response = await http.get(url);
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
     // melakukan konversi data json menjadi object ToDo
