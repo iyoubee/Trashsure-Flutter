@@ -326,15 +326,15 @@ class _LandingPageState extends State<LandingPage> {
                                               10),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        "lib/assets/prize.jpg",
-                                        width: 50,
+                                    children: const [
+                                      Icon(
+                                        Icons.message_outlined,
+                                        size: 50,
                                       ),
-                                      const SizedBox(
+                                      SizedBox(
                                         height: 20,
                                       ),
-                                      const Text(
+                                      Text(
                                         "Belum ada testimoni",
                                         style: TextStyle(
                                           color: Colors.grey,
@@ -601,144 +601,6 @@ class _PageViewCustomState extends State<PageViewCustom> {
                           fontWeight: FontWeight.w500,
                           fontSize: 16,
                           color: Colors.black),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-class PageViewTestiCustom extends StatefulWidget {
-  const PageViewTestiCustom({super.key});
-
-  @override
-  State<PageViewTestiCustom> createState() => _PageViewTestiCustomState();
-}
-
-class _PageViewTestiCustomState extends State<PageViewTestiCustom> {
-  PageController? pageController;
-  double? pageOffset = 0;
-  double viewportFraction = 0.8;
-  double? scale;
-  List<List<dynamic>> listItem = [
-    [
-      Icons.waving_hand_outlined,
-      "PRAKTIS",
-      "Pengelolaan data dilakukan secara digital & dapat meningkatkan paperless activity."
-    ],
-    [
-      Icons.search,
-      "TRANSPARAN",
-      "Pengelola Bank Sampah dapat mengelola tabungan nasabah secara transparan."
-    ],
-    [
-      Icons.lock_outlined,
-      "AMAN",
-      "Pengelolaan data dilakukan secara aman dan rahasia untuk segala transaksi."
-    ],
-    [
-      Icons.mobile_friendly_outlined,
-      "MOBILE SUPPORT",
-      "Transaksi dapat dilakukan dengan mudah dan nyaman melalui aplikasi mobile."
-    ],
-    [
-      Icons.integration_instructions_outlined,
-      "TERINTEGRASI",
-      "Data Bank Sampah yang tergabung sudah terintegrasi sehingga memudahkan proses pemantauan pengelolaan sampah & perencanaan pengembangan Bank Sampah."
-    ],
-    [
-      Icons.card_giftcard,
-      "SISTEM POIN",
-      "Selain menukarkan sampah jenis tertentu dengan uang, TrashSure juga memberikan poin yang dapat anda kumpulkan dan tukarkan kemudain dengan beberapa hadiah menarik yang tersedia."
-    ]
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    pageController =
-        PageController(initialPage: 0, viewportFraction: viewportFraction)
-          ..addListener(() {
-            setState(() {
-              pageOffset = pageController!.page;
-            });
-          });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Expanded(
-      child: PageView.builder(
-        controller: pageController,
-        itemCount: listItem.length,
-        itemBuilder: ((context, index) {
-          double angle = (pageOffset! - index).abs();
-
-          if (angle > 0.5) {
-            angle = 1 - angle;
-          }
-          return Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.001)
-              ..rotateY(angle),
-            alignment: Alignment.center,
-            child: Material(
-              color: Colors.grey[850],
-              elevation: 1,
-              child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10),
-                padding: const EdgeInsets.all(30),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
-                  gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xff0059a5), Colors.grey],
-                  ),
-                  boxShadow: const [
-                    BoxShadow(
-                        color: Colors.pink,
-                        blurRadius: 12,
-                        offset: Offset(3, 10))
-                  ],
-                ),
-                width: double.infinity,
-                height: 400,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(
-                      listItem[index][0],
-                      size: 120,
-                      color: Colors.black54,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      listItem[index][1],
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Colors.white70),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      listItem[index][2],
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
                   ],
