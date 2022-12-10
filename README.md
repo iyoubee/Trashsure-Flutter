@@ -1,5 +1,10 @@
 # TrashSure
 
+[![Develop][actions2-badge]][commits-gh]
+[![Pre-Release][actions-badge]][commits-gh]
+[![Release][actions1-badge]][commits-gh]
+[![Build status](https://build.appcenter.ms/v0.1/apps/aaeb99d2-a401-41f3-b38b-4602ec50334b/branches/main/badge)](https://appcenter.ms)
+
 TrashSure hadir sebagai solusi digital untuk mengorganisir sampah secara efektif dengan imbalan yang menarik!
 
 > Proyek ini dibuat untuk memenuhi tugas Proyek Akhir Semester (PAS)
@@ -92,6 +97,7 @@ Aplikasi Trash-Sure memiliki beberapa fitur, antara lain:
 - Dapat merasakan seluruh fitur yang disediakan berdasarkan role yang sudah ditentukan.
 
 ### 🔗 Integrasi dengan Situs Web 🔗
+
 Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplikasi dengan server web.
 
 1. Mengimplementasikan sebuah _wrapper class_ dengan menggunakan library _http_ serta pbp_django_auth yang dibentuk oleh tim asdos untuk mendukung cookie, session, dan authentification pada app Trashsure
@@ -102,3 +108,8 @@ Berikut adalah langkah-langkah yang akan dilakukan untuk mengintegrasikan aplika
 ### 💡 Referensi 💡
 
 - [Rancang Bangun _Dashboard Admin_ Pemantauan Berbasis Web di PT. Astra Graphia Information Technology](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiN7Oryxo_7AhVoD7cAHY9NDKYQFnoECAYQAw&url=https%3A%2F%2Fzenodo.org%2Frecord%2F1218677%2Ffiles%2FJurnal%2520Ferliesha%2520Yuni%2520Hartanti-4314111018.pdf&usg=AOvVaw2FXNuZbcQ-7JUM7Xm0UzAz)
+
+[actions-badge]: https://github.com/al-ayubi2020/Trashsure-Flutter/actions/workflows/pre-release.yml/badge.svg
+[actions1-badge]: https://github.com/al-ayubi2020/Trashsure-Flutter/actions/workflows/release.yml/badge.svg
+[actions2-badge]: https://github.com/al-ayubi2020/Trashsure-Flutter/actions/workflows/staging.yml/badge.svg
+[commits-gh]: https://github.com/al-ayubi2020/Trashsure-Flutter/commits/main
