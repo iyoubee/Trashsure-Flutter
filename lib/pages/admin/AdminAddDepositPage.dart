@@ -93,12 +93,12 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                   onPressed: () async {
                     int response = await useAdminDeposit.addDeposit(
                         context, request, user, _jenis, berat);
-                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AdminPage(idx: 1)),
+                        (route) => false);
                     if (response == 200) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AdminPage(idx: 1)));
                       Flushbar(
                         backgroundColor: const Color.fromARGB(255, 29, 167, 86),
                         flushbarPosition: FlushbarPosition.TOP,
@@ -107,10 +107,6 @@ class _AdminAddDepositPageState extends State<AdminAddDepositPage> {
                         message: "Deposit berhasil dibuat",
                       ).show(context);
                     } else {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const AdminPage(idx: 1)));
                       Flushbar(
                         backgroundColor:
                             const Color.fromARGB(255, 244, 105, 77),

@@ -81,12 +81,12 @@ class _DepositAddPage extends State<DepositAddPage> {
                   onPressed: () async {
                     int response = await useUserDeposit.addDeposit(
                         context, request, _jenis, berat);
-                    Navigator.pop(context);
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const UserPage(idx: 1)),
+                        (route) => false);
                     if (response == 200) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const UserPage(idx: 1)));
                       Flushbar(
                         backgroundColor: const Color.fromARGB(255, 29, 167, 86),
                         flushbarPosition: FlushbarPosition.TOP,
@@ -95,7 +95,6 @@ class _DepositAddPage extends State<DepositAddPage> {
                         message: "Deposit berhasil dibuat",
                       ).show(context);
                     } else {
-                      Navigator.pop(context);
                       Flushbar(
                         backgroundColor:
                             const Color.fromARGB(255, 244, 105, 77),
@@ -105,10 +104,6 @@ class _DepositAddPage extends State<DepositAddPage> {
                         message: "Ada yang salah",
                       ).show(context);
                     }
-                    FocusScope.of(context)
-                        .unfocus(); // Unfocus the last selected input field
-                    _formKey.currentState?.reset();
-                    setState(() {});
                   },
                 )
               ],

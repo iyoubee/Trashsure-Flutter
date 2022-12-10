@@ -76,8 +76,8 @@ class _UserPageState extends State<UserPage> {
                       .then((value) => {
                             if (value['status'] == 200)
                               {
-                                Navigator.pushReplacementNamed(
-                                    context, "/landing"),
+                                Navigator.pushNamedAndRemoveUntil(
+                                    context, "/landing", (route) => false),
                                 Flushbar(
                                   backgroundColor:
                                       const Color.fromARGB(255, 29, 167, 86),

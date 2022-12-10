@@ -94,9 +94,10 @@ class _AdminPageState extends State<AdminPage> {
                 final response = await request
                     .logout("http://trashsure.iyoubee.xyz/flutter/logout/")
                     .then((value) => {
-                          Navigator.pushReplacementNamed(context, "/landing"),
                           if (value['status'] == 200)
                             {
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, "/landing", (route) => false),
                               Flushbar(
                                 backgroundColor:
                                     const Color.fromARGB(255, 29, 167, 86),
