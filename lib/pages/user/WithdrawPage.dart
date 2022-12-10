@@ -117,7 +117,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
                       return Container(
                         alignment: Alignment.center,
                         margin: EdgeInsets.symmetric(
-                            vertical: MediaQuery.of(context).size.height / 4),
+                            vertical: MediaQuery.of(context).size.height / 7),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
