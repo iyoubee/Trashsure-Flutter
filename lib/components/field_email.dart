@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'package:trashsure/components/colors.dart';
 import 'package:flutter/material.dart';
 
 class EmailField extends StatefulWidget {
@@ -33,7 +32,8 @@ class _EmailFieldState extends State<EmailField>
     emailController = widget.emailController;
     _animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
-    final tween = ColorTween(begin: Colors.grey.withOpacity(0), end: blueColor);
+    final tween = ColorTween(
+        begin: Colors.grey.withOpacity(0), end: const Color(0xff21579C));
 
     _animation = tween.animate(_animationController)
       ..addListener(() {
