@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/auth/LoginPage.dart';
+import 'package:trashsure/pages/auth/RegisterPage.dart';
 import 'package:trashsure/pages/user/DepositAddPage.dart';
 import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/pages/user/TestimoniAddPage.dart';
@@ -8,8 +10,6 @@ import 'package:provider/provider.dart';
 import 'package:trashsure/pages/admin/AdminAddDepositPage.dart';
 import 'package:trashsure/pages/admin/AdminAddPrizePage.dart';
 import 'package:trashsure/pages/admin/AdminPage.dart';
-import 'package:trashsure/pages/auth/LoginPage.dart';
-import 'package:trashsure/pages/auth/RegisterPage.dart';
 import 'package:trashsure/pages/user/UserPage.dart';
 
 void main() {
