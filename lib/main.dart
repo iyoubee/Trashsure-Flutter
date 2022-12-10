@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './pages/auth/LoginPage.dart';
-import './pages/auth/RegisterPage.dart';
+import 'pages/LoginPage.dart';
+import 'pages/RegisterPage.dart';
 import 'package:trashsure/pages/user/DepositAddPage.dart';
 import 'package:trashsure/pages/LandingPage.dart';
 import 'package:trashsure/pages/user/TestimoniAddPage.dart';
