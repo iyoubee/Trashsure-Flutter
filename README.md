@@ -22,7 +22,8 @@ TrashSure hadir sebagai solusi digital untuk mengorganisir sampah secara efektif
 
 ### ✨ Trash-sure ✨
 
-- [Tautan Aplikasi Heroku](https://trashsure-pbp.herokuapp.com/)
+- [Tautan Website](http://trashsure.iyoubee.xyz/)
+- [Unduh APK](https://install.appcenter.ms/users/al-ayubi2020/apps/trashsure/distribution_groups/public)
 
 ### 📝 Cerita Aplikasi dan Manfaat 📝
 
