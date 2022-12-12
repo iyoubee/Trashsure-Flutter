@@ -85,7 +85,7 @@ class _WithdrawPageState extends State<WithdrawPage> {
                 height: 20,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   const Text(
@@ -93,13 +93,6 @@ class _WithdrawPageState extends State<WithdrawPage> {
                     style: TextStyle(
                         color: Colors.black87,
                         fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const Text(
-                    "View All",
-                    style: TextStyle(
-                        color: Colors.black45,
-                        fontSize: 14,
                         fontWeight: FontWeight.bold),
                   ),
                 ],

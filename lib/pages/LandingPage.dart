@@ -522,12 +522,12 @@ class _PageViewCustomState extends State<PageViewCustom> {
     [
       Icons.integration_instructions_outlined,
       "TERINTEGRASI",
-      "Data Bank Sampah yang tergabung sudah terintegrasi sehingga memudahkan proses pemantauan pengelolaan sampah & perencanaan pengembangan Bank Sampah."
+      "Data Bank Sampah yang tergabung sudah terintegrasi memudahkan proses pemantauan pengelolaan sampah."
     ],
     [
       Icons.card_giftcard,
       "SISTEM POIN",
-      "Selain menukarkan sampah jenis tertentu dengan uang, TrashSure juga memberikan poin yang dapat anda kumpulkan dan tukarkan kemudain dengan beberapa hadiah menarik yang tersedia."
+      "TrashSure juga memberikan poin yang dapat anda kumpulkan dan tukarkan dengan hadiah menarik."
     ]
   ];
 
