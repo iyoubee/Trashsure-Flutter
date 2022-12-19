@@ -4,8 +4,8 @@ import '../models/Deposit.dart';
 
 class UseUserDeposit {
   Future<List<Deposit>> getUserDeposit(request) async {
-    var response = await request
-        .get('http://trashsure.iyoubee.xyz/flutter/user/deposit/get/');
+    var response = await request.get(
+        'https://trashsure-django-production.up.railway.app/flutter/user/deposit/get/');
 
     var data = response;
 
@@ -20,7 +20,7 @@ class UseUserDeposit {
 
   addDeposit(context, request, jenisSampah, beratSampah) async {
     var response = await request.post(
-        'http://trashsure.iyoubee.xyz/flutter/user/deposit/add/',
+        'https://trashsure-django-production.up.railway.app/flutter/user/deposit/add/',
         {"jenisSampah": jenisSampah, "beratSampah": beratSampah});
 
     return response['status'];

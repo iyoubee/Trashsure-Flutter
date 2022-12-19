@@ -6,7 +6,8 @@ import 'dart:convert';
 
 class UseTestimoni {
   Future<List<Testimoni>> fetchTestimoni() async {
-    var url = Uri.parse('http://trashsure.iyoubee.xyz/testimoni/get/');
+    var url = Uri.parse(
+        'https://trashsure-django-production.up.railway.app/testimoni/get/');
     var response = await http.get(url);
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));
@@ -22,10 +23,11 @@ class UseTestimoni {
   }
 
   Future<dynamic> addTestimoni(context, request, desc) async {
-    var response = await request
-        .post('http://trashsure.iyoubee.xyz/flutter/user/testimoni/add/', {
-      "desc": desc,
-    });
+    var response = await request.post(
+        'https://trashsure-django-production.up.railway.app/flutter/user/testimoni/add/',
+        {
+          "desc": desc,
+        });
 
     return response;
   }
