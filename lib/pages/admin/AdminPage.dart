@@ -92,8 +92,7 @@ class _AdminPageState extends State<AdminPage> {
               onPressed: () async {
                 // do something
                 final response = await request
-                    .logout(
-                        "https://trashsure-django-production.up.railway.app/flutter/logout/")
+                    .logout("http://trashsure.iyoubee.xyz/flutter/logout/")
                     .then((value) => {
                           if (value['status'] == 200)
                             {
