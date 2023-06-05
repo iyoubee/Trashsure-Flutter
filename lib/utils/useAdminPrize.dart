@@ -5,7 +5,7 @@ import 'package:trashsure/models/Prize.dart';
 class UseAdminPrize {
   Future<List<Prize>> getAdminPrize(request) async {
     var response = await request
-        .get('http://trashsure.iyoubee.xyz/flutter/admin/prize/get/');
+        .get('https://trashsure.iyoubee.xyz/flutter/admin/prize/get/');
 
     var data = response;
 
@@ -20,7 +20,7 @@ class UseAdminPrize {
 
   addPrize(context, request, nama, poin, stok, desc) async {
     var response = await request.post(
-        'http://trashsure.iyoubee.xyz/flutter/admin/prize/add/',
+        'https://trashsure.iyoubee.xyz/flutter/admin/prize/add/',
         {"nama": nama, "poin": poin, "stok": stok, "desc": desc});
 
     return response['status'];
@@ -28,7 +28,7 @@ class UseAdminPrize {
 
   delPrize(context, pk, request) async {
     var response = await request.post(
-        'http://trashsure.iyoubee.xyz/flutter/admin/prize/del/', {"id": pk});
+        'https://trashsure.iyoubee.xyz/flutter/admin/prize/del/', {"id": pk});
 
     return response['status'];
   }

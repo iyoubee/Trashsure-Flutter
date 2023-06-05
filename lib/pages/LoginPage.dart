@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                                       _formKey.currentState?.save();
                                       final response = await request
                                           .login(
-                                              "http://trashsure.iyoubee.xyz/flutter/login/",
+                                              "https://trashsure.iyoubee.xyz/flutter/login/",
                                               {
                                                 'username': _email,
                                                 'password': _password,
