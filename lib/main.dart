@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trashsure/pages/SplashPage.dart';
 import 'pages/LoginPage.dart';
 import 'pages/RegisterPage.dart';
 import 'package:trashsure/pages/user/DepositAddPage.dart';
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
-        home: const LandingPage(),
+        initialRoute: "/splash",
         routes: {
+          "/splash": (BuildContext context) => const SplashPage(),
           "/landing": (BuildContext context) => const LandingPage(),
           "/admin": (BuildContext context) => const AdminPage(idx: 0),
           "/admin/deposit/add": (BuildContext context) =>

@@ -6,7 +6,7 @@ import 'dart:convert';
 
 class UseTestimoni {
   Future<List<Testimoni>> fetchTestimoni() async {
-    var url = Uri.parse('https://trashsure.iyoubee.xyz/testimoni/get/');
+    var url = Uri.parse('https://trashsure.iyoubee.xyz/testimoni/get');
     var response = await http.get(url);
     // melakukan decode response menjadi bentuk json
     var data = jsonDecode(utf8.decode(response.bodyBytes));

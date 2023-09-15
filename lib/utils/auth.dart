@@ -1,5 +1,7 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -80,7 +82,6 @@ class CookieRequest {
     }
     http.Response response =
         await _client.post(Uri.parse(url), body: data, headers: headers);
-    _updateCookie(response);
     // Expects and returns JSON request body
     return jsonDecode(utf8.decode(response.bodyBytes));
   }
@@ -154,6 +155,10 @@ class CookieRequest {
     http.Response response = await _client.post(Uri.parse(url));
 
     if (response.statusCode == 200) {
+      await _updateCookie(response);
+      local = await SharedPreferences.getInstance();
+      local.remove("cookies");
+
       loggedIn = false;
       jsonData = {};
     } else {
