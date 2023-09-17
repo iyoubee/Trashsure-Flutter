@@ -166,12 +166,10 @@ class _LoginPageState extends State<LoginPage> {
                                       });
                                       _formKey.currentState?.save();
                                       final response = await request
-                                          .login(
-                                              "https://trashsure.iyoubee.xyz/flutter/login/",
-                                              {
-                                                'username': _email,
-                                                'password': _password,
-                                              })
+                                          .login({
+                                            'username': _email,
+                                            'password': _password,
+                                          })
                                           .then((value) => {
                                                 if (value['status'] == 200)
                                                   {

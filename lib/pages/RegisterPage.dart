@@ -166,16 +166,16 @@ class _RegisterPageState extends State<RegisterPage> {
                                       });
                                       _formKey.currentState?.save();
                                       final response = await request
-                                          .post(
-                                              "https://trashsure.iyoubee.xyz/flutter/register/",
-                                              {
-                                                'username': _email,
-                                                'password': _password,
-                                              })
+                                          .register({
+                                            'username': _email,
+                                            'password': _password,
+                                          })
                                           .then((value) => {
                                                 if (value['status'] == 200)
                                                   {
-                                                    Navigator.pop(context),
+                                                    Navigator
+                                                        .pushReplacementNamed(
+                                                            context, '/user'),
                                                     Flushbar(
                                                       backgroundColor:
                                                           const Color.fromARGB(

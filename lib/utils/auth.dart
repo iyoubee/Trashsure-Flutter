@@ -37,7 +37,8 @@ class CookieRequest {
     local.setString("cookies", cookies);
   }
 
-  Future<dynamic> login(String url, dynamic data) async {
+  Future<dynamic> login(dynamic data) async {
+    String url = "http://192.168.56.1:8000/api/login";
     if (kIsWeb) {
       dynamic c = _client;
       c.withCredentials = true;
@@ -57,6 +58,24 @@ class CookieRequest {
 
     // Expects and returns JSON request body
     return json.decode(response.body);
+  }
+
+  Future<dynamic> register(dynamic data) async {
+    String url = "http://192.168.56.1:8000/api/register";
+    if (kIsWeb) {
+      dynamic c = _client;
+      c.withCredentials = true;
+    }
+
+    http.Response response =
+        await _client.post(Uri.parse(url), body: data, headers: headers);
+
+    if (response.statusCode == 200) {
+      http.Response response = await login(data);
+      return json.decode(response.body);
+    } else {
+      return json.decode(response.body);
+    }
   }
 
   Map<String, dynamic> getJsonData() {

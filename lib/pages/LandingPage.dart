@@ -1,10 +1,8 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 import 'LoginPage.dart';
 import 'RegisterPage.dart';
 import 'package:trashsure/utils/auth.dart';
-import 'package:trashsure/utils/useTestimoni.dart';
 import 'package:provider/provider.dart';
 
 class LandingPage extends StatefulWidget {
@@ -17,20 +15,17 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   final ScrollController controller = ScrollController();
 
-  UseTestimoni useTestimoni = UseTestimoni();
-
-  void scrollDown() {
-    // Method buat automatically scroll down saat tombol dipencet
-    controller.animateTo(
-      controller.position.maxScrollExtent,
-      duration: const Duration(seconds: 2),
-      curve: Curves.fastOutSlowIn,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+    final double screenHeight = MediaQuery.of(context).size.height;
+    void scrollDown() {
+      controller.animateTo(
+        controller.offset + screenHeight,
+        duration: const Duration(seconds: 2),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
 
     return SafeArea(
       child: Scaffold(
@@ -40,7 +35,7 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               Container(
                 width: double.infinity,
-                height: MediaQuery.of(context).size.height,
+                height: screenHeight,
                 color: Colors.black,
                 child: Stack(
                   children: [
@@ -119,7 +114,7 @@ class _LandingPageState extends State<LandingPage> {
                                         scrollDown();
                                       },
                                       child: const Text(
-                                        "Lihat Testimoni",
+                                        "Pelajari lebih lanjut",
                                       ),
                                     ),
                                   ),
@@ -168,7 +163,7 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 80),
                 width: double.infinity,
                 color: const Color.fromARGB(255, 245, 245, 245),
                 child: Column(
@@ -267,149 +262,6 @@ class _LandingPageState extends State<LandingPage> {
                     ),
                   ],
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(20),
-                width: double.infinity,
-                color: const Color.fromARGB(255, 245, 245, 245),
-                child: Column(children: <Widget>[
-                  const Text(
-                    "Testimoni",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                  if (request.loggedIn)
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          width: 150,
-                          child: TextButton(
-                            style: ButtonStyle(
-                              shape: MaterialStateProperty.all(
-                                  RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(18),
-                                      side: const BorderSide(
-                                          color: Colors.green))),
-                            ),
-                            onPressed: () {
-                              // scrollDown();
-                              Navigator.pushNamed(
-                                  context, '/user/testimoni/add');
-                            },
-                            child: const Text(
-                              "Tambah Testimoni",
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  Column(
-                    children: [
-                      FutureBuilder(
-                          future: useTestimoni.fetchTestimoni(),
-                          builder: (context, AsyncSnapshot snapshot) {
-                            if (snapshot.data == null) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            } else {
-                              if (!snapshot.data.isNotEmpty) {
-                                return Container(
-                                  alignment: Alignment.center,
-                                  margin: EdgeInsets.symmetric(
-                                      vertical:
-                                          MediaQuery.of(context).size.height /
-                                              10),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Icon(
-                                        Icons.message_outlined,
-                                        size: 50,
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
-                                      Text(
-                                        "Belum ada testimoni",
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              } else {
-                                return ListView.builder(
-                                    scrollDirection: Axis.vertical,
-                                    shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: snapshot.data!.length,
-                                    itemBuilder: (_, index) => Container(
-                                          margin: const EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 12),
-                                          padding: const EdgeInsets.all(20.0),
-                                          decoration: BoxDecoration(
-                                              color: const Color.fromARGB(
-                                                  255, 226, 215, 132),
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              boxShadow: const [
-                                                BoxShadow(
-                                                    color: Colors.black,
-                                                    blurRadius: 2.0)
-                                              ]),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: <Widget>[
-                                              Column(
-                                                children: [
-                                                  RichText(
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      text: TextSpan(
-                                                          text:
-                                                              "${snapshot.data![index].fields.desc}\n",
-                                                          style:
-                                                              const TextStyle(
-                                                                  color: Colors
-                                                                      .black,
-                                                                  fontSize:
-                                                                      18))),
-                                                  Text(
-                                                    "${snapshot.data![index].fields.username}",
-                                                    style: const TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: 12.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(height: 4),
-                                                ],
-                                              ),
-                                            ],
-                                          ),
-                                        ));
-                              }
-                            }
-                          }),
-                      if (!request.loggedIn)
-                        const SizedBox(
-                          height: 60,
-                        )
-                    ],
-                  ),
-                ]),
               ),
             ],
           ),
@@ -514,21 +366,6 @@ class _PageViewCustomState extends State<PageViewCustom> {
       "AMAN",
       "Pengelolaan data dilakukan secara aman dan rahasia untuk segala transaksi."
     ],
-    [
-      Icons.mobile_friendly_outlined,
-      "MOBILE SUPPORT",
-      "Transaksi dapat dilakukan dengan mudah dan nyaman melalui aplikasi mobile."
-    ],
-    [
-      Icons.integration_instructions_outlined,
-      "TERINTEGRASI",
-      "Data Bank Sampah yang tergabung sudah terintegrasi memudahkan proses pemantauan pengelolaan sampah."
-    ],
-    [
-      Icons.card_giftcard,
-      "SISTEM POIN",
-      "TrashSure juga memberikan poin yang dapat anda kumpulkan dan tukarkan dengan hadiah menarik."
-    ]
   ];
 
   @override
@@ -550,19 +387,11 @@ class _PageViewCustomState extends State<PageViewCustom> {
         controller: pageController,
         itemCount: listItem.length,
         itemBuilder: ((context, index) {
-          double angle = (pageOffset! - index).abs();
-
-          if (angle > 0.5) {
-            angle = 1 - angle;
-          }
           return Transform(
-            transform: Matrix4.identity()
-              ..setEntry(3, 2, 0.001)
-              ..rotateY(angle),
+            transform: Matrix4.identity()..setEntry(3, 2, 0.001),
             alignment: Alignment.center,
             child: Material(
               color: const Color.fromARGB(255, 245, 245, 245),
-              elevation: 1,
               child: Container(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 padding: const EdgeInsets.all(30),

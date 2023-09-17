@@ -34,7 +34,6 @@ class _UserPageState extends State<UserPage> {
     List<Widget> _widgetOptions = <Widget>[
       LandingPage(),
       DepositPage(),
-      // NOTE: Redeem Prize Page
       RedeemPrizePage(),
       WithdrawPage(),
     ];
